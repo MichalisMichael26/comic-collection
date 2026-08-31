@@ -3,6 +3,8 @@ from functools import lru_cache
 from bs4 import BeautifulSoup
 from lucky_luke_data import get_lucky_luke_comics
 
+from urllib.parse import urljoin
+
 import requests
 import re
 import html
@@ -131,7 +133,8 @@ HEADERS = {
 
 
 # ============================================================
-# ΕΞΩΦΥΛΛΑ ΑΣΤΕΡΙΞ ΑΠΟ ΜΑΜΟΥΘ
+# ΑΣΤΕΡΙΞ - ΕΞΩΦΥΛΛΑ
+# ΔΕΝ ΑΛΛΑΖΟΥΜΕ ΤΗ ΛΕΙΤΟΥΡΓΙΑ ΤΟΥ
 # ============================================================
 
 @lru_cache(maxsize=1)
@@ -164,7 +167,6 @@ def get_mamouth_asterix_covers():
                 headers=HEADERS,
                 timeout=8
             )
-
 
             if response.status_code != 200:
                 continue
@@ -269,7 +271,111 @@ def get_mamouth_asterix_covers():
 
 
 # ============================================================
-# ΕΞΩΦΥΛΛΑ ΛΟΥΚΥ ΛΟΥΚ ΑΠΟ ΜΑΜΟΥΘ
+# ΒΟΗΘΗΤΙΚΟ:
+# ΒΡΙΣΚΕΙ ΤΗΝ ΚΑΛΥΤΕΡΗ ΕΙΚΟΝΑ
+# ΣΕ ΚΑΡΤΑ ΠΡΟΪΟΝΤΟΣ
+# ============================================================
+
+def get_best_product_image(
+    product,
+    page_url
+):
+
+    image = product.find("img")
+
+
+    if not image:
+        return None
+
+
+    # Πρώτα δοκιμάζουμε srcset γιατί συνήθως
+    # περιέχει την καλύτερη ανάλυση
+
+    srcsets = [
+
+        image.get("data-srcset"),
+
+        image.get("srcset")
+
+    ]
+
+
+    for srcset in srcsets:
+
+        if not srcset:
+            continue
+
+
+        candidates = []
+
+
+        for item in srcset.split(","):
+
+            item = item.strip()
+
+
+            if not item:
+                continue
+
+
+            candidate = (
+                item.split(" ")[0].strip()
+            )
+
+
+            if candidate:
+                candidates.append(candidate)
+
+
+        if candidates:
+
+            image_url = candidates[-1]
+
+
+            if not image_url.startswith("data:"):
+
+                return urljoin(
+                    page_url,
+                    image_url
+                )
+
+
+    # Αν δεν υπάρχει srcset,
+    # δοκιμάζουμε τα κλασικά attributes
+
+    possible_urls = [
+
+        image.get("data-lazy-src"),
+
+        image.get("data-src"),
+
+        image.get("data-original"),
+
+        image.get("src")
+
+    ]
+
+
+    for image_url in possible_urls:
+
+        if (
+            image_url
+            and
+            not image_url.startswith("data:")
+        ):
+
+            return urljoin(
+                page_url,
+                image_url
+            )
+
+
+    return None
+
+
+# ============================================================
+# ΛΟΥΚΥ ΛΟΥΚ
+# ΠΑΙΡΝΟΥΜΕ IMAGE + PRODUCT URL
 # ============================================================
 
 @lru_cache(maxsize=1)
@@ -279,20 +385,18 @@ def get_mamouth_lucky_luke_catalog():
 
 
     base_url = (
-
         "https://mamouthcomix.gr/"
         "product-category/albums/%CE%BB%CE%BB/"
-
     )
 
 
-    for page in range(1, 13):
+    # Η σειρά βρίσκεται σε 10 σελίδες.
 
+    for page in range(1, 11):
 
         if page == 1:
 
             page_url = base_url
-
 
         else:
 
@@ -307,7 +411,7 @@ def get_mamouth_lucky_luke_catalog():
             response = requests.get(
                 page_url,
                 headers=HEADERS,
-                timeout=8
+                timeout=10
             )
 
 
@@ -327,7 +431,6 @@ def get_mamouth_lucky_luke_catalog():
 
 
             for product in products:
-
 
                 title_element = (
 
@@ -354,10 +457,87 @@ def get_mamouth_lucky_luke_catalog():
                 )
 
 
+                # ----------------------------
+                # PRODUCT URL
+                # ----------------------------
+
+                product_link = (
+
+                    product.select_one(
+                        "a.woocommerce-LoopProduct-link"
+                    )
+
+                    or product.select_one(
+                        'a[href*="/product/"]'
+                    )
+
+                )
+
+
+                product_url = None
+
+
+                if (
+                    product_link
+                    and
+                    product_link.get("href")
+                ):
+
+                    product_url = urljoin(
+                        page_url,
+                        product_link.get("href")
+                    )
+
+
+                # ----------------------------
+                # ΕΙΚΟΝΑ ΑΠΟ ΤΗΝ ΚΑΡΤΑ
+                # ----------------------------
+
+                image_url = get_best_product_image(
+                    product,
+                    page_url
+                )
+
+
+                # ----------------------------
+                # SPECIAL
+                # ----------------------------
+
+                if (
+                    "Ντόλης δεν απαντάει"
+                    in full_title
+                ):
+
+                    catalog["SPECIAL"] = {
+
+                        "title":
+                            "Ο Ντόλης δεν απαντάει πιά",
+
+                        "image":
+                            image_url,
+
+                        "product_url":
+                            product_url
+
+                    }
+
+                    continue
+
+
+                # ----------------------------
+                # ΑΡΙΘΜΗΜΕΝΑ ΤΕΥΧΗ
+                # ----------------------------
+
                 match = re.search(
-                    r"Λούκυ\s*Λουκ\s*[-#:]?\s*0?(\d{1,2})",
+
+                    r"Λούκυ\s*Λουκ\s*"
+                    r"[-#:]?\s*"
+                    r"0?(\d{1,2})",
+
                     full_title,
+
                     re.IGNORECASE
+
                 )
 
 
@@ -370,44 +550,22 @@ def get_mamouth_lucky_luke_catalog():
                 )
 
 
-                if number < 1 or number > 89:
-                    continue
-
-
-                image = product.find(
-                    "img"
-                )
-
-
-                if not image:
-                    continue
-
-
-                image_url = (
-
-                    image.get("data-lazy-src")
-
-                    or image.get("data-src")
-
-                    or image.get("data-original")
-
-                    or image.get("src")
-
-                )
-
-
                 if (
-                    image_url
-                    and
-                    not image_url.startswith("data:")
+                    number < 1
+                    or number > 89
                 ):
+                    continue
 
-                    catalog[number] = (
-                        image_url.replace(
-                            "http://",
-                            "https://"
-                        )
-                    )
+
+                catalog[number] = {
+
+                    "image":
+                        image_url,
+
+                    "product_url":
+                        product_url
+
+                }
 
 
         except Exception:
@@ -416,6 +574,200 @@ def get_mamouth_lucky_luke_catalog():
 
 
     return catalog
+
+
+# ============================================================
+# ΑΝ ΔΕΝ ΠΑΡΟΥΜΕ ΕΙΚΟΝΑ ΑΠΟ ΤΗΝ ΚΑΡΤΑ,
+# ΜΠΑΙΝΟΥΜΕ ΣΤΗ ΣΕΛΙΔΑ ΤΟΥ ΠΡΟΪΟΝΤΟΣ
+# ΚΑΙ ΠΑΙΡΝΟΥΜΕ OG:IMAGE
+# ============================================================
+
+@lru_cache(maxsize=150)
+def get_product_page_cover(
+    product_url
+):
+
+    if not product_url:
+        return None
+
+
+    try:
+
+        response = requests.get(
+            product_url,
+            headers=HEADERS,
+            timeout=10
+        )
+
+
+        if response.status_code != 200:
+            return None
+
+
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser"
+        )
+
+
+        # OpenGraph image
+
+        og_image = soup.select_one(
+            'meta[property="og:image"]'
+        )
+
+
+        if (
+            og_image
+            and og_image.get("content")
+        ):
+
+            return urljoin(
+                product_url,
+                og_image.get("content")
+            )
+
+
+        # Twitter image
+
+        twitter_image = soup.select_one(
+            'meta[name="twitter:image"]'
+        )
+
+
+        if (
+            twitter_image
+            and twitter_image.get("content")
+        ):
+
+            return urljoin(
+                product_url,
+                twitter_image.get("content")
+            )
+
+
+        # WooCommerce main image
+
+        main_image = soup.select_one(
+            "img.wp-post-image"
+        )
+
+
+        if main_image:
+
+            image_url = (
+
+                main_image.get("data-large_image")
+
+                or main_image.get("data-src")
+
+                or main_image.get("src")
+
+            )
+
+
+            if image_url:
+
+                return urljoin(
+                    product_url,
+                    image_url
+                )
+
+
+    except Exception:
+
+        pass
+
+
+    return None
+
+
+# ============================================================
+# ΤΟ RENDER ΚΑΤΕΒΑΖΕΙ ΤΗΝ ΕΙΚΟΝΑ
+# ΚΑΙ ΤΗ ΣΕΡΒΙΡΕΙ ΣΤΟ APP
+# ============================================================
+
+@lru_cache(maxsize=200)
+def fetch_remote_image(
+    image_url
+):
+
+    if not image_url:
+        return None
+
+
+    try:
+
+        headers = dict(HEADERS)
+
+        headers["Referer"] = (
+            "https://mamouthcomix.gr/"
+        )
+
+
+        response = requests.get(
+            image_url,
+            headers=headers,
+            timeout=12
+        )
+
+
+        if response.status_code != 200:
+            return None
+
+
+        content_type = response.headers.get(
+            "Content-Type",
+            ""
+        )
+
+
+        if not content_type.startswith(
+            "image/"
+        ):
+
+            return None
+
+
+        return (
+            response.content,
+            content_type
+        )
+
+
+    except Exception:
+
+        return None
+
+
+def make_image_response(
+    image_url
+):
+
+    result = fetch_remote_image(
+        image_url
+    )
+
+
+    if not result:
+        return None
+
+
+    content, content_type = result
+
+
+    response = Response(
+        content,
+        content_type=content_type
+    )
+
+
+    response.headers[
+        "Cache-Control"
+    ] = "public, max-age=86400"
+
+
+    return response
 
 
 # ============================================================
@@ -432,11 +784,17 @@ def google_books_cover(
 
         response = requests.get(
 
-            "https://www.googleapis.com/books/v1/volumes",
+            "https://www.googleapis.com/"
+            "books/v1/volumes",
 
             params={
-                "q": f'{series} "{title}"',
-                "maxResults": 5
+
+                "q":
+                    f'{series} "{title}"',
+
+                "maxResults":
+                    5
+
             },
 
             timeout=8
@@ -455,7 +813,6 @@ def google_books_cover(
             "items",
             []
         ):
-
 
             volume_info = item.get(
                 "volumeInfo",
@@ -510,7 +867,6 @@ def placeholder_cover(
     title,
     background="#ffd60a"
 ):
-
 
     safe_series = html.escape(
         str(series)
@@ -614,6 +970,7 @@ def placeholder_cover(
 
 # ============================================================
 # COVER - ΑΣΤΕΡΙΞ
+# ΙΔΙΑ ΛΕΙΤΟΥΡΓΙΑ ΟΠΩΣ ΠΡΙΝ
 # ============================================================
 
 @app.route(
@@ -621,10 +978,11 @@ def placeholder_cover(
 )
 def asterix_cover(number):
 
-
     if (
         number < 1
-        or number > len(asterix_titles)
+        or number > len(
+            asterix_titles
+        )
     ):
 
         return "", 404
@@ -677,6 +1035,7 @@ def asterix_cover(number):
 
 # ============================================================
 # COVER - ΛΟΥΚΥ ΛΟΥΚ
+# ΝΕΑ ΔΙΟΡΘΩΜΕΝΗ ΛΕΙΤΟΥΡΓΙΑ
 # ============================================================
 
 @app.route(
@@ -684,13 +1043,17 @@ def asterix_cover(number):
 )
 def lucky_luke_cover(number):
 
-
-    if number < 1 or number > 89:
+    if (
+        number < 1
+        or number > 89
+    ):
 
         return "", 404
 
 
-    comics = get_lucky_luke_comics()
+    comics = (
+        get_lucky_luke_comics()
+    )
 
 
     comic = next(
@@ -716,17 +1079,62 @@ def lucky_luke_cover(number):
     )
 
 
-    image_url = catalog.get(
-        number
+    data = catalog.get(
+        number,
+        {}
     )
 
 
-    if image_url:
+    # 1.
+    # Πρώτα εικόνα από τον κατάλογο
 
-        return redirect(
+    image_url = data.get(
+        "image"
+    )
+
+
+    image_response = (
+        make_image_response(
             image_url
         )
+    )
 
+
+    if image_response:
+
+        return image_response
+
+
+    # 2.
+    # Αν δεν βρεθεί,
+    # μπαίνουμε στο προϊόν
+
+    product_url = data.get(
+        "product_url"
+    )
+
+
+    image_url = (
+        get_product_page_cover(
+            product_url
+        )
+    )
+
+
+    image_response = (
+        make_image_response(
+            image_url
+        )
+    )
+
+
+    if image_response:
+
+        return image_response
+
+
+    # 3.
+    # Google Books fallback
 
     image_url = google_books_cover(
         "Λούκυ Λουκ",
@@ -734,12 +1142,20 @@ def lucky_luke_cover(number):
     )
 
 
-    if image_url:
-
-        return redirect(
+    image_response = (
+        make_image_response(
             image_url
         )
+    )
 
+
+    if image_response:
+
+        return image_response
+
+
+    # 4.
+    # Μόνο αν αποτύχουν όλα
 
     return placeholder_cover(
         "ΛΟΥΚΥ ΛΟΥΚ",
@@ -758,10 +1174,61 @@ def lucky_luke_cover(number):
 )
 def lucky_luke_special_cover():
 
-
     title = (
         "Ο Ντόλης δεν απαντάει πιά"
     )
+
+
+    catalog = (
+        get_mamouth_lucky_luke_catalog()
+    )
+
+
+    data = catalog.get(
+        "SPECIAL",
+        {}
+    )
+
+
+    image_url = data.get(
+        "image"
+    )
+
+
+    image_response = (
+        make_image_response(
+            image_url
+        )
+    )
+
+
+    if image_response:
+
+        return image_response
+
+
+    product_url = data.get(
+        "product_url"
+    )
+
+
+    image_url = (
+        get_product_page_cover(
+            product_url
+        )
+    )
+
+
+    image_response = (
+        make_image_response(
+            image_url
+        )
+    )
+
+
+    if image_response:
+
+        return image_response
 
 
     image_url = google_books_cover(
@@ -770,11 +1237,16 @@ def lucky_luke_special_cover():
     )
 
 
-    if image_url:
-
-        return redirect(
+    image_response = (
+        make_image_response(
             image_url
         )
+    )
+
+
+    if image_response:
+
+        return image_response
 
 
     return placeholder_cover(
@@ -789,17 +1261,22 @@ def lucky_luke_special_cover():
 # COMICS ΑΝΑ ΚΑΤΗΓΟΡΙΑ
 # ============================================================
 
-def get_comics(slug):
-
+def get_comics(
+    slug
+):
 
     if slug == "asterix":
 
-        return get_asterix_comics()
+        return (
+            get_asterix_comics()
+        )
 
 
     if slug == "lucky-luke":
 
-        return get_lucky_luke_comics()
+        return (
+            get_lucky_luke_comics()
+        )
 
 
     if slug == "arkas":
@@ -822,7 +1299,6 @@ def get_comics(slug):
 @app.route("/")
 def dashboard():
 
-
     total = (
 
         len(
@@ -840,13 +1316,17 @@ def dashboard():
 
     stats = {
 
-        "total": total,
+        "total":
+            total,
 
-        "owned": 0,
+        "owned":
+            0,
 
-        "wishlist": 0,
+        "wishlist":
+            0,
 
-        "duplicates": 0
+        "duplicates":
+            0
 
     }
 
@@ -870,7 +1350,6 @@ def dashboard():
     "/category/<slug>"
 )
 def category(slug):
-
 
     selected_category = next(
 

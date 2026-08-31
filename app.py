@@ -37,6 +37,10 @@ from idefix_covers import (
     get_idefix_cover
 )
 
+from iznogoud_covers import (
+    get_iznogoud_cover
+)
+
 import requests
 
 
@@ -230,25 +234,24 @@ def get_idefix_comics():
 
 
 # ============================================================
-# ΑΡΚΑΣ
+# ΙΖΝΟΓΚΟΥΝΤ
 # ============================================================
 
-def get_arkas_comics():
+def get_iznogoud_comics():
 
-    original = load_arkas_comics()
+    original = load_iznogoud_comics()
 
     comics = []
 
     for comic in original:
 
+        number = comic["number"]
+
         comics.append(
             {
-                "number": comic["number"],
+                "number": number,
                 "title": comic["title"],
-                "image": comic.get(
-                    "image",
-                    ""
-                ),
+                "image": f"/cover/iznogoud/{number}",
                 "owned": comic.get(
                     "owned",
                     False
@@ -260,12 +263,12 @@ def get_arkas_comics():
 
 
 # ============================================================
-# ΙΖΝΟΓΚΟΥΝΤ
+# ΑΡΚΑΣ
 # ============================================================
 
-def get_iznogoud_comics():
+def get_arkas_comics():
 
-    original = load_iznogoud_comics()
+    original = load_arkas_comics()
 
     comics = []
 
@@ -397,13 +400,8 @@ def get_all_comics():
 
             item = comic.copy()
 
-            item["series"] = (
-                category["slug"]
-            )
-
-            item["series_name"] = (
-                category["name"]
-            )
+            item["series"] = category["slug"]
+            item["series_name"] = category["name"]
 
             all_comics.append(
                 item
@@ -713,6 +711,38 @@ def idefix_cover_route(number):
 
 
 # ============================================================
+# COVER ΙΖΝΟΓΚΟΥΝΤ
+# ============================================================
+
+@app.route(
+    "/cover/iznogoud/<int:number>"
+)
+def iznogoud_cover_route(number):
+
+    if number < 1 or number > 30:
+
+        return "", 404
+
+
+    image_url = get_iznogoud_cover(
+        number
+    )
+
+    image = load_remote_image(
+        image_url
+    )
+
+    if image:
+
+        return image
+
+
+    return placeholder_cover(
+        f"IZNOGOUD #{number}"
+    )
+
+
+# ============================================================
 # DASHBOARD
 # ============================================================
 
@@ -741,9 +771,7 @@ def dashboard():
 
         "owned": owned,
 
-        "missing": (
-            total - owned
-        ),
+        "missing": total - owned,
 
         "duplicates": 0
 

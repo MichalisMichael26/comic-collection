@@ -1,9 +1,12 @@
 from flask import Flask, render_template, redirect, Response
 from functools import lru_cache
 from bs4 import BeautifulSoup
+from lucky_luke_data import get_lucky_luke_comics
+
 import requests
 import re
 import html
+
 
 app = Flask(__name__)
 
@@ -13,27 +16,32 @@ app = Flask(__name__)
 # ============================================================
 
 categories = [
+
     {
         "name": "Αρκάς",
         "slug": "arkas"
     },
+
     {
         "name": "Λούκυ Λουκ",
         "slug": "lucky-luke"
     },
+
     {
         "name": "Αστερίξ",
         "slug": "asterix"
     },
+
     {
         "name": "Ιντεφίξ",
         "slug": "idefix"
     }
+
 ]
 
 
 # ============================================================
-# ΑΣΤΕΡΙΞ - ΜΑΜΟΥΘ COMIX
+# ΑΣΤΕΡΙΞ
 # ============================================================
 
 asterix_titles = [
@@ -81,45 +89,49 @@ asterix_titles = [
     "Η Κόρη του Βερσινζεντορίξ",
     "Ο Αστερίξ και ο Γρύπας",
     "Η Λευκή Ίριδα",
-
     "Ο Αστερίξ στη Λουζιτανία"
+
 ]
 
 
-asterix_comics = []
+def get_asterix_comics():
 
-for number, title in enumerate(
-    asterix_titles,
-    start=1
-):
+    comics = []
 
-    asterix_comics.append(
-        {
-            "number": number,
-            "title": title,
-            "image": f"/cover/asterix/{number}"
-        }
-    )
+    for number, title in enumerate(
+        asterix_titles,
+        start=1
+    ):
+
+        comics.append(
+            {
+                "number": number,
+                "title": title,
+                "image": f"/cover/asterix/{number}"
+            }
+        )
+
+    return comics
 
 
 # ============================================================
-# ΟΛΑ ΤΑ COMICS
+# HEADERS
 # ============================================================
 
-comics_data = {
+HEADERS = {
 
-    "asterix": asterix_comics,
+    "User-Agent":
+        "Mozilla/5.0 "
+        "(Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 "
+        "(KHTML, like Gecko) "
+        "Chrome/120 Safari/537.36"
 
-    "lucky-luke": [],
-
-    "arkas": [],
-
-    "idefix": []
 }
 
 
 # ============================================================
-# ΒΡΙΣΚΟΥΜΕ ΕΞΩΦΥΛΛΑ ΑΠΟ ΜΑΜΟΥΘ
+# ΕΞΩΦΥΛΛΑ ΑΣΤΕΡΙΞ ΑΠΟ ΜΑΜΟΥΘ
 # ============================================================
 
 @lru_cache(maxsize=1)
@@ -127,37 +139,19 @@ def get_mamouth_asterix_covers():
 
     covers = {}
 
-    headers = {
-        "User-Agent":
-            "Mozilla/5.0 "
-            "(Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 "
-            "Chrome/120 Safari/537.36"
-    }
-
 
     pages = [
 
-        "https://mamouthcomix.gr/"
-        "product-category/albums/asterix/",
+        "https://mamouthcomix.gr/product-category/albums/asterix/",
 
-        "https://mamouthcomix.gr/"
-        "product-category/albums/asterix/page/2/",
+        "https://mamouthcomix.gr/product-category/albums/asterix/page/2/",
 
-        "https://mamouthcomix.gr/"
-        "product-category/albums/asterix/page/3/",
+        "https://mamouthcomix.gr/product-category/albums/asterix/page/3/",
 
-        "https://mamouthcomix.gr/"
-        "product-category/albums/asterix/page/4/",
+        "https://mamouthcomix.gr/product-category/albums/asterix/page/4/",
 
-        "https://mamouthcomix.gr/"
-        "product-category/albums/asterix/page/5/",
+        "https://mamouthcomix.gr/product-category/albums/asterix/page/5/"
 
-        "https://mamouthcomix-eshop.gr/"
-        "product-category/"
-        "%CE%BA%CF%8C%CE%BC%CE%B9%CE%BE/"
-        "%CE%B1%CF%83%CF%84%CE%B5%CF%81%CE%AF%CE%BE__"
-        "%CE%BF%CE%B2%CE%B5%CE%BB%CE%AF%CE%BE/"
     ]
 
 
@@ -167,9 +161,10 @@ def get_mamouth_asterix_covers():
 
             response = requests.get(
                 page_url,
-                headers=headers,
+                headers=HEADERS,
                 timeout=8
             )
+
 
             if response.status_code != 200:
                 continue
@@ -189,21 +184,15 @@ def get_mamouth_asterix_covers():
             for product in products:
 
                 title_element = (
+
                     product.select_one(
                         ".woocommerce-loop-product__title"
                     )
-                    or
-                    product.select_one(
-                        "h2"
-                    )
-                    or
-                    product.select_one(
-                        "h3"
-                    )
-                    or
-                    product.select_one(
-                        "h4"
-                    )
+
+                    or product.select_one("h2")
+
+                    or product.select_one("h3")
+
                 )
 
 
@@ -212,8 +201,7 @@ def get_mamouth_asterix_covers():
 
 
                 product_title = (
-                    title_element
-                    .get_text(
+                    title_element.get_text(
                         " ",
                         strip=True
                     )
@@ -221,7 +209,7 @@ def get_mamouth_asterix_covers():
 
 
                 match = re.search(
-                    r"Αστερίξ\s*[-#:]?\s*(\d{1,2})",
+                    r"Αστερίξ\s*[-#:]?\s*0?(\d{1,2})",
                     product_title,
                     re.IGNORECASE
                 )
@@ -236,13 +224,6 @@ def get_mamouth_asterix_covers():
                 )
 
 
-                if (
-                    number < 1
-                    or number > 41
-                ):
-                    continue
-
-
                 image = product.find(
                     "img"
                 )
@@ -254,35 +235,25 @@ def get_mamouth_asterix_covers():
 
                 image_url = (
 
-                    image.get(
-                        "data-lazy-src"
-                    )
+                    image.get("data-lazy-src")
 
-                    or image.get(
-                        "data-src"
-                    )
+                    or image.get("data-src")
 
-                    or image.get(
-                        "data-original"
-                    )
+                    or image.get("data-original")
 
-                    or image.get(
-                        "src"
-                    )
+                    or image.get("src")
+
                 )
 
 
                 if (
                     image_url
                     and
-                    not image_url.startswith(
-                        "data:"
-                    )
+                    not image_url.startswith("data:")
                 ):
 
                     covers[number] = (
-                        image_url
-                        .replace(
+                        image_url.replace(
                             "http://",
                             "https://"
                         )
@@ -298,27 +269,178 @@ def get_mamouth_asterix_covers():
 
 
 # ============================================================
-# FALLBACK - GOOGLE BOOKS
+# ΕΞΩΦΥΛΛΑ ΛΟΥΚΥ ΛΟΥΚ ΑΠΟ ΜΑΜΟΥΘ
 # ============================================================
 
-@lru_cache(maxsize=100)
-def google_books_cover(title):
+@lru_cache(maxsize=1)
+def get_mamouth_lucky_luke_catalog():
+
+    catalog = {}
+
+
+    base_url = (
+
+        "https://mamouthcomix.gr/"
+        "product-category/albums/%CE%BB%CE%BB/"
+
+    )
+
+
+    for page in range(1, 13):
+
+
+        if page == 1:
+
+            page_url = base_url
+
+
+        else:
+
+            page_url = (
+                base_url
+                + f"page/{page}/"
+            )
+
+
+        try:
+
+            response = requests.get(
+                page_url,
+                headers=HEADERS,
+                timeout=8
+            )
+
+
+            if response.status_code != 200:
+                continue
+
+
+            soup = BeautifulSoup(
+                response.text,
+                "html.parser"
+            )
+
+
+            products = soup.select(
+                "li.product"
+            )
+
+
+            for product in products:
+
+
+                title_element = (
+
+                    product.select_one(
+                        ".woocommerce-loop-product__title"
+                    )
+
+                    or product.select_one("h2")
+
+                    or product.select_one("h3")
+
+                )
+
+
+                if not title_element:
+                    continue
+
+
+                full_title = (
+                    title_element.get_text(
+                        " ",
+                        strip=True
+                    )
+                )
+
+
+                match = re.search(
+                    r"Λούκυ\s*Λουκ\s*[-#:]?\s*0?(\d{1,2})",
+                    full_title,
+                    re.IGNORECASE
+                )
+
+
+                if not match:
+                    continue
+
+
+                number = int(
+                    match.group(1)
+                )
+
+
+                if number < 1 or number > 89:
+                    continue
+
+
+                image = product.find(
+                    "img"
+                )
+
+
+                if not image:
+                    continue
+
+
+                image_url = (
+
+                    image.get("data-lazy-src")
+
+                    or image.get("data-src")
+
+                    or image.get("data-original")
+
+                    or image.get("src")
+
+                )
+
+
+                if (
+                    image_url
+                    and
+                    not image_url.startswith("data:")
+                ):
+
+                    catalog[number] = (
+                        image_url.replace(
+                            "http://",
+                            "https://"
+                        )
+                    )
+
+
+        except Exception:
+
+            continue
+
+
+    return catalog
+
+
+# ============================================================
+# GOOGLE BOOKS FALLBACK
+# ============================================================
+
+@lru_cache(maxsize=300)
+def google_books_cover(
+    series,
+    title
+):
 
     try:
 
         response = requests.get(
 
-            "https://www.googleapis.com/"
-            "books/v1/volumes",
+            "https://www.googleapis.com/books/v1/volumes",
 
             params={
-                "q":
-                    f'Αστερίξ "{title}"',
-                "maxResults": 5,
-                "langRestrict": "el"
+                "q": f'{series} "{title}"',
+                "maxResults": 5
             },
 
             timeout=8
+
         )
 
 
@@ -334,13 +456,14 @@ def google_books_cover(title):
             []
         ):
 
+
             volume_info = item.get(
                 "volumeInfo",
                 {}
             )
 
 
-            image_links = volume_info.get(
+            images = volume_info.get(
                 "imageLinks",
                 {}
             )
@@ -348,36 +471,24 @@ def google_books_cover(title):
 
             image_url = (
 
-                image_links.get(
-                    "extraLarge"
-                )
+                images.get("extraLarge")
 
-                or image_links.get(
-                    "large"
-                )
+                or images.get("large")
 
-                or image_links.get(
-                    "medium"
-                )
+                or images.get("medium")
 
-                or image_links.get(
-                    "thumbnail"
-                )
+                or images.get("thumbnail")
 
-                or image_links.get(
-                    "smallThumbnail"
-                )
+                or images.get("smallThumbnail")
+
             )
 
 
             if image_url:
 
-                return (
-                    image_url
-                    .replace(
-                        "http://",
-                        "https://"
-                    )
+                return image_url.replace(
+                    "http://",
+                    "https://"
                 )
 
 
@@ -390,17 +501,33 @@ def google_books_cover(title):
 
 
 # ============================================================
-# PLACEHOLDER ΑΝ ΔΕΝ ΒΡΕΘΕΙ ΕΞΩΦΥΛΛΟ
+# PLACEHOLDER
 # ============================================================
 
 def placeholder_cover(
+    series,
     number,
-    title
+    title,
+    background="#ffd60a"
 ):
 
-    safe_title = html.escape(
-        title
+
+    safe_series = html.escape(
+        str(series)
     )
+
+
+    safe_title = html.escape(
+        str(title)
+    )
+
+
+    if len(safe_title) > 30:
+
+        safe_title = (
+            safe_title[:30]
+            + "..."
+        )
 
 
     svg = f"""
@@ -414,7 +541,7 @@ def placeholder_cover(
         <rect
             width="600"
             height="800"
-            fill="#ffd60a"
+            fill="{background}"
         />
 
         <rect
@@ -429,22 +556,22 @@ def placeholder_cover(
 
         <text
             x="300"
-            y="150"
+            y="145"
             text-anchor="middle"
             font-family="Arial Black, Arial"
-            font-size="60"
+            font-size="48"
             font-weight="bold"
             fill="#161616"
         >
-            ΑΣΤΕΡΙΞ
+            {safe_series}
         </text>
 
         <text
             x="300"
-            y="245"
+            y="250"
             text-anchor="middle"
             font-family="Arial Black, Arial"
-            font-size="65"
+            font-size="68"
             font-weight="bold"
             fill="#ff3b30"
         >
@@ -453,22 +580,22 @@ def placeholder_cover(
 
         <text
             x="300"
-            y="390"
+            y="405"
             text-anchor="middle"
             font-family="Arial"
-            font-size="30"
+            font-size="25"
             font-weight="bold"
             fill="#161616"
         >
-            {safe_title[:28]}
+            {safe_title}
         </text>
 
         <text
             x="300"
-            y="650"
+            y="660"
             text-anchor="middle"
             font-family="Arial Black, Arial"
-            font-size="60"
+            font-size="58"
             font-weight="bold"
             fill="#2979ff"
         >
@@ -486,7 +613,7 @@ def placeholder_cover(
 
 
 # ============================================================
-# ROUTE ΓΙΑ ΤΑ ΕΞΩΦΥΛΛΑ
+# COVER - ΑΣΤΕΡΙΞ
 # ============================================================
 
 @app.route(
@@ -494,11 +621,10 @@ def placeholder_cover(
 )
 def asterix_cover(number):
 
+
     if (
         number < 1
-        or number > len(
-            asterix_titles
-        )
+        or number > len(asterix_titles)
     ):
 
         return "", 404
@@ -528,10 +654,9 @@ def asterix_cover(number):
     )
 
 
-    image_url = (
-        google_books_cover(
-            title
-        )
+    image_url = google_books_cover(
+        "Αστερίξ",
+        title
     )
 
 
@@ -543,9 +668,151 @@ def asterix_cover(number):
 
 
     return placeholder_cover(
+        "ΑΣΤΕΡΙΞ",
         number,
+        title,
+        "#ffd60a"
+    )
+
+
+# ============================================================
+# COVER - ΛΟΥΚΥ ΛΟΥΚ
+# ============================================================
+
+@app.route(
+    "/cover/lucky-luke/<int:number>"
+)
+def lucky_luke_cover(number):
+
+
+    if number < 1 or number > 89:
+
+        return "", 404
+
+
+    comics = get_lucky_luke_comics()
+
+
+    comic = next(
+
+        (
+            item
+            for item in comics
+            if item["number"] == number
+        ),
+
+        None
+
+    )
+
+
+    if comic is None:
+
+        return "", 404
+
+
+    catalog = (
+        get_mamouth_lucky_luke_catalog()
+    )
+
+
+    image_url = catalog.get(
+        number
+    )
+
+
+    if image_url:
+
+        return redirect(
+            image_url
+        )
+
+
+    image_url = google_books_cover(
+        "Λούκυ Λουκ",
+        comic["title"]
+    )
+
+
+    if image_url:
+
+        return redirect(
+            image_url
+        )
+
+
+    return placeholder_cover(
+        "ΛΟΥΚΥ ΛΟΥΚ",
+        number,
+        comic["title"],
+        "#9bdcff"
+    )
+
+
+# ============================================================
+# SPECIAL ΛΟΥΚΥ ΛΟΥΚ
+# ============================================================
+
+@app.route(
+    "/cover/lucky-luke-special"
+)
+def lucky_luke_special_cover():
+
+
+    title = (
+        "Ο Ντόλης δεν απαντάει πιά"
+    )
+
+
+    image_url = google_books_cover(
+        "Λούκυ Λουκ",
         title
     )
+
+
+    if image_url:
+
+        return redirect(
+            image_url
+        )
+
+
+    return placeholder_cover(
+        "ΛΟΥΚΥ ΛΟΥΚ",
+        "SPECIAL",
+        title,
+        "#9bdcff"
+    )
+
+
+# ============================================================
+# COMICS ΑΝΑ ΚΑΤΗΓΟΡΙΑ
+# ============================================================
+
+def get_comics(slug):
+
+
+    if slug == "asterix":
+
+        return get_asterix_comics()
+
+
+    if slug == "lucky-luke":
+
+        return get_lucky_luke_comics()
+
+
+    if slug == "arkas":
+
+        return []
+
+
+    if slug == "idefix":
+
+        return []
+
+
+    return []
 
 
 # ============================================================
@@ -555,28 +822,32 @@ def asterix_cover(number):
 @app.route("/")
 def dashboard():
 
-    all_comics = []
 
+    total = (
 
-    for series_comics in (
-        comics_data.values()
-    ):
-
-        all_comics.extend(
-            series_comics
+        len(
+            get_asterix_comics()
         )
+
+        +
+
+        len(
+            get_lucky_luke_comics()
+        )
+
+    )
 
 
     stats = {
 
-        "total":
-            len(all_comics),
+        "total": total,
 
         "owned": 0,
 
         "wishlist": 0,
 
         "duplicates": 0
+
     }
 
 
@@ -587,6 +858,7 @@ def dashboard():
         categories=categories,
 
         stats=stats
+
     )
 
 
@@ -599,6 +871,7 @@ def dashboard():
 )
 def category(slug):
 
+
     selected_category = next(
 
         (
@@ -608,6 +881,7 @@ def category(slug):
         ),
 
         None
+
     )
 
 
@@ -619,9 +893,8 @@ def category(slug):
         )
 
 
-    comics = comics_data.get(
-        slug,
-        []
+    comics = get_comics(
+        slug
     )
 
 
@@ -632,6 +905,7 @@ def category(slug):
         category=selected_category,
 
         comics=comics
+
     )
 
 

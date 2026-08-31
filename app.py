@@ -33,6 +33,10 @@ from asterix_covers import (
     get_asterix_cover
 )
 
+from idefix_covers import (
+    get_idefix_cover
+)
+
 import requests
 
 
@@ -178,9 +182,8 @@ def get_lucky_luke_comics():
 
         else:
 
-            image = (
-                f"/cover/lucky-luke/{number}"
-            )
+            image = f"/cover/lucky-luke/{number}"
+
 
         comics.append(
             {
@@ -209,14 +212,13 @@ def get_idefix_comics():
 
     for comic in original:
 
+        number = comic["number"]
+
         comics.append(
             {
-                "number": comic["number"],
+                "number": number,
                 "title": comic["title"],
-                "image": comic.get(
-                    "image",
-                    ""
-                ),
+                "image": f"/cover/idefix/{number}",
                 "owned": comic.get(
                     "owned",
                     False
@@ -323,9 +325,7 @@ def get_rantanplan_comics():
 
 def get_sherlock_holmes_comics():
 
-    original = (
-        load_sherlock_holmes_comics()
-    )
+    original = load_sherlock_holmes_comics()
 
     comics = []
 
@@ -603,17 +603,13 @@ def placeholder_cover(
 )
 def lucky_luke_cover_route(number):
 
-    image_url = (
-        get_lucky_luke_cover(
-            number
-        )
+    image_url = get_lucky_luke_cover(
+        number
     )
-
 
     image = load_remote_image(
         image_url
     )
-
 
     if image:
 
@@ -638,11 +634,9 @@ def lucky_luke_special_route():
         get_lucky_luke_special_cover()
     )
 
-
     image = load_remote_image(
         image_url
     )
-
 
     if image:
 
@@ -668,17 +662,13 @@ def asterix_cover_route(number):
         return "", 404
 
 
-    image_url = (
-        get_asterix_cover(
-            number
-        )
+    image_url = get_asterix_cover(
+        number
     )
-
 
     image = load_remote_image(
         image_url
     )
-
 
     if image:
 
@@ -687,6 +677,38 @@ def asterix_cover_route(number):
 
     return placeholder_cover(
         f"ASTERIX #{number}"
+    )
+
+
+# ============================================================
+# COVER ΙΝΤΕΦΙΞ
+# ============================================================
+
+@app.route(
+    "/cover/idefix/<int:number>"
+)
+def idefix_cover_route(number):
+
+    if number < 1 or number > 2:
+
+        return "", 404
+
+
+    image_url = get_idefix_cover(
+        number
+    )
+
+    image = load_remote_image(
+        image_url
+    )
+
+    if image:
+
+        return image
+
+
+    return placeholder_cover(
+        f"IDEFIX #{number}"
     )
 
 

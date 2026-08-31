@@ -12,6 +12,10 @@ from arkas_data import (
     get_arkas_comics as load_arkas_comics
 )
 
+from iznogoud_data import (
+    get_iznogoud_comics as load_iznogoud_comics
+)
+
 
 app = Flask(__name__)
 
@@ -40,6 +44,11 @@ categories = [
     {
         "name": "Ιντεφίξ",
         "slug": "idefix"
+    },
+
+    {
+        "name": "Ιζνογκούντ",
+        "slug": "iznogoud"
     }
 
 ]
@@ -136,8 +145,14 @@ def get_lucky_luke_comics():
             {
                 "number": comic["number"],
                 "title": comic["title"],
-                "image": comic.get("image", ""),
-                "owned": comic.get("owned", False)
+                "image": comic.get(
+                    "image",
+                    ""
+                ),
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
             }
         )
 
@@ -160,8 +175,14 @@ def get_idefix_comics():
             {
                 "number": comic["number"],
                 "title": comic["title"],
-                "image": comic.get("image", ""),
-                "owned": comic.get("owned", False)
+                "image": comic.get(
+                    "image",
+                    ""
+                ),
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
             }
         )
 
@@ -184,8 +205,44 @@ def get_arkas_comics():
             {
                 "number": comic["number"],
                 "title": comic["title"],
-                "image": comic.get("image", ""),
-                "owned": comic.get("owned", False)
+                "image": comic.get(
+                    "image",
+                    ""
+                ),
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
+            }
+        )
+
+    return comics
+
+
+# ============================================================
+# ΙΖΝΟΓΚΟΥΝΤ
+# ============================================================
+
+def get_iznogoud_comics():
+
+    original = load_iznogoud_comics()
+
+    comics = []
+
+    for comic in original:
+
+        comics.append(
+            {
+                "number": comic["number"],
+                "title": comic["title"],
+                "image": comic.get(
+                    "image",
+                    ""
+                ),
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
             }
         )
 
@@ -209,6 +266,9 @@ def get_comics(slug):
 
     if slug == "idefix":
         return get_idefix_comics()
+
+    if slug == "iznogoud":
+        return get_iznogoud_comics()
 
     return []
 
@@ -247,7 +307,7 @@ def get_all_comics():
 
 
 # ============================================================
-# GROUPS
+# GROUPS ΓΙΑ "ΜΟΥ ΛΕΙΠΟΥΝ"
 # ============================================================
 
 def get_comic_groups():
@@ -258,10 +318,13 @@ def get_comic_groups():
 
         groups.append(
             {
-                "category": category,
-                "comics": get_comics(
-                    category["slug"]
-                )
+                "category":
+                    category,
+
+                "comics":
+                    get_comics(
+                        category["slug"]
+                    )
             }
         )
 
@@ -277,32 +340,36 @@ def dashboard():
 
     all_comics = get_all_comics()
 
+    total = len(
+        all_comics
+    )
+
+    owned = sum(
+
+        1
+        for comic in all_comics
+        if comic.get(
+            "owned",
+            False
+        )
+
+    )
+
     stats = {
 
         "total":
-            len(all_comics),
+            total,
 
         "owned":
-            sum(
-                1
-                for comic in all_comics
-                if comic.get(
-                    "owned",
-                    False
-                )
-            ),
+            owned,
 
-        "missing": 0,
+        "missing":
+            total - owned,
 
-        "duplicates": 0
+        "duplicates":
+            0
 
     }
-
-    stats["missing"] = (
-        stats["total"]
-        -
-        stats["owned"]
-    )
 
     return render_template(
 
@@ -365,13 +432,17 @@ def category(slug):
             404
         )
 
+    comics = get_comics(
+        slug
+    )
+
     return render_template(
 
         "category.html",
 
         category=selected_category,
 
-        comics=get_comics(slug)
+        comics=comics
 
     )
 

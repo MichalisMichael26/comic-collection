@@ -11,7 +11,7 @@
     >
 
     <title>
-        {{ category.name }} - Comic Vault
+        {{ category.name }} | Comic Collection
     </title>
 
 
@@ -19,612 +19,685 @@
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        :root {
-
-            --dark: #161616;
-            --yellow: #ffd60a;
-            --red: #ff3b30;
-            --blue: #2979ff;
-            --green: #39d353;
-            --pink: #ff5d8f;
-            --paper: #f5f0df;
-
         }
 
 
         body {
+
+            margin: 0;
 
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            color: var(--dark);
-
-            background-color: var(--paper);
+            background-color: #f4f4f4;
 
             background-image:
                 radial-gradient(
-                    #d4cfbf 1.4px,
-                    transparent 1.4px
+                    #d4d4d4 1px,
+                    transparent 1px
                 );
 
-            background-size: 18px 18px;
+            background-size:
+                12px 12px;
 
-            min-height: 100vh;
-
+            color: #111;
         }
 
 
-        /* =====================================================
-           MENU
-        ===================================================== */
+        /* ==================================================
+           NAVBAR
+        ================================================== */
 
-        nav {
+        .navbar {
 
-            background: var(--dark);
+            background: #111;
 
             border-bottom:
-                6px solid var(--yellow);
+                6px solid #ffd60a;
 
             padding:
-                14px 28px;
+                12px 18px;
 
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            flex-wrap: wrap;
-
-            position: sticky;
+            position:
+                sticky;
 
             top: 0;
 
-            z-index: 100;
-
+            z-index: 1000;
         }
 
 
-        .logo {
+        .navbar-inner {
 
-            color: var(--yellow);
+            max-width:
+                1500px;
+
+            margin:
+                0 auto;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+            flex-wrap:
+                wrap;
+        }
+
+
+        .brand {
+
+            color:
+                #ffd60a;
 
             font-family:
                 Impact,
                 "Arial Black",
+                Arial,
                 sans-serif;
 
-            font-size: 28px;
+            font-size:
+                25px;
 
-            letter-spacing: 1.5px;
+            text-decoration:
+                none;
 
-            margin-right: 20px;
+            letter-spacing:
+                1px;
 
-            text-transform: uppercase;
-
+            white-space:
+                nowrap;
         }
 
 
-        nav a {
+        .menu {
 
-            color: white;
+            display:
+                flex;
 
-            text-decoration: none;
+            flex-wrap:
+                wrap;
 
-            font-weight: 900;
+            gap:
+                7px;
 
-            text-transform: uppercase;
+            align-items:
+                center;
+
+            flex:
+                1;
+        }
+
+
+        .menu a {
+
+            display:
+                inline-block;
 
             padding:
-                9px 14px;
+                8px 11px;
+
+            color:
+                white;
+
+            text-decoration:
+                none;
 
             border:
-                3px solid white;
+                2px solid transparent;
 
-            border-radius: 4px;
+            font-weight:
+                bold;
 
-            transition: 0.15s;
+            font-size:
+                14px;
 
+            white-space:
+                nowrap;
+
+            transition:
+                0.15s;
         }
 
 
-        nav a:hover {
+        .menu a:hover {
 
-            background: var(--yellow);
+            color:
+                #111;
 
-            color: var(--dark);
+            background:
+                #ffd60a;
 
-            border-color: var(--yellow);
+            border-color:
+                #ffd60a;
 
             transform:
-                translateY(-2px);
-
+                rotate(-1deg);
         }
 
 
-        /* =====================================================
+        .menu a.active {
+
+            color:
+                #111;
+
+            background:
+                #ffd60a;
+
+            border:
+                2px solid white;
+        }
+
+
+        .menu .missing-link {
+
+            background:
+                #ff3b30;
+
+            border:
+                2px solid #ff3b30;
+        }
+
+
+        .menu .missing-link:hover {
+
+            background:
+                white;
+
+            color:
+                #ff3b30;
+
+            border-color:
+                #ff3b30;
+        }
+
+
+        /* ==================================================
            PAGE
-        ===================================================== */
+        ================================================== */
 
         .container {
 
-            max-width: 1350px;
+            max-width:
+                1450px;
 
             margin:
-                38px auto;
+                0 auto;
 
             padding:
-                0 20px 60px;
-
+                30px 20px 60px;
         }
 
 
-        /* =====================================================
-           HEADER
-        ===================================================== */
+        .title-box {
 
-        .category-header {
-
-            background: var(--yellow);
+            background:
+                #ffd60a;
 
             border:
-                5px solid var(--dark);
+                5px solid #111;
 
             box-shadow:
-                8px 8px 0 var(--dark);
+                8px 8px 0 #111;
 
             padding:
-                23px 28px;
+                20px;
 
-            margin-bottom: 35px;
-
+            margin-bottom:
+                35px;
         }
 
 
-        .category-header h1 {
+        .title-box h1 {
+
+            margin:
+                0;
 
             font-family:
                 Impact,
                 "Arial Black",
+                Arial,
                 sans-serif;
 
-            font-size: 44px;
+            font-size:
+                clamp(
+                    36px,
+                    6vw,
+                    70px
+                );
 
-            text-transform: uppercase;
+            text-transform:
+                uppercase;
 
-            letter-spacing: 1px;
-
+            line-height:
+                1;
         }
 
 
-        .category-header p {
+        .title-box p {
 
-            margin-top: 7px;
+            margin:
+                12px 0 0;
 
-            font-weight: bold;
+            font-weight:
+                bold;
 
+            font-size:
+                17px;
         }
 
 
-        /* =====================================================
+        /* ==================================================
            GRID
-        ===================================================== */
+        ================================================== */
 
-        .comics-grid {
+        .comic-grid {
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(5, 1fr);
+                repeat(
+                    auto-fill,
+                    minmax(
+                        220px,
+                        1fr
+                    )
+                );
 
-            gap: 25px;
-
+            gap:
+                25px;
         }
 
-
-        /* =====================================================
-           COMIC CARD
-        ===================================================== */
 
         .comic-card {
 
-            background: white;
+            position:
+                relative;
+
+            background:
+                white;
 
             border:
-                4px solid var(--dark);
+                4px solid #111;
 
             box-shadow:
-                6px 6px 0 var(--dark);
+                7px 7px 0 #111;
 
-            overflow: hidden;
+            overflow:
+                hidden;
 
-            transition: 0.15s;
-
+            transition:
+                0.15s;
         }
 
 
         .comic-card:hover {
 
             transform:
-                translate(-3px, -3px);
+                translate(
+                    -2px,
+                    -2px
+                );
 
             box-shadow:
-                9px 9px 0 var(--dark);
-
+                10px 10px 0 #111;
         }
 
 
-        /* ΕΧΩ */
+        /* ==================================================
+           IMAGE
+        ================================================== */
 
-        .comic-card.owned {
+        .cover {
 
-            outline:
-                6px solid var(--green);
+            width:
+                100%;
 
-        }
+            aspect-ratio:
+                3 / 4;
 
-
-        /* WISHLIST */
-
-        .comic-card.wishlist {
-
-            outline:
-                6px solid var(--pink);
-
-        }
-
-
-        /* ΔΙΠΛΟ */
-
-        .comic-card.duplicate {
-
-            box-shadow:
-                9px 9px 0 var(--blue);
-
-        }
-
-
-        /* =====================================================
-           COVER
-        ===================================================== */
-
-        .comic-cover {
-
-            width: 100%;
-
-            aspect-ratio: 3 / 4;
-
-            background: #e8e8e8;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            overflow: hidden;
-
-            font-size: 55px;
+            background:
+                #ddd;
 
             border-bottom:
-                4px solid var(--dark);
+                4px solid #111;
 
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            overflow:
+                hidden;
         }
 
 
-        .comic-cover img {
+        .cover img {
 
-            width: 100%;
+            width:
+                100%;
 
-            height: 100%;
+            height:
+                100%;
 
-            object-fit: cover;
+            object-fit:
+                contain;
 
-            display: block;
-
+            background:
+                white;
         }
 
 
         .no-cover {
 
-            display: flex;
+            width:
+                100%;
 
-            flex-direction: column;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
-            gap: 10px;
-
-            padding: 20px;
-
-            width: 100%;
-
-            height: 100%;
+            height:
+                100%;
 
             background:
-                linear-gradient(
-                    135deg,
-                    #ffd60a,
-                    #fff1a8
-                );
+                #ffd60a;
 
-        }
+            display:
+                flex;
 
+            align-items:
+                center;
 
-        .no-cover-icon {
+            justify-content:
+                center;
 
-            font-size: 55px;
-
-        }
-
-
-        .no-cover-text {
+            flex-direction:
+                column;
 
             font-family:
                 Impact,
                 "Arial Black",
+                Arial,
                 sans-serif;
 
-            font-size: 18px;
+            font-size:
+                28px;
 
-            text-transform: uppercase;
-
+            text-align:
+                center;
         }
 
 
-        /* =====================================================
+        .pow {
+
+            color:
+                #ff3b30;
+
+            font-size:
+                48px;
+
+            transform:
+                rotate(-8deg);
+        }
+
+
+        /* ==================================================
            INFO
-        ===================================================== */
+        ================================================== */
 
         .comic-info {
 
-            padding: 14px;
-
+            padding:
+                15px;
         }
 
 
         .comic-number {
 
-            display: inline-block;
+            display:
+                inline-block;
 
-            background: var(--yellow);
+            background:
+                #111;
 
-            border:
-                2px solid var(--dark);
+            color:
+                #ffd60a;
 
             padding:
-                3px 7px;
+                5px 9px;
 
-            margin-bottom: 8px;
+            font-family:
+                "Arial Black",
+                Arial,
+                sans-serif;
 
-            font-size: 12px;
+            font-size:
+                14px;
 
-            font-weight: 900;
-
+            margin-bottom:
+                10px;
         }
 
 
         .comic-title {
 
-            font-weight: 900;
+            min-height:
+                52px;
 
-            font-size: 16px;
+            margin:
+                0 0 15px;
 
-            min-height: 45px;
+            font-size:
+                18px;
 
-            margin-bottom: 12px;
+            font-weight:
+                900;
 
+            line-height:
+                1.25;
         }
 
 
-        /* =====================================================
+        /* ==================================================
            BUTTONS
-        ===================================================== */
+        ================================================== */
 
         .buttons {
 
-            display: grid;
+            display:
+                grid;
 
-            grid-template-columns: 1fr;
-
-            gap: 7px;
-
+            gap:
+                8px;
         }
 
 
-        .status-button {
+        .comic-button {
 
-            width: 100%;
+            width:
+                100%;
 
             border:
-                3px solid var(--dark);
+                3px solid #111;
 
-            padding: 9px;
+            padding:
+                9px 7px;
 
-            background: white;
+            cursor:
+                pointer;
 
-            cursor: pointer;
+            font-weight:
+                900;
 
-            font-weight: 900;
+            font-size:
+                14px;
 
-            transition: 0.1s;
+            background:
+                white;
 
+            color:
+                #111;
+
+            transition:
+                0.1s;
         }
 
 
-        .status-button:hover {
+        .comic-button:hover {
 
             transform:
-                translate(-2px, -2px);
-
-            box-shadow:
-                3px 3px 0 var(--dark);
-
+                translateY(-2px);
         }
 
 
         .owned-button.active {
 
-            background: var(--green);
+            background:
+                #34c759;
 
+            color:
+                white;
         }
 
 
         .wishlist-button.active {
 
-            background: var(--pink);
+            background:
+                #ff3b30;
 
+            color:
+                white;
         }
 
 
         .duplicate-button.active {
 
-            background: var(--blue);
+            background:
+                #007aff;
 
-            color: white;
-
+            color:
+                white;
         }
 
 
-        /* =====================================================
-           EMPTY
-        ===================================================== */
+        .comic-card.is-owned {
 
-        .empty-message {
-
-            background: white;
-
-            border:
-                5px solid var(--dark);
-
-            box-shadow:
-                8px 8px 0 var(--dark);
-
-            padding: 50px;
-
-            text-align: center;
-
-            font-weight: bold;
-
-            font-size: 18px;
-
+            outline:
+                5px solid #34c759;
         }
 
 
-        /* =====================================================
-           TABLET
-        ===================================================== */
+        .comic-card.is-wishlist {
 
-        @media (max-width: 1100px) {
-
-            .comics-grid {
-
-                grid-template-columns:
-                    repeat(4, 1fr);
-
-            }
-
+            outline:
+                5px solid #ff3b30;
         }
 
 
-        @media (max-width: 850px) {
+        .comic-card.is-duplicate {
 
-            .comics-grid {
-
-                grid-template-columns:
-                    repeat(3, 1fr);
-
-            }
-
+            outline:
+                5px solid #007aff;
         }
 
 
-        /* =====================================================
+        /* ==================================================
            MOBILE
-        ===================================================== */
+        ================================================== */
 
-        @media (max-width: 600px) {
+        @media (
+            max-width: 900px
+        ) {
 
-            nav {
+            .navbar-inner {
 
-                padding: 12px;
-
+                align-items:
+                    flex-start;
             }
 
 
-            .logo {
+            .brand {
 
-                width: 100%;
-
-                font-size: 25px;
-
+                width:
+                    100%;
             }
 
 
-            nav a {
+            .menu {
 
-                font-size: 12px;
+                width:
+                    100%;
+            }
+
+
+            .menu a {
+
+                font-size:
+                    12px;
 
                 padding:
-                    7px 9px;
-
+                    7px 8px;
             }
 
+        }
+
+
+        @media (
+            max-width: 600px
+        ) {
 
             .container {
 
                 padding:
-                    0 12px 40px;
-
+                    20px 12px 40px;
             }
 
 
-            .category-header {
-
-                padding: 18px;
-
-            }
-
-
-            .category-header h1 {
-
-                font-size: 34px;
-
-            }
-
-
-            .comics-grid {
+            .comic-grid {
 
                 grid-template-columns:
-                    repeat(2, 1fr);
+                    repeat(
+                        2,
+                        minmax(
+                            0,
+                            1fr
+                        )
+                    );
 
-                gap: 14px;
-
+                gap:
+                    15px;
             }
 
 
-            .comic-info {
+            .comic-card {
 
-                padding: 10px;
-
+                box-shadow:
+                    4px 4px 0 #111;
             }
 
 
             .comic-title {
 
-                font-size: 14px;
+                font-size:
+                    15px;
+            }
 
+
+            .comic-button {
+
+                font-size:
+                    11px;
+
+                padding:
+                    8px 4px;
             }
 
         }
@@ -637,823 +710,709 @@
 <body>
 
 
-<nav>
+<!-- ======================================================
+     MENU
+====================================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-inner">
+
+        <a
+            href="/"
+            class="brand"
+        >
+            💥 COMIC COLLECTION
+        </a>
 
 
-    <div class="logo">
+        <div class="menu">
 
-        ⚡ COMIC VAULT
-
-    </div>
-
-
-    <a href="/">
-
-        🏠 Dashboard
-
-    </a>
+            <a href="/">
+                🏠 Dashboard
+            </a>
 
 
-    <a href="/category/arkas">
+            {% for item in categories %}
 
-        Αρκάς
+                <a
+                    href="/category/{{ item.slug }}"
 
-    </a>
-
-
-    <a href="/category/lucky-luke">
-
-        Λούκυ Λουκ
-
-    </a>
-
-
-    <a href="/category/asterix">
-
-        Αστερίξ
-
-    </a>
-
-
-    <a href="/category/idefix">
-
-        Ιντεφίξ
-
-    </a>
-
-
-</nav>
-
-
-<div class="container">
-
-
-    <div class="category-header">
-
-
-        <h1>
-
-            💥 {{ category.name }}
-
-        </h1>
-
-
-        <p>
-
-            Πάτησε στα κουμπιά για να οργανώσεις τη συλλογή σου.
-
-        </p>
-
-
-    </div>
-
-
-    {% if comics %}
-
-
-        <div class="comics-grid">
-
-
-            {% for comic in comics %}
-
-
-                <div
-                    class="comic-card"
-                    id="comic-{{ category.slug }}-{{ comic.number }}"
+                    class="
+                        {% if item.slug == category.slug %}
+                            active
+                        {% endif %}
+                    "
                 >
 
+                    {{ item.name }}
 
-                    <div class="comic-cover">
-
-
-                        {% if comic.image %}
-
-
-                            <img
-                                src="{{ comic.image }}"
-                                alt="{{ comic.title }}"
-                            >
-
-
-                        {% else %}
-
-
-                            <div class="no-cover">
-
-
-                                <div class="no-cover-icon">
-
-                                    📖
-
-                                </div>
-
-
-                                <div class="no-cover-text">
-
-                                    {{ comic.title }}
-
-                                </div>
-
-
-                            </div>
-
-
-                        {% endif %}
-
-
-                    </div>
-
-
-                    <div class="comic-info">
-
-
-                        <div class="comic-number">
-
-                            {% if comic.number == "SPECIAL" %}
-
-                                SPECIAL
-
-                            {% else %}
-
-                                ΤΕΥΧΟΣ #{{ comic.number }}
-
-                            {% endif %}
-
-                        </div>
-
-
-                        <div class="comic-title">
-
-                            {{ comic.title }}
-
-                        </div>
-
-
-                        <div class="buttons">
-
-
-                            <button
-                                class="status-button owned-button"
-                                onclick="toggleOwned(
-                                    '{{ category.slug }}',
-                                    '{{ comic.number }}'
-                                )"
-                            >
-
-                                ✅ ΕΧΩ
-
-                            </button>
-
-
-                            <button
-                                class="status-button wishlist-button"
-                                onclick="toggleWishlist(
-                                    '{{ category.slug }}',
-                                    '{{ comic.number }}'
-                                )"
-                            >
-
-                                ❤️ WISHLIST
-
-                            </button>
-
-
-                            <button
-                                class="status-button duplicate-button"
-                                onclick="toggleDuplicate(
-                                    '{{ category.slug }}',
-                                    '{{ comic.number }}'
-                                )"
-                            >
-
-                                🔁 ΔΙΠΛΟ
-
-                            </button>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
+                </a>
 
             {% endfor %}
 
 
-        </div>
-
-
-    {% else %}
-
-
-        <div class="empty-message">
-
-            💥 Δεν έχουμε προσθέσει ακόμα κόμικς εδώ!
+            <a
+                href="/missing"
+                class="missing-link"
+            >
+                ❤️ Μου λείπουν
+            </a>
 
         </div>
 
+    </div>
 
-    {% endif %}
-
-
-</div>
+</nav>
 
 
-<script>
+
+<!-- ======================================================
+     CONTENT
+====================================================== -->
+
+<main class="container">
 
 
-    /* =========================================================
-       DEFAULT DATA ΑΠΟ PYTHON
+    <section class="title-box">
 
-       Εδώ περνάμε στο browser αν κάποιο comic
-       είναι εξαρχής δηλωμένο ως "owned".
-    ========================================================= */
+        <h1>
+            {{ category.name }}
+        </h1>
+
+        <p>
+            Διάλεξε τι έχεις,
+            τι θέλεις
+            και ποια τεύχη έχεις διπλά.
+        </p>
+
+    </section>
 
 
-    const defaultCollection = {
+
+    <section class="comic-grid">
 
 
         {% for comic in comics %}
 
 
-            "{{ category.slug }}-{{ comic.number }}": {
+        <article
 
-                owned:
-                    {% if comic.owned %}
-                        true
+            class="comic-card"
+
+            id="
+                comic-
+                {{ category.slug }}-
+                {{ comic.number }}
+            "
+
+            data-series="
+                {{ category.slug }}
+            "
+
+            data-number="
+                {{ comic.number }}
+            "
+
+        >
+
+
+            <!-- COVER -->
+
+            <div class="cover">
+
+                {% if comic.image %}
+
+                    <img
+
+                        src="{{ comic.image }}"
+
+                        alt="{{ comic.title }}"
+
+                        loading="lazy"
+
+                    >
+
+                {% else %}
+
+                    <div class="no-cover">
+
+                        <div>
+                            NO COVER
+                        </div>
+
+                        <div class="pow">
+                            POW!
+                        </div>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+
+            <!-- INFO -->
+
+            <div class="comic-info">
+
+
+                <div class="comic-number">
+
+                    {% if comic.number == "SPECIAL" %}
+
+                        SPECIAL
+
                     {% else %}
-                        false
-                    {% endif %},
 
-                wishlist: false,
+                        #{{ comic.number }}
 
-                duplicate: false
+                    {% endif %}
 
-            }
+                </div>
 
-            {% if not loop.last %}
-                ,
-            {% endif %}
+
+                <h2 class="comic-title">
+
+                    {{ comic.title }}
+
+                </h2>
+
+
+
+                <div class="buttons">
+
+
+                    <button
+
+                        class="
+                            comic-button
+                            owned-button
+                        "
+
+                        onclick="
+                            toggleOwned(
+                                '{{ category.slug }}',
+                                '{{ comic.number }}'
+                            )
+                        "
+
+                    >
+
+                        ✅ ΕΧΩ
+
+                    </button>
+
+
+
+                    <button
+
+                        class="
+                            comic-button
+                            wishlist-button
+                        "
+
+                        onclick="
+                            toggleWishlist(
+                                '{{ category.slug }}',
+                                '{{ comic.number }}'
+                            )
+                        "
+
+                    >
+
+                        ❤️ WISHLIST
+
+                    </button>
+
+
+
+                    <button
+
+                        class="
+                            comic-button
+                            duplicate-button
+                        "
+
+                        onclick="
+                            toggleDuplicate(
+                                '{{ category.slug }}',
+                                '{{ comic.number }}'
+                            )
+                        "
+
+                    >
+
+                        🔁 ΔΙΠΛΟ
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </article>
 
 
         {% endfor %}
 
 
-    };
+    </section>
 
 
-    /* =========================================================
-       ΔΙΑΒΑΣΜΑ COLLECTION
-    ========================================================= */
+</main>
 
 
-    function getCollection() {
+
+<script>
 
 
-        const saved =
+// ==========================================================
+// STORAGE
+// ==========================================================
+
+const STORAGE_KEY =
+    "comicCollection";
+
+
+function loadCollection() {
+
+    try {
+
+        return JSON.parse(
             localStorage.getItem(
-                "comicCollection"
-            );
+                STORAGE_KEY
+            )
+        ) || {};
+
+    } catch (error) {
+
+        return {};
+
+    }
+
+}
 
 
-        let collection = {};
+function saveCollection(
+    collection
+) {
+
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(
+            collection
+        )
+
+    );
+
+}
 
 
-        if (saved) {
+// ==========================================================
+// DEFAULT DATA
+// ==========================================================
+
+const defaultCollection = {
+
+    {% for comic in comics %}
+
+    "{{ category.slug }}-{{ comic.number }}": {
+
+        owned:
+            {{ "true" if comic.owned else "false" }},
+
+        wishlist:
+            false,
+
+        duplicate:
+            false
+
+    }
+
+    {% if not loop.last %}
+    ,
+    {% endif %}
+
+    {% endfor %}
+
+};
 
 
-            try {
+function ensureDefaults() {
 
-                collection =
-                    JSON.parse(saved);
+    const collection =
+        loadCollection();
+
+
+    Object.keys(
+        defaultCollection
+    ).forEach(
+        key => {
+
+            if (!collection[key]) {
+
+                collection[key] =
+                    defaultCollection[key];
 
             }
-
-            catch (error) {
-
-                collection = {};
-
-            }
-
 
         }
+    );
 
 
-        /*
-        Για κάθε comic της κατηγορίας:
+    saveCollection(
+        collection
+    );
 
-        Αν ΔΕΝ υπάρχει ήδη επιλογή στο localStorage,
-        χρησιμοποιούμε την αρχική κατάσταση από Python.
-
-        Άρα:
-        - τα 18 Αρκά ξεκινούν ως owned
-        - ό,τι αλλάξεις μετά ΔΕΝ ξαναγράφεται
-        */
+}
 
 
-        Object.entries(
-            defaultCollection
-        ).forEach(
+// ==========================================================
+// HELPERS
+// ==========================================================
 
-            function(
-                [key, defaultData]
-            ) {
+function getKey(
+    series,
+    number
+) {
+
+    return (
+        series
+        +
+        "-"
+        +
+        number
+    );
+
+}
 
 
-                if (
+function getItem(
+    series,
+    number
+) {
+
+    const collection =
+        loadCollection();
+
+
+    const key =
+        getKey(
+            series,
+            number
+        );
+
+
+    if (!collection[key]) {
+
+        collection[key] = {
+
+            owned:
+                false,
+
+            wishlist:
+                false,
+
+            duplicate:
+                false
+
+        };
+
+    }
+
+
+    return {
+        collection:
+            collection,
+
+        key:
+            key,
+
+        item:
+            collection[key]
+    };
+
+}
+
+
+// ==========================================================
+// OWNED
+// ==========================================================
+
+function toggleOwned(
+    series,
+    number
+) {
+
+    const data =
+        getItem(
+            series,
+            number
+        );
+
+
+    data.item.owned =
+        !data.item.owned;
+
+
+    if (
+        data.item.owned
+    ) {
+
+        data.item.wishlist =
+            false;
+
+    }
+
+
+    if (
+        !data.item.owned
+    ) {
+
+        data.item.duplicate =
+            false;
+
+    }
+
+
+    saveCollection(
+        data.collection
+    );
+
+
+    updateCards();
+
+}
+
+
+// ==========================================================
+// WISHLIST
+// ==========================================================
+
+function toggleWishlist(
+    series,
+    number
+) {
+
+    const data =
+        getItem(
+            series,
+            number
+        );
+
+
+    data.item.wishlist =
+        !data.item.wishlist;
+
+
+    if (
+        data.item.wishlist
+    ) {
+
+        data.item.owned =
+            false;
+
+        data.item.duplicate =
+            false;
+
+    }
+
+
+    saveCollection(
+        data.collection
+    );
+
+
+    updateCards();
+
+}
+
+
+// ==========================================================
+// DUPLICATE
+// ==========================================================
+
+function toggleDuplicate(
+    series,
+    number
+) {
+
+    const data =
+        getItem(
+            series,
+            number
+        );
+
+
+    data.item.duplicate =
+        !data.item.duplicate;
+
+
+    if (
+        data.item.duplicate
+    ) {
+
+        data.item.owned =
+            true;
+
+        data.item.wishlist =
+            false;
+
+    }
+
+
+    saveCollection(
+        data.collection
+    );
+
+
+    updateCards();
+
+}
+
+
+// ==========================================================
+// UPDATE UI
+// ==========================================================
+
+function updateCards() {
+
+    const collection =
+        loadCollection();
+
+
+    document
+        .querySelectorAll(
+            ".comic-card"
+        )
+        .forEach(
+            card => {
+
+                const series =
+                    card.dataset.series;
+
+                const number =
+                    card.dataset.number;
+
+                const key =
+                    getKey(
+                        series,
+                        number
+                    );
+
+
+                const item =
                     collection[key]
-                    === undefined
-                ) {
-
-
-                    collection[key] = {
-
+                    ||
+                    {
                         owned:
-                            defaultData.owned,
+                            false,
 
                         wishlist:
                             false,
 
                         duplicate:
                             false
-
                     };
 
 
+                const ownedButton =
+                    card.querySelector(
+                        ".owned-button"
+                    );
+
+
+                const wishlistButton =
+                    card.querySelector(
+                        ".wishlist-button"
+                    );
+
+
+                const duplicateButton =
+                    card.querySelector(
+                        ".duplicate-button"
+                    );
+
+
+                card.classList.remove(
+                    "is-owned",
+                    "is-wishlist",
+                    "is-duplicate"
+                );
+
+
+                ownedButton
+                    .classList
+                    .toggle(
+                        "active",
+                        item.owned
+                    );
+
+
+                wishlistButton
+                    .classList
+                    .toggle(
+                        "active",
+                        item.wishlist
+                    );
+
+
+                duplicateButton
+                    .classList
+                    .toggle(
+                        "active",
+                        item.duplicate
+                    );
+
+
+                if (
+                    item.duplicate
+                ) {
+
+                    card.classList.add(
+                        "is-duplicate"
+                    );
+
                 }
 
+                else if (
+                    item.wishlist
+                ) {
+
+                    card.classList.add(
+                        "is-wishlist"
+                    );
+
+                }
+
+                else if (
+                    item.owned
+                ) {
+
+                    card.classList.add(
+                        "is-owned"
+                    );
+
+                }
 
             }
-
         );
 
+}
 
-        return collection;
 
-    }
+// ==========================================================
+// START
+// ==========================================================
 
+ensureDefaults();
 
-    /* =========================================================
-       SAVE
-    ========================================================= */
-
-
-    function saveCollection(
-        collection
-    ) {
-
-
-        localStorage.setItem(
-
-            "comicCollection",
-
-            JSON.stringify(
-                collection
-            )
-
-        );
-
-
-    }
-
-
-    /* =========================================================
-       KEY
-    ========================================================= */
-
-
-    function comicKey(
-        series,
-        number
-    ) {
-
-
-        return (
-            series
-            +
-            "-"
-            +
-            number
-        );
-
-
-    }
-
-
-    /* =========================================================
-       ENSURE
-    ========================================================= */
-
-
-    function ensureComic(
-        collection,
-        key
-    ) {
-
-
-        if (
-            !collection[key]
-        ) {
-
-
-            collection[key] = {
-
-                owned: false,
-
-                wishlist: false,
-
-                duplicate: false
-
-            };
-
-
-        }
-
-
-    }
-
-
-    /* =========================================================
-       ✅ ΕΧΩ
-    ========================================================= */
-
-
-    function toggleOwned(
-        series,
-        number
-    ) {
-
-
-        const collection =
-            getCollection();
-
-
-        const key =
-            comicKey(
-                series,
-                number
-            );
-
-
-        ensureComic(
-            collection,
-            key
-        );
-
-
-        collection[key].owned =
-            !collection[key].owned;
-
-
-        /*
-        Αν το έχουμε,
-        δεν μπορεί να είναι Wishlist.
-        */
-
-
-        if (
-            collection[key].owned
-        ) {
-
-
-            collection[key].wishlist =
-                false;
-
-
-        }
-
-
-        /*
-        Αν δεν το έχουμε,
-        δεν μπορεί να είναι διπλό.
-        */
-
-
-        if (
-            !collection[key].owned
-        ) {
-
-
-            collection[key].duplicate =
-                false;
-
-
-        }
-
-
-        saveCollection(
-            collection
-        );
-
-
-        updateCards();
-
-    }
-
-
-    /* =========================================================
-       ❤️ WISHLIST
-    ========================================================= */
-
-
-    function toggleWishlist(
-        series,
-        number
-    ) {
-
-
-        const collection =
-            getCollection();
-
-
-        const key =
-            comicKey(
-                series,
-                number
-            );
-
-
-        ensureComic(
-            collection,
-            key
-        );
-
-
-        collection[key].wishlist =
-            !collection[key].wishlist;
-
-
-        /*
-        Αν το θέλουμε,
-        σημαίνει ότι δεν το έχουμε.
-        */
-
-
-        if (
-            collection[key].wishlist
-        ) {
-
-
-            collection[key].owned =
-                false;
-
-
-            collection[key].duplicate =
-                false;
-
-
-        }
-
-
-        saveCollection(
-            collection
-        );
-
-
-        updateCards();
-
-    }
-
-
-    /* =========================================================
-       🔁 ΔΙΠΛΟ
-    ========================================================= */
-
-
-    function toggleDuplicate(
-        series,
-        number
-    ) {
-
-
-        const collection =
-            getCollection();
-
-
-        const key =
-            comicKey(
-                series,
-                number
-            );
-
-
-        ensureComic(
-            collection,
-            key
-        );
-
-
-        collection[key].duplicate =
-            !collection[key].duplicate;
-
-
-        /*
-        Για να είναι διπλό,
-        προφανώς το έχουμε.
-        */
-
-
-        if (
-            collection[key].duplicate
-        ) {
-
-
-            collection[key].owned =
-                true;
-
-
-            collection[key].wishlist =
-                false;
-
-
-        }
-
-
-        saveCollection(
-            collection
-        );
-
-
-        updateCards();
-
-    }
-
-
-    /* =========================================================
-       UPDATE ΟΛΩΝ ΤΩΝ CARDS
-    ========================================================= */
-
-
-    function updateCards() {
-
-
-        const collection =
-            getCollection();
-
-
-        {% for comic in comics %}
-
-
-            updateSingleCard(
-
-                "{{ category.slug }}",
-
-                "{{ comic.number }}",
-
-                collection
-
-            );
-
-
-        {% endfor %}
-
-
-        /*
-        Αποθηκεύουμε επίσης τις αρχικές
-        τιμές που μπήκαν από Python.
-        */
-
-
-        saveCollection(
-            collection
-        );
-
-
-    }
-
-
-    /* =========================================================
-       UPDATE ΜΙΑΣ CARD
-    ========================================================= */
-
-
-    function updateSingleCard(
-        series,
-        number,
-        collection
-    ) {
-
-
-        const key =
-            comicKey(
-                series,
-                number
-            );
-
-
-        const data =
-            collection[key]
-            ||
-            {
-
-                owned: false,
-
-                wishlist: false,
-
-                duplicate: false
-
-            };
-
-
-        const card =
-            document.getElementById(
-
-                "comic-"
-                +
-                series
-                +
-                "-"
-                +
-                number
-
-            );
-
-
-        if (!card) {
-
-            return;
-
-        }
-
-
-        const ownedButton =
-            card.querySelector(
-                ".owned-button"
-            );
-
-
-        const wishlistButton =
-            card.querySelector(
-                ".wishlist-button"
-            );
-
-
-        const duplicateButton =
-            card.querySelector(
-                ".duplicate-button"
-            );
-
-
-        /* CARD */
-
-
-        card.classList.toggle(
-            "owned",
-            data.owned
-        );
-
-
-        card.classList.toggle(
-            "wishlist",
-            data.wishlist
-        );
-
-
-        card.classList.toggle(
-            "duplicate",
-            data.duplicate
-        );
-
-
-        /* BUTTONS */
-
-
-        ownedButton.classList.toggle(
-            "active",
-            data.owned
-        );
-
-
-        wishlistButton.classList.toggle(
-            "active",
-            data.wishlist
-        );
-
-
-        duplicateButton.classList.toggle(
-            "active",
-            data.duplicate
-        );
-
-
-    }
-
-
-    /* =========================================================
-       START
-    ========================================================= */
-
-
-    document.addEventListener(
-
-        "DOMContentLoaded",
-
-        updateCards
-
-    );
+updateCards();
 
 
 </script>

@@ -1,4 +1,12 @@
 from flask import Flask, render_template, Response
+from html import escape
+
+import requests
+
+
+# ============================================================
+# DATA
+# ============================================================
 
 from lucky_luke_data import (
     get_lucky_luke_comics as load_lucky_luke_comics
@@ -24,6 +32,11 @@ from sherlock_holmes_data import (
     get_sherlock_holmes_comics as load_sherlock_holmes_comics
 )
 
+
+# ============================================================
+# COVERS
+# ============================================================
+
 from lucky_luke_covers import (
     get_lucky_luke_cover,
     get_lucky_luke_special_cover
@@ -45,8 +58,14 @@ from rantanplan_covers import (
     get_rantanplan_cover
 )
 
-import requests
+from sherlock_holmes_covers import (
+    get_sherlock_holmes_cover
+)
 
+
+# ============================================================
+# APP
+# ============================================================
 
 app = Flask(__name__)
 
@@ -149,6 +168,10 @@ ASTERIX_TITLES = [
 ]
 
 
+# ============================================================
+# GET ΑΣΤΕΡΙΞ
+# ============================================================
+
 def get_asterix_comics():
 
     comics = []
@@ -171,7 +194,7 @@ def get_asterix_comics():
 
 
 # ============================================================
-# ΛΟΥΚΥ ΛΟΥΚ
+# GET ΛΟΥΚΥ ΛΟΥΚ
 # ============================================================
 
 def get_lucky_luke_comics():
@@ -186,11 +209,15 @@ def get_lucky_luke_comics():
 
         if number == "SPECIAL":
 
-            image = "/cover/lucky-luke-special"
+            image = (
+                "/cover/lucky-luke-special"
+            )
 
         else:
 
-            image = f"/cover/lucky-luke/{number}"
+            image = (
+                f"/cover/lucky-luke/{number}"
+            )
 
 
         comics.append(
@@ -209,7 +236,7 @@ def get_lucky_luke_comics():
 
 
 # ============================================================
-# ΙΝΤΕΦΙΞ
+# GET ΙΝΤΕΦΙΞ
 # ============================================================
 
 def get_idefix_comics():
@@ -226,7 +253,9 @@ def get_idefix_comics():
             {
                 "number": number,
                 "title": comic["title"],
-                "image": f"/cover/idefix/{number}",
+                "image": (
+                    f"/cover/idefix/{number}"
+                ),
                 "owned": comic.get(
                     "owned",
                     False
@@ -238,7 +267,7 @@ def get_idefix_comics():
 
 
 # ============================================================
-# ΙΖΝΟΓΚΟΥΝΤ
+# GET ΙΖΝΟΓΚΟΥΝΤ
 # ============================================================
 
 def get_iznogoud_comics():
@@ -255,7 +284,9 @@ def get_iznogoud_comics():
             {
                 "number": number,
                 "title": comic["title"],
-                "image": f"/cover/iznogoud/{number}",
+                "image": (
+                    f"/cover/iznogoud/{number}"
+                ),
                 "owned": comic.get(
                     "owned",
                     False
@@ -267,7 +298,7 @@ def get_iznogoud_comics():
 
 
 # ============================================================
-# ΡΑΝΤΑΝΠΛΑΝ
+# GET ΡΑΝΤΑΝΠΛΑΝ
 # ============================================================
 
 def get_rantanplan_comics():
@@ -284,36 +315,8 @@ def get_rantanplan_comics():
             {
                 "number": number,
                 "title": comic["title"],
-                "image": f"/cover/rantanplan/{number}",
-                "owned": comic.get(
-                    "owned",
-                    False
-                )
-            }
-        )
-
-    return comics
-
-
-# ============================================================
-# ΑΡΚΑΣ
-# ============================================================
-
-def get_arkas_comics():
-
-    original = load_arkas_comics()
-
-    comics = []
-
-    for comic in original:
-
-        comics.append(
-            {
-                "number": comic["number"],
-                "title": comic["title"],
-                "image": comic.get(
-                    "image",
-                    ""
+                "image": (
+                    f"/cover/rantanplan/{number}"
                 ),
                 "owned": comic.get(
                     "owned",
@@ -326,12 +329,45 @@ def get_arkas_comics():
 
 
 # ============================================================
-# ΣΕΡΛΟΚ ΧΟΛΜΣ
+# GET ΣΕΡΛΟΚ ΧΟΛΜΣ
 # ============================================================
 
 def get_sherlock_holmes_comics():
 
-    original = load_sherlock_holmes_comics()
+    original = (
+        load_sherlock_holmes_comics()
+    )
+
+    comics = []
+
+    for comic in original:
+
+        number = comic["number"]
+
+        comics.append(
+            {
+                "number": number,
+                "title": comic["title"],
+                "image": (
+                    f"/cover/sherlock-holmes/{number}"
+                ),
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
+            }
+        )
+
+    return comics
+
+
+# ============================================================
+# GET ΑΡΚΑΣ
+# ============================================================
+
+def get_arkas_comics():
+
+    original = load_arkas_comics()
 
     comics = []
 
@@ -362,25 +398,39 @@ def get_sherlock_holmes_comics():
 def get_comics(slug):
 
     if slug == "arkas":
+
         return get_arkas_comics()
 
+
     if slug == "lucky-luke":
+
         return get_lucky_luke_comics()
 
+
     if slug == "asterix":
+
         return get_asterix_comics()
 
+
     if slug == "idefix":
+
         return get_idefix_comics()
 
+
     if slug == "iznogoud":
+
         return get_iznogoud_comics()
 
+
     if slug == "rantanplan":
+
         return get_rantanplan_comics()
 
+
     if slug == "sherlock-holmes":
+
         return get_sherlock_holmes_comics()
+
 
     return []
 
@@ -403,8 +453,13 @@ def get_all_comics():
 
             item = comic.copy()
 
-            item["series"] = category["slug"]
-            item["series_name"] = category["name"]
+            item["series"] = (
+                category["slug"]
+            )
+
+            item["series_name"] = (
+                category["name"]
+            )
 
             all_comics.append(
                 item
@@ -414,7 +469,7 @@ def get_all_comics():
 
 
 # ============================================================
-# GROUPS
+# GROUPS ΓΙΑ "ΜΟΥ ΛΕΙΠΟΥΝ"
 # ============================================================
 
 def get_comic_groups():
@@ -425,10 +480,13 @@ def get_comic_groups():
 
         groups.append(
             {
-                "category": category,
-                "comics": get_comics(
-                    category["slug"]
-                )
+                "category":
+                    category,
+
+                "comics":
+                    get_comics(
+                        category["slug"]
+                    )
             }
         )
 
@@ -436,10 +494,12 @@ def get_comic_groups():
 
 
 # ============================================================
-# REMOTE IMAGE
+# REMOTE IMAGE LOADER
 # ============================================================
 
-def load_remote_image(image_url):
+def load_remote_image(
+    image_url
+):
 
     if not image_url:
 
@@ -458,6 +518,10 @@ def load_remote_image(image_url):
 
     }
 
+
+    # ========================================================
+    # REFERER
+    # ========================================================
 
     if "comicstrip.gr" in image_url:
 
@@ -479,6 +543,17 @@ def load_remote_image(image_url):
             "https://mamouthcomix-eshop.gr/"
         )
 
+
+    elif "efantasy.gr" in image_url:
+
+        headers["Referer"] = (
+            "https://www.efantasy.gr/"
+        )
+
+
+    # ========================================================
+    # LOAD
+    # ========================================================
 
     try:
 
@@ -517,7 +592,9 @@ def load_remote_image(image_url):
 
         result.headers[
             "Cache-Control"
-        ] = "public, max-age=86400"
+        ] = (
+            "public, max-age=86400"
+        )
 
 
         return result
@@ -535,6 +612,11 @@ def load_remote_image(image_url):
 def placeholder_cover(
     text="NO COVER"
 ):
+
+    safe_text = escape(
+        str(text)
+    )
+
 
     svg = f"""
     <svg
@@ -565,11 +647,11 @@ def placeholder_cover(
             y="350"
             text-anchor="middle"
             font-family="Arial"
-            font-size="42"
+            font-size="40"
             font-weight="bold"
             fill="#161616"
         >
-            {text}
+            {safe_text}
         </text>
 
         <text
@@ -587,6 +669,7 @@ def placeholder_cover(
     </svg>
     """
 
+
     return Response(
         svg,
         mimetype="image/svg+xml"
@@ -600,15 +683,21 @@ def placeholder_cover(
 @app.route(
     "/cover/lucky-luke/<int:number>"
 )
-def lucky_luke_cover_route(number):
+def lucky_luke_cover_route(
+    number
+):
 
-    image_url = get_lucky_luke_cover(
-        number
+    image_url = (
+        get_lucky_luke_cover(
+            number
+        )
     )
+
 
     image = load_remote_image(
         image_url
     )
+
 
     if image:
 
@@ -633,9 +722,11 @@ def lucky_luke_special_route():
         get_lucky_luke_special_cover()
     )
 
+
     image = load_remote_image(
         image_url
     )
+
 
     if image:
 
@@ -643,7 +734,7 @@ def lucky_luke_special_route():
 
 
     return placeholder_cover(
-        "LUCKY LUKE"
+        "LUCKY LUKE SPECIAL"
     )
 
 
@@ -654,20 +745,30 @@ def lucky_luke_special_route():
 @app.route(
     "/cover/asterix/<int:number>"
 )
-def asterix_cover_route(number):
+def asterix_cover_route(
+    number
+):
 
-    if number < 1 or number > 41:
+    if (
+        number < 1
+        or
+        number > 41
+    ):
 
         return "", 404
 
 
-    image_url = get_asterix_cover(
-        number
+    image_url = (
+        get_asterix_cover(
+            number
+        )
     )
+
 
     image = load_remote_image(
         image_url
     )
+
 
     if image:
 
@@ -686,20 +787,30 @@ def asterix_cover_route(number):
 @app.route(
     "/cover/idefix/<int:number>"
 )
-def idefix_cover_route(number):
+def idefix_cover_route(
+    number
+):
 
-    if number < 1 or number > 2:
+    if (
+        number < 1
+        or
+        number > 2
+    ):
 
         return "", 404
 
 
-    image_url = get_idefix_cover(
-        number
+    image_url = (
+        get_idefix_cover(
+            number
+        )
     )
+
 
     image = load_remote_image(
         image_url
     )
+
 
     if image:
 
@@ -718,20 +829,30 @@ def idefix_cover_route(number):
 @app.route(
     "/cover/iznogoud/<int:number>"
 )
-def iznogoud_cover_route(number):
+def iznogoud_cover_route(
+    number
+):
 
-    if number < 1 or number > 30:
+    if (
+        number < 1
+        or
+        number > 30
+    ):
 
         return "", 404
 
 
-    image_url = get_iznogoud_cover(
-        number
+    image_url = (
+        get_iznogoud_cover(
+            number
+        )
     )
+
 
     image = load_remote_image(
         image_url
     )
+
 
     if image:
 
@@ -750,20 +871,30 @@ def iznogoud_cover_route(number):
 @app.route(
     "/cover/rantanplan/<int:number>"
 )
-def rantanplan_cover_route(number):
+def rantanplan_cover_route(
+    number
+):
 
-    if number < 1 or number > 17:
+    if (
+        number < 1
+        or
+        number > 17
+    ):
 
         return "", 404
 
 
-    image_url = get_rantanplan_cover(
-        number
+    image_url = (
+        get_rantanplan_cover(
+            number
+        )
     )
+
 
     image = load_remote_image(
         image_url
     )
+
 
     if image:
 
@@ -776,17 +907,63 @@ def rantanplan_cover_route(number):
 
 
 # ============================================================
+# COVER ΣΕΡΛΟΚ ΧΟΛΜΣ
+# ============================================================
+
+@app.route(
+    "/cover/sherlock-holmes/<int:number>"
+)
+def sherlock_holmes_cover_route(
+    number
+):
+
+    if (
+        number < 1
+        or
+        number > 4
+    ):
+
+        return "", 404
+
+
+    image_url = (
+        get_sherlock_holmes_cover(
+            number
+        )
+    )
+
+
+    image = load_remote_image(
+        image_url
+    )
+
+
+    if image:
+
+        return image
+
+
+    return placeholder_cover(
+        f"SHERLOCK HOLMES #{number}"
+    )
+
+
+# ============================================================
 # DASHBOARD
 # ============================================================
 
 @app.route("/")
 def dashboard():
 
-    all_comics = get_all_comics()
+    all_comics = (
+        get_all_comics()
+    )
+
 
     total = len(
         all_comics
     )
+
 
     owned = sum(
         1
@@ -800,13 +977,17 @@ def dashboard():
 
     stats = {
 
-        "total": total,
+        "total":
+            total,
 
-        "owned": owned,
+        "owned":
+            owned,
 
-        "missing": total - owned,
+        "missing":
+            total - owned,
 
-        "duplicates": 0
+        "duplicates":
+            0
 
     }
 
@@ -851,7 +1032,9 @@ def missing():
 @app.route(
     "/category/<slug>"
 )
-def category(slug):
+def category(
+    slug
+):
 
     selected_category = next(
 

@@ -1,8 +1,16 @@
 from flask import Flask, render_template
 
-from lucky_luke_data import get_lucky_luke_comics
-from idefix_data import get_idefix_comics
-from arkas_data import get_arkas_comics
+from lucky_luke_data import (
+    get_lucky_luke_comics as load_lucky_luke_comics
+)
+
+from idefix_data import (
+    get_idefix_comics as load_idefix_comics
+)
+
+from arkas_data import (
+    get_arkas_comics as load_arkas_comics
+)
 
 
 app = Flask(__name__)
@@ -38,7 +46,7 @@ categories = [
 
 
 # ============================================================
-# ΑΣΤΕΡΙΞ - 41 ΤΕΥΧΗ
+# ΑΣΤΕΡΙΞ
 # ============================================================
 
 ASTERIX_TITLES = [
@@ -116,23 +124,20 @@ def get_asterix_comics():
 # ΛΟΥΚΥ ΛΟΥΚ
 # ============================================================
 
-def get_lucky_luke_without_images():
+def get_lucky_luke_comics():
 
-    original_comics = get_lucky_luke_comics()
+    original = load_lucky_luke_comics()
 
     comics = []
 
-    for comic in original_comics:
+    for comic in original:
 
         comics.append(
             {
                 "number": comic["number"],
                 "title": comic["title"],
-                "image": "",
-                "owned": comic.get(
-                    "owned",
-                    False
-                )
+                "image": comic.get("image", ""),
+                "owned": comic.get("owned", False)
             }
         )
 
@@ -143,23 +148,20 @@ def get_lucky_luke_without_images():
 # ΙΝΤΕΦΙΞ
 # ============================================================
 
-def get_idefix_without_images():
+def get_idefix_comics():
 
-    original_comics = get_idefix_comics()
+    original = load_idefix_comics()
 
     comics = []
 
-    for comic in original_comics:
+    for comic in original:
 
         comics.append(
             {
                 "number": comic["number"],
                 "title": comic["title"],
-                "image": "",
-                "owned": comic.get(
-                    "owned",
-                    False
-                )
+                "image": comic.get("image", ""),
+                "owned": comic.get("owned", False)
             }
         )
 
@@ -170,23 +172,20 @@ def get_idefix_without_images():
 # ΑΡΚΑΣ
 # ============================================================
 
-def get_arkas_without_images():
+def get_arkas_comics():
 
-    original_comics = get_arkas_comics()
+    original = load_arkas_comics()
 
     comics = []
 
-    for comic in original_comics:
+    for comic in original:
 
         comics.append(
             {
                 "number": comic["number"],
                 "title": comic["title"],
-                "image": "",
-                "owned": comic.get(
-                    "owned",
-                    False
-                )
+                "image": comic.get("image", ""),
+                "owned": comic.get("owned", False)
             }
         )
 
@@ -199,25 +198,17 @@ def get_arkas_without_images():
 
 def get_comics(slug):
 
-    if slug == "asterix":
-
-        return get_asterix_comics()
-
+    if slug == "arkas":
+        return get_arkas_comics()
 
     if slug == "lucky-luke":
+        return get_lucky_luke_comics()
 
-        return get_lucky_luke_without_images()
-
+    if slug == "asterix":
+        return get_asterix_comics()
 
     if slug == "idefix":
-
-        return get_idefix_without_images()
-
-
-    if slug == "arkas":
-
-        return get_arkas_without_images()
-
+        return get_idefix_comics()
 
     return []
 
@@ -230,23 +221,51 @@ def get_all_comics():
 
     all_comics = []
 
-    all_comics.extend(
-        get_asterix_comics()
-    )
+    for category in categories:
 
-    all_comics.extend(
-        get_lucky_luke_without_images()
-    )
+        comics = get_comics(
+            category["slug"]
+        )
 
-    all_comics.extend(
-        get_idefix_without_images()
-    )
+        for comic in comics:
 
-    all_comics.extend(
-        get_arkas_without_images()
-    )
+            item = comic.copy()
+
+            item["series"] = (
+                category["slug"]
+            )
+
+            item["series_name"] = (
+                category["name"]
+            )
+
+            all_comics.append(
+                item
+            )
 
     return all_comics
+
+
+# ============================================================
+# GROUPS
+# ============================================================
+
+def get_comic_groups():
+
+    groups = []
+
+    for category in categories:
+
+        groups.append(
+            {
+                "category": category,
+                "comics": get_comics(
+                    category["slug"]
+                )
+            }
+        )
+
+    return groups
 
 
 # ============================================================
@@ -258,36 +277,32 @@ def dashboard():
 
     all_comics = get_all_comics()
 
-
-    total = len(
-        all_comics
-    )
-
-
-    owned = sum(
-
-        1
-        for comic in all_comics
-        if comic.get(
-            "owned",
-            False
-        )
-
-    )
-
-
     stats = {
 
-        "total": total,
+        "total":
+            len(all_comics),
 
-        "owned": owned,
+        "owned":
+            sum(
+                1
+                for comic in all_comics
+                if comic.get(
+                    "owned",
+                    False
+                )
+            ),
 
-        "wishlist": 0,
+        "missing": 0,
 
         "duplicates": 0
 
     }
 
+    stats["missing"] = (
+        stats["total"]
+        -
+        stats["owned"]
+    )
 
     return render_template(
 
@@ -295,7 +310,29 @@ def dashboard():
 
         categories=categories,
 
-        stats=stats
+        stats=stats,
+
+        all_comics=all_comics
+
+    )
+
+
+# ============================================================
+# ΜΟΥ ΛΕΙΠΟΥΝ
+# ============================================================
+
+@app.route("/missing")
+def missing():
+
+    return render_template(
+
+        "missing.html",
+
+        categories=categories,
+
+        groups=get_comic_groups(),
+
+        all_comics=get_all_comics()
 
     )
 
@@ -321,7 +358,6 @@ def category(slug):
 
     )
 
-
     if selected_category is None:
 
         return (
@@ -329,19 +365,13 @@ def category(slug):
             404
         )
 
-
-    comics = get_comics(
-        slug
-    )
-
-
     return render_template(
 
         "category.html",
 
         category=selected_category,
 
-        comics=comics
+        comics=get_comics(slug)
 
     )
 

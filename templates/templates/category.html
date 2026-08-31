@@ -85,16 +85,24 @@
             align-items: center;
             justify-content: center;
             font-size: 50px;
+            overflow: hidden;
         }
 
         .comic-cover img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .comic-info {
             padding: 15px;
+        }
+
+        .comic-number {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 5px;
         }
 
         .comic-title {
@@ -146,6 +154,20 @@
         @media (max-width: 600px) {
             .comics-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .container {
+                padding: 0 12px;
+            }
+
+            nav {
+                padding: 15px;
+                gap: 15px;
+            }
+
+            nav .logo {
+                width: 100%;
             }
         }
     </style>
@@ -181,12 +203,14 @@
 
 </nav>
 
+
 <div class="container">
 
     <div class="header">
         <h1>{{ category.name }}</h1>
         <p>Η συλλογή μου</p>
     </div>
+
 
     {% if comics %}
 
@@ -199,23 +223,39 @@
                     <div class="comic-cover">
 
                         {% if comic.image %}
+
                             <img
-                                src="{{ url_for('static', filename='covers/' + comic.image) }}"
+                                src="{{ comic.image }}"
                                 alt="{{ comic.title }}"
                             >
+
                         {% else %}
+
                             📖
+
                         {% endif %}
 
                     </div>
 
+
                     <div class="comic-info">
+
+                        {% if comic.number %}
+
+                            <div class="comic-number">
+                                Τεύχος {{ comic.number }}
+                            </div>
+
+                        {% endif %}
+
 
                         <div class="comic-title">
                             {{ comic.title }}
                         </div>
 
+
                         <div class="buttons">
+
                             <button class="status-button">
                                 ✅ Έχω
                             </button>
@@ -227,6 +267,7 @@
                             <button class="status-button">
                                 🔁 Διπλό
                             </button>
+
                         </div>
 
                     </div>
@@ -237,10 +278,13 @@
 
         </div>
 
+
     {% else %}
 
         <div class="empty-message">
+
             📚 Δεν έχουμε προσθέσει ακόμα κόμικς σε αυτή την κατηγορία.
+
         </div>
 
     {% endif %}

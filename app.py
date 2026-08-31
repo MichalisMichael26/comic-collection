@@ -62,6 +62,10 @@ from sherlock_holmes_covers import (
     get_sherlock_holmes_cover
 )
 
+from arkas_covers import (
+    get_arkas_cover
+)
+
 
 # ============================================================
 # APP
@@ -219,7 +223,6 @@ def get_lucky_luke_comics():
                 f"/cover/lucky-luke/{number}"
             )
 
-
         comics.append(
             {
                 "number": number,
@@ -373,13 +376,14 @@ def get_arkas_comics():
 
     for comic in original:
 
+        number = comic["number"]
+
         comics.append(
             {
-                "number": comic["number"],
+                "number": number,
                 "title": comic["title"],
-                "image": comic.get(
-                    "image",
-                    ""
+                "image": (
+                    f"/cover/arkas/{number}"
                 ),
                 "owned": comic.get(
                     "owned",
@@ -548,6 +552,27 @@ def load_remote_image(
 
         headers["Referer"] = (
             "https://www.efantasy.gr/"
+        )
+
+
+    elif "patakis.gr" in image_url:
+
+        headers["Referer"] = (
+            "https://www.patakis.gr/"
+        )
+
+
+    elif "webstorage.gr" in image_url:
+
+        headers["Referer"] = (
+            "https://www.public.gr/"
+        )
+
+
+    elif "scdn.gr" in image_url:
+
+        headers["Referer"] = (
+            "https://www.skroutz.gr/"
         )
 
 
@@ -945,6 +970,48 @@ def sherlock_holmes_cover_route(
 
     return placeholder_cover(
         f"SHERLOCK HOLMES #{number}"
+    )
+
+
+# ============================================================
+# COVER ΑΡΚΑΣ
+# ============================================================
+
+@app.route(
+    "/cover/arkas/<int:number>"
+)
+def arkas_cover_route(
+    number
+):
+
+    if (
+        number < 1
+        or
+        number > 27
+    ):
+
+        return "", 404
+
+
+    image_url = (
+        get_arkas_cover(
+            number
+        )
+    )
+
+
+    image = load_remote_image(
+        image_url
+    )
+
+
+    if image:
+
+        return image
+
+
+    return placeholder_cover(
+        f"ARKAS #{number}"
     )
 
 

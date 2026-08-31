@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 
 from lucky_luke_data import (
     get_lucky_luke_comics as load_lucky_luke_comics
@@ -23,6 +23,13 @@ from rantanplan_data import (
 from sherlock_holmes_data import (
     get_sherlock_holmes_comics as load_sherlock_holmes_comics
 )
+
+from lucky_luke_covers import (
+    get_lucky_luke_cover,
+    get_lucky_luke_special_cover
+)
+
+import requests
 
 
 app = Flask(__name__)
@@ -159,14 +166,23 @@ def get_lucky_luke_comics():
 
     for comic in original:
 
+        number = comic["number"]
+
+        if number == "SPECIAL":
+
+            image = "/cover/lucky-luke-special"
+
+        else:
+
+            image = (
+                f"/cover/lucky-luke/{number}"
+            )
+
         comics.append(
             {
-                "number": comic["number"],
+                "number": number,
                 "title": comic["title"],
-                "image": comic.get(
-                    "image",
-                    ""
-                ),
+                "image": image,
                 "owned": comic.get(
                     "owned",
                     False
@@ -303,7 +319,9 @@ def get_rantanplan_comics():
 
 def get_sherlock_holmes_comics():
 
-    original = load_sherlock_holmes_comics()
+    original = (
+        load_sherlock_holmes_comics()
+    )
 
     comics = []
 
@@ -416,6 +434,216 @@ def get_comic_groups():
 
 
 # ============================================================
+# IMAGE PROXY
+# ============================================================
+
+def load_remote_image(
+    image_url
+):
+
+    if not image_url:
+
+        return None
+
+    try:
+
+        response = requests.get(
+
+            image_url,
+
+            headers={
+                "User-Agent":
+                    "Mozilla/5.0 "
+                    "(Windows NT 10.0; Win64; x64) "
+                    "AppleWebKit/537.36 "
+                    "(KHTML, like Gecko) "
+                    "Chrome/120 Safari/537.36",
+
+                "Referer":
+                    "https://comicon-shop.gr/"
+            },
+
+            timeout=15
+
+        )
+
+        if response.status_code != 200:
+
+            return None
+
+
+        content_type = (
+            response.headers.get(
+                "Content-Type",
+                ""
+            )
+        )
+
+
+        if not content_type.startswith(
+            "image/"
+        ):
+
+            return None
+
+
+        result = Response(
+
+            response.content,
+
+            content_type=content_type
+
+        )
+
+
+        result.headers[
+            "Cache-Control"
+        ] = (
+            "public, max-age=86400"
+        )
+
+
+        return result
+
+
+    except Exception:
+
+        return None
+
+
+# ============================================================
+# PLACEHOLDER COVER
+# ============================================================
+
+def placeholder_cover(
+    text="NO COVER"
+):
+
+    svg = f"""
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="600"
+        height="800"
+        viewBox="0 0 600 800"
+    >
+
+        <rect
+            width="600"
+            height="800"
+            fill="#ffd60a"
+        />
+
+        <rect
+            x="20"
+            y="20"
+            width="560"
+            height="760"
+            fill="none"
+            stroke="#161616"
+            stroke-width="18"
+        />
+
+        <text
+            x="300"
+            y="350"
+            text-anchor="middle"
+            font-family="Arial Black, Arial"
+            font-size="50"
+            font-weight="bold"
+            fill="#161616"
+        >
+            {text}
+        </text>
+
+        <text
+            x="300"
+            y="500"
+            text-anchor="middle"
+            font-family="Arial Black, Arial"
+            font-size="70"
+            font-weight="bold"
+            fill="#ff3b30"
+        >
+            POW!
+        </text>
+
+    </svg>
+    """
+
+    return Response(
+        svg,
+        mimetype="image/svg+xml"
+    )
+
+
+# ============================================================
+# COVER ΛΟΥΚΥ ΛΟΥΚ
+# ============================================================
+
+@app.route(
+    "/cover/lucky-luke/<int:number>"
+)
+def lucky_luke_cover_route(
+    number
+):
+
+    if number < 1 or number > 90:
+
+        return "", 404
+
+
+    image_url = (
+        get_lucky_luke_cover(
+            number
+        )
+    )
+
+
+    image = load_remote_image(
+        image_url
+    )
+
+
+    if image:
+
+        return image
+
+
+    return placeholder_cover(
+        f"LUCKY LUKE #{number}"
+    )
+
+
+# ============================================================
+# SPECIAL ΛΟΥΚΥ ΛΟΥΚ
+# ============================================================
+
+@app.route(
+    "/cover/lucky-luke-special"
+)
+def lucky_luke_special_route():
+
+    image_url = (
+        get_lucky_luke_special_cover()
+    )
+
+
+    image = load_remote_image(
+        image_url
+    )
+
+
+    if image:
+
+        return image
+
+
+    return placeholder_cover(
+        "LUCKY LUKE"
+    )
+
+
+# ============================================================
 # DASHBOARD
 # ============================================================
 
@@ -516,9 +744,11 @@ def category(slug):
             404
         )
 
+
     comics = get_comics(
         slug
     )
+
 
     return render_template(
 

@@ -4,65 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ category.name }} - Comic Collection</title>
+    <title>{{ category.name }} - Comic Vault</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            color: #222;
+        :root {
+            --dark: #161616;
+            --yellow: #ffd60a;
+            --red: #ff3b30;
+            --blue: #2979ff;
         }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+
+            background-color: #f5f0df;
+            background-image:
+                radial-gradient(#d4cfbf 1.4px, transparent 1.4px);
+
+            background-size: 18px 18px;
+        }
+
+        /* NAV */
 
         nav {
-            background: #111827;
-            padding: 18px 30px;
+            background: var(--dark);
+            border-bottom: 6px solid var(--yellow);
+
+            padding: 14px 28px;
+
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 12px;
             flex-wrap: wrap;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        nav .logo {
-            color: white;
-            font-size: 22px;
-            font-weight: bold;
-            margin-right: 25px;
+        .logo {
+            color: var(--yellow);
+
+            font-family: Impact, "Arial Black", sans-serif;
+            font-size: 28px;
+
+            letter-spacing: 1.5px;
+            margin-right: 20px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
+
+            font-weight: 900;
+            text-transform: uppercase;
+
+            padding: 9px 14px;
+
+            border: 3px solid white;
+            border-radius: 4px;
+
+            transition: 0.15s;
         }
 
         nav a:hover {
-            opacity: 0.75;
+            background: var(--yellow);
+            color: var(--dark);
+            border-color: var(--yellow);
+
+            transform: translateY(-2px);
         }
+
+        /* PAGE */
 
         .container {
-            max-width: 1300px;
-            margin: 40px auto;
-            padding: 0 20px;
+            max-width: 1350px;
+            margin: 38px auto;
+            padding: 0 20px 60px;
         }
 
-        .header {
-            margin-bottom: 30px;
+        /* HEADER */
+
+        .category-header {
+            background: var(--yellow);
+
+            border: 5px solid var(--dark);
+            box-shadow: 8px 8px 0 var(--dark);
+
+            padding: 23px 28px;
+            margin-bottom: 35px;
         }
 
-        .header h1 {
-            font-size: 34px;
-            margin-bottom: 8px;
+        .category-header h1 {
+            font-family: Impact, "Arial Black", sans-serif;
+            font-size: 44px;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .header p {
-            color: #666;
+        .category-header p {
+            margin-top: 6px;
+            font-weight: bold;
         }
+
+        /* GRID */
 
         .comics-grid {
             display: grid;
@@ -70,119 +124,200 @@
             gap: 25px;
         }
 
+        /* COMIC CARD */
+
         .comic-card {
             background: white;
-            border-radius: 15px;
+
+            border: 4px solid var(--dark);
+            box-shadow: 6px 6px 0 var(--dark);
+
             overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+            transition: 0.15s;
         }
+
+        .comic-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 var(--dark);
+        }
+
+        /* COVER */
 
         .comic-cover {
             width: 100%;
             aspect-ratio: 3 / 4;
-            background: #e5e7eb;
+
+            background: #ddd;
+
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 50px;
+            align-items: center;
+
             overflow: hidden;
+
+            font-size: 55px;
+
+            border-bottom: 4px solid var(--dark);
         }
 
         .comic-cover img {
             width: 100%;
             height: 100%;
+
             object-fit: cover;
+
             display: block;
         }
 
+        /* INFO */
+
         .comic-info {
-            padding: 15px;
+            padding: 14px;
         }
 
         .comic-number {
-            font-size: 13px;
-            color: #777;
-            margin-bottom: 5px;
+            display: inline-block;
+
+            background: var(--yellow);
+
+            border: 2px solid var(--dark);
+
+            padding: 3px 7px;
+
+            margin-bottom: 8px;
+
+            font-size: 12px;
+            font-weight: 900;
         }
 
         .comic-title {
-            font-weight: bold;
+            font-weight: 900;
+            font-size: 16px;
+
+            min-height: 45px;
+
             margin-bottom: 12px;
-            min-height: 42px;
         }
 
+        /* BUTTONS */
+
         .buttons {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 7px;
         }
 
         .status-button {
-            border: none;
-            background: #f1f1f1;
-            padding: 8px 10px;
-            border-radius: 8px;
+            width: 100%;
+
+            border: 3px solid var(--dark);
+
+            padding: 8px;
+
+            background: white;
+
             cursor: pointer;
-            font-size: 14px;
+
+            font-weight: 900;
+
+            transition: 0.1s;
         }
 
         .status-button:hover {
-            background: #ddd;
+            background: var(--yellow);
+            transform: translate(-2px, -2px);
+            box-shadow: 3px 3px 0 var(--dark);
         }
+
+        /* EMPTY */
 
         .empty-message {
             background: white;
-            border-radius: 15px;
-            padding: 40px;
+
+            border: 5px solid var(--dark);
+            box-shadow: 8px 8px 0 var(--dark);
+
+            padding: 50px;
+
             text-align: center;
-            color: #666;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+            font-weight: bold;
+            font-size: 18px;
         }
 
+        /* RESPONSIVE */
+
         @media (max-width: 1100px) {
+
             .comics-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
+
         }
 
         @media (max-width: 850px) {
+
             .comics-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+
         }
 
         @media (max-width: 600px) {
-            .comics-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+
+            nav {
+                padding: 12px;
+            }
+
+            .logo {
+                width: 100%;
+                font-size: 25px;
+            }
+
+            nav a {
+                font-size: 12px;
+                padding: 7px 9px;
             }
 
             .container {
-                padding: 0 12px;
+                padding: 0 12px 40px;
             }
 
-            nav {
-                padding: 15px;
-                gap: 15px;
+            .category-header h1 {
+                font-size: 34px;
             }
 
-            nav .logo {
-                width: 100%;
+            .comics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
             }
+
+            .comic-info {
+                padding: 10px;
+            }
+
+            .comic-title {
+                font-size: 14px;
+            }
+
         }
+
     </style>
 </head>
 
+
 <body>
+
 
 <nav>
 
     <div class="logo">
-        📚 Comic Collection
+        ⚡ COMIC VAULT
     </div>
 
     <a href="/">
-        Dashboard
+        🏠 Dashboard
     </a>
 
     <a href="/category/arkas">
@@ -206,21 +341,34 @@
 
 <div class="container">
 
-    <div class="header">
-        <h1>{{ category.name }}</h1>
-        <p>Η συλλογή μου</p>
+
+    <div class="category-header">
+
+        <h1>
+            💥 {{ category.name }}
+        </h1>
+
+        <p>
+            Διάλεξε ποια τεύχη έχεις στη συλλογή σου.
+        </p>
+
     </div>
 
 
     {% if comics %}
 
+
         <div class="comics-grid">
+
 
             {% for comic in comics %}
 
+
                 <div class="comic-card">
 
+
                     <div class="comic-cover">
+
 
                         {% if comic.image %}
 
@@ -235,61 +383,85 @@
 
                         {% endif %}
 
+
                     </div>
 
 
                     <div class="comic-info">
 
+
                         {% if comic.number %}
 
                             <div class="comic-number">
-                                Τεύχος {{ comic.number }}
+
+                                ΤΕΥΧΟΣ #{{ comic.number }}
+
                             </div>
 
                         {% endif %}
 
 
                         <div class="comic-title">
+
                             {{ comic.title }}
+
                         </div>
 
 
                         <div class="buttons">
 
-                            <button class="status-button">
-                                ✅ Έχω
-                            </button>
 
                             <button class="status-button">
-                                ❤️ Θέλω
+
+                                ✅ ΕΧΩ
+
                             </button>
 
+
                             <button class="status-button">
-                                🔁 Διπλό
+
+                                ❤️ WISHLIST
+
                             </button>
+
+
+                            <button class="status-button">
+
+                                🔁 ΔΙΠΛΟ
+
+                            </button>
+
 
                         </div>
 
+
                     </div>
+
 
                 </div>
 
+
             {% endfor %}
+
 
         </div>
 
 
     {% else %}
 
+
         <div class="empty-message">
 
-            📚 Δεν έχουμε προσθέσει ακόμα κόμικς σε αυτή την κατηγορία.
+            💥 Δεν έχουμε προσθέσει ακόμα τεύχη εδώ!
 
         </div>
 
+
     {% endif %}
 
+
 </div>
+
 
 </body>
 </html>

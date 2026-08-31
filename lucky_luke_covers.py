@@ -1,6 +1,5 @@
 # ============================================================
 # LUCKY LUKE COVER SERVICE
-# Παίρνει τα ελληνικά εξώφυλλα από το Comicon Shop
 # ============================================================
 
 from functools import lru_cache
@@ -42,7 +41,7 @@ HEADERS = {
 
 
 # ============================================================
-# NORMALIZE
+# NORMALIZE TEXT
 # ============================================================
 
 def normalize_text(text):
@@ -57,8 +56,7 @@ def normalize_text(text):
     text = "".join(
         char
         for char in text
-        if unicodedata.category(char)
-        != "Mn"
+        if unicodedata.category(char) != "Mn"
     )
 
     return (
@@ -79,8 +77,8 @@ def extract_issue_number(title):
     )
 
 
-    # Δεν θέλουμε τις σκληρόδετες
-    # επανεκδόσεις που έχουν άλλη αρίθμηση.
+    # Αποφεύγουμε διαφορετικές
+    # σκληρόδετες εκδόσεις.
 
     if "σκληροδετο" in normalized:
 
@@ -89,7 +87,7 @@ def extract_issue_number(title):
 
     patterns = [
 
-        r"λουκυ\s+λουκ\s*(?:νο|no|#)?\s*(\d{1,2})",
+        r"λουκυ\s+λουκ\s*(?:νο|no|#)?\s*[-:]?\s*(\d{1,2})",
 
         r"λουκυ\s+λουκ.*?\s(\d{1,2})$"
 
@@ -118,7 +116,7 @@ def extract_issue_number(title):
 
 
 # ============================================================
-# ΚΑΛΥΤΕΡΗ ΕΙΚΟΝΑ ΑΠΟ PRODUCT CARD
+# ΠΑΙΡΝΟΥΜΕ IMAGE ΑΠΟ PRODUCT CARD
 # ============================================================
 
 def get_image_from_product(
@@ -134,44 +132,6 @@ def get_image_from_product(
     if image is None:
 
         return None
-
-
-    # --------------------------------------------------------
-    # Lazy-loading attributes
-    # --------------------------------------------------------
-
-    attributes = [
-
-        "data-lazy-src",
-
-        "data-src",
-
-        "data-original",
-
-        "src"
-
-    ]
-
-
-    for attribute in attributes:
-
-        value = image.get(
-            attribute
-        )
-
-
-        if (
-            value
-            and
-            not value.startswith(
-                "data:"
-            )
-        ):
-
-            return urljoin(
-                page_url,
-                value
-            )
 
 
     # --------------------------------------------------------
@@ -200,17 +160,35 @@ def get_image_from_product(
             ","
         ):
 
-            part = (
-                item
-                .strip()
-                .split(" ")[0]
-            )
+            item = item.strip()
 
 
-            if part:
+            if not item:
+
+                continue
+
+
+            parts = item.split()
+
+
+            if not parts:
+
+                continue
+
+
+            candidate = parts[0]
+
+
+            if (
+                candidate
+                and
+                not candidate.startswith(
+                    "data:"
+                )
+            ):
 
                 candidates.append(
-                    part
+                    candidate
                 )
 
 
@@ -222,12 +200,52 @@ def get_image_from_product(
             )
 
 
+    # --------------------------------------------------------
+    # normal / lazy src
+    # --------------------------------------------------------
+
+    possible_urls = [
+
+        image.get(
+            "data-lazy-src"
+        ),
+
+        image.get(
+            "data-src"
+        ),
+
+        image.get(
+            "data-original"
+        ),
+
+        image.get(
+            "src"
+        )
+
+    ]
+
+
+    for image_url in possible_urls:
+
+        if (
+            image_url
+            and
+            not image_url.startswith(
+                "data:"
+            )
+        ):
+
+            return urljoin(
+                page_url,
+                image_url
+            )
+
+
     return None
 
 
 # ============================================================
 # PRODUCT PAGE IMAGE
-# fallback όταν το category card δεν έχει καλή εικόνα
 # ============================================================
 
 @lru_cache(maxsize=150)
@@ -243,13 +261,9 @@ def get_product_page_image(
     try:
 
         response = requests.get(
-
             product_url,
-
             headers=HEADERS,
-
             timeout=12
-
         )
 
 
@@ -259,11 +273,8 @@ def get_product_page_image(
 
 
         soup = BeautifulSoup(
-
             response.text,
-
             "html.parser"
-
         )
 
 
@@ -272,9 +283,7 @@ def get_product_page_image(
         # ----------------------------------------------------
 
         og_image = soup.select_one(
-
             'meta[property="og:image"]'
-
         )
 
 
@@ -287,24 +296,44 @@ def get_product_page_image(
         ):
 
             return urljoin(
-
                 product_url,
-
                 og_image.get(
                     "content"
                 )
-
             )
 
 
         # ----------------------------------------------------
-        # WooCommerce main cover
+        # Twitter
+        # ----------------------------------------------------
+
+        twitter_image = soup.select_one(
+            'meta[name="twitter:image"]'
+        )
+
+
+        if (
+            twitter_image
+            and
+            twitter_image.get(
+                "content"
+            )
+        ):
+
+            return urljoin(
+                product_url,
+                twitter_image.get(
+                    "content"
+                )
+            )
+
+
+        # ----------------------------------------------------
+        # WooCommerce main image
         # ----------------------------------------------------
 
         image = soup.select_one(
-
             "img.wp-post-image"
-
         )
 
 
@@ -330,22 +359,17 @@ def get_product_page_image(
             if image_url:
 
                 return urljoin(
-
                     product_url,
-
                     image_url
-
                 )
 
 
         # ----------------------------------------------------
-        # Gallery
+        # WooCommerce gallery
         # ----------------------------------------------------
 
         image = soup.select_one(
-
             ".woocommerce-product-gallery img"
-
         )
 
 
@@ -358,6 +382,10 @@ def get_product_page_image(
                 )
 
                 or image.get(
+                    "data-src"
+                )
+
+                or image.get(
                     "src"
                 )
 
@@ -367,11 +395,8 @@ def get_product_page_image(
             if image_url:
 
                 return urljoin(
-
                     product_url,
-
                     image_url
-
                 )
 
 
@@ -384,7 +409,7 @@ def get_product_page_image(
 
 
 # ============================================================
-# ΔΗΜΙΟΥΡΓΟΥΜΕ ΚΑΤΑΛΟΓΟ
+# ΔΗΜΙΟΥΡΓΟΥΜΕ ΚΑΤΑΛΟΓΟ ΛΟΥΚΥ ΛΟΥΚ
 # ============================================================
 
 @lru_cache(maxsize=1)
@@ -393,12 +418,12 @@ def get_lucky_luke_cover_catalog():
     catalog = {}
 
 
-    # Το Comicon έχει 4 σελίδες
-    # στην κατηγορία Λούκυ Λουκ.
+    # Δοκιμάζουμε αρκετές σελίδες
+    # ώστε να βρούμε όλα τα προϊόντα.
 
     for page_number in range(
         1,
-        5
+        8
     ):
 
 
@@ -412,20 +437,16 @@ def get_lucky_luke_cover_catalog():
             page_url = (
                 BASE_URL
                 +
-                f"/page/{page_number}"
+                f"/page/{page_number}/"
             )
 
 
         try:
 
             response = requests.get(
-
                 page_url,
-
                 headers=HEADERS,
-
                 timeout=15
-
             )
 
 
@@ -435,19 +456,19 @@ def get_lucky_luke_cover_catalog():
 
 
             soup = BeautifulSoup(
-
                 response.text,
-
                 "html.parser"
-
             )
 
 
             products = soup.select(
-
                 "li.product"
-
             )
+
+
+            if not products:
+
+                continue
 
 
             for product in products:
@@ -495,6 +516,20 @@ def get_lucky_luke_cover_catalog():
                 )
 
 
+                # Δεν μας ενδιαφέρουν
+                # προϊόντα εκτός Lucky Luke.
+
+                if (
+                    "λουκυ λουκ"
+                    not in normalized_title
+                    and
+                    "ντολης"
+                    not in normalized_title
+                ):
+
+                    continue
+
+
                 # ============================================
                 # PRODUCT URL
                 # ============================================
@@ -507,6 +542,10 @@ def get_lucky_luke_cover_catalog():
 
                     or product.select_one(
                         'a[href*="/shop/"]'
+                    )
+
+                    or product.select_one(
+                        'a[href*="/product/"]'
                     )
 
                     or product.find(
@@ -528,13 +567,10 @@ def get_lucky_luke_cover_catalog():
                 ):
 
                     product_url = urljoin(
-
                         page_url,
-
                         link_element.get(
                             "href"
                         )
-
                     )
 
 
@@ -543,15 +579,10 @@ def get_lucky_luke_cover_catalog():
                 # ============================================
 
                 image_url = (
-
                     get_image_from_product(
-
                         product,
-
                         page_url
-
                     )
-
                 )
 
 
@@ -583,7 +614,7 @@ def get_lucky_luke_cover_catalog():
 
 
                 # ============================================
-                # NUMBERED ISSUE
+                # NUMBER
                 # ============================================
 
                 number = (
@@ -598,12 +629,15 @@ def get_lucky_luke_cover_catalog():
                     continue
 
 
-                # Αν έχουμε ήδη βρει το τεύχος,
-                # δεν το αντικαθιστούμε άσκοπα.
+                # ============================================
+                # SAVE
+                # ============================================
 
                 if number not in catalog:
 
-                    catalog[number] = {
+                    catalog[
+                        number
+                    ] = {
 
                         "title":
                             title,
@@ -617,11 +651,19 @@ def get_lucky_luke_cover_catalog():
                     }
 
 
+        except Exception:
+
+            # Αν μία σελίδα αποτύχει,
+            # συνεχίζουμε στην επόμενη.
+
+            continue
+
+
     return catalog
 
 
 # ============================================================
-# ΠΑΙΡΝΟΥΜΕ ΕΞΩΦΥΛΛΟ ΑΡΙΘΜΗΜΕΝΟΥ ΤΕΥΧΟΥ
+# ΠΑΙΡΝΟΥΜΕ COVER ΑΡΙΘΜΗΜΕΝΟΥ ΤΕΥΧΟΥ
 # ============================================================
 
 @lru_cache(maxsize=100)
@@ -644,7 +686,9 @@ def get_lucky_luke_cover(
         return None
 
 
+    # --------------------------------------------------------
     # 1. Εικόνα από category page
+    # --------------------------------------------------------
 
     image_url = data.get(
         "image"
@@ -656,8 +700,9 @@ def get_lucky_luke_cover(
         return image_url
 
 
-    # 2. Αν δεν υπάρχει,
-    # μπαίνουμε στη σελίδα προϊόντος.
+    # --------------------------------------------------------
+    # 2. Εικόνα από product page
+    # --------------------------------------------------------
 
     product_url = data.get(
         "product_url"
@@ -702,9 +747,7 @@ def get_lucky_luke_special_cover():
 
 
     return get_product_page_image(
-
         data.get(
             "product_url"
         )
-
     )

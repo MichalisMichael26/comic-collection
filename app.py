@@ -2,6 +2,7 @@ from flask import Flask, render_template
 
 from lucky_luke_data import get_lucky_luke_comics
 from idefix_data import get_idefix_comics
+from arkas_data import get_arkas_comics
 
 
 app = Flask(__name__)
@@ -103,7 +104,8 @@ def get_asterix_comics():
             {
                 "number": number,
                 "title": title,
-                "image": ""
+                "image": "",
+                "owned": False
             }
         )
 
@@ -126,7 +128,11 @@ def get_lucky_luke_without_images():
             {
                 "number": comic["number"],
                 "title": comic["title"],
-                "image": ""
+                "image": "",
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
             }
         )
 
@@ -149,7 +155,11 @@ def get_idefix_without_images():
             {
                 "number": comic["number"],
                 "title": comic["title"],
-                "image": ""
+                "image": "",
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
             }
         )
 
@@ -157,7 +167,34 @@ def get_idefix_without_images():
 
 
 # ============================================================
-# ΚΟΜΙΚΣ ΑΝΑ ΚΑΤΗΓΟΡΙΑ
+# ΑΡΚΑΣ
+# ============================================================
+
+def get_arkas_without_images():
+
+    original_comics = get_arkas_comics()
+
+    comics = []
+
+    for comic in original_comics:
+
+        comics.append(
+            {
+                "number": comic["number"],
+                "title": comic["title"],
+                "image": "",
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
+            }
+        )
+
+    return comics
+
+
+# ============================================================
+# COMICS ΑΝΑ ΚΑΤΗΓΟΡΙΑ
 # ============================================================
 
 def get_comics(slug):
@@ -179,10 +216,37 @@ def get_comics(slug):
 
     if slug == "arkas":
 
-        return []
+        return get_arkas_without_images()
 
 
     return []
+
+
+# ============================================================
+# ΟΛΑ ΤΑ COMICS
+# ============================================================
+
+def get_all_comics():
+
+    all_comics = []
+
+    all_comics.extend(
+        get_asterix_comics()
+    )
+
+    all_comics.extend(
+        get_lucky_luke_without_images()
+    )
+
+    all_comics.extend(
+        get_idefix_without_images()
+    )
+
+    all_comics.extend(
+        get_arkas_without_images()
+    )
+
+    return all_comics
 
 
 # ============================================================
@@ -192,12 +256,23 @@ def get_comics(slug):
 @app.route("/")
 def dashboard():
 
-    total = (
-        len(get_asterix_comics())
-        +
-        len(get_lucky_luke_comics())
-        +
-        len(get_idefix_comics())
+    all_comics = get_all_comics()
+
+
+    total = len(
+        all_comics
+    )
+
+
+    owned = sum(
+
+        1
+        for comic in all_comics
+        if comic.get(
+            "owned",
+            False
+        )
+
     )
 
 
@@ -205,7 +280,7 @@ def dashboard():
 
         "total": total,
 
-        "owned": 0,
+        "owned": owned,
 
         "wishlist": 0,
 
@@ -215,9 +290,13 @@ def dashboard():
 
 
     return render_template(
+
         "dashboard.html",
+
         categories=categories,
+
         stats=stats
+
     )
 
 
@@ -225,7 +304,9 @@ def dashboard():
 # ΚΑΤΗΓΟΡΙΑ
 # ============================================================
 
-@app.route("/category/<slug>")
+@app.route(
+    "/category/<slug>"
+)
 def category(slug):
 
     selected_category = next(
@@ -249,13 +330,19 @@ def category(slug):
         )
 
 
-    comics = get_comics(slug)
+    comics = get_comics(
+        slug
+    )
 
 
     return render_template(
+
         "category.html",
+
         category=selected_category,
+
         comics=comics
+
     )
 
 

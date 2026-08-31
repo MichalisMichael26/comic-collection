@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Μου λείπουν - Comic Vault</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        :root {
+
+            --dark: #161616;
+            --yellow: #ffd60a;
+            --red: #ff3b30;
+            --green: #39d353;
+            --pink: #ff5d8f;
+
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background-color: #f5f0df;
+
+            background-image:
+                radial-gradient(
+                    #d4cfbf 1.4px,
+                    transparent 1.4px
+                );
+
+            background-size: 18px 18px;
+
+            color: var(--dark);
+
+        }
+
+
+        nav {
+
+            background: var(--dark);
+
+            border-bottom:
+                6px solid var(--yellow);
+
+            padding:
+                14px 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .logo {
+
+            color: var(--yellow);
+
+            font-family:
+                Impact,
+                "Arial Black",
+                sans-serif;
+
+            font-size: 28px;
+
+            margin-right: 20px;
+
+        }
+
+
+        nav a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 900;
+
+            padding:
+                9px 14px;
+
+            border:
+                3px solid white;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .container {
+
+            max-width: 1350px;
+
+            margin:
+                38px auto;
+
+            padding:
+                0 20px 60px;
+
+        }
+
+
+        .hero {
+
+            background: var(--pink);
+
+            border:
+                5px solid var(--dark);
+
+            box-shadow:
+                8px 8px 0 var(--dark);
+
+            padding: 25px;
+
+            margin-bottom: 40px;
+
+        }
+
+
+        .hero h1 {
+
+            font-family:
+                Impact,
+                "Arial Black",
+                sans-serif;
+
+            font-size: 44px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .hero p {
+
+            font-weight: bold;
+
+            margin-top: 8px;
+
+        }
+
+
+        .series-section {
+
+            margin-bottom: 55px;
+
+        }
+
+
+        .series-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .series-title h2 {
+
+            display: inline-block;
+
+            background: var(--yellow);
+
+            border:
+                4px solid var(--dark);
+
+            box-shadow:
+                5px 5px 0 var(--dark);
+
+            padding:
+                8px 16px;
+
+            font-family:
+                Impact,
+                "Arial Black",
+                sans-serif;
+
+            font-size: 28px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .series-count {
+
+            font-weight: 900;
+
+            font-size: 18px;
+
+        }
+
+
+        .comics-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 22px;
+
+        }
+
+
+        .comic-card {
+
+            background: white;
+
+            border:
+                4px solid var(--dark);
+
+            box-shadow:
+                6px 6px 0 var(--dark);
+
+            overflow: hidden;
+
+        }
+
+
+        .comic-card.hidden {
+
+            display: none;
+
+        }
+
+
+        .comic-cover {
+
+            width: 100%;
+
+            aspect-ratio: 3 / 4;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd60a,
+                    #fff3a6
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            border-bottom:
+                4px solid var(--dark);
+
+        }
+
+
+        .comic-cover img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .no-cover {
+
+            text-align: center;
+
+            padding: 15px;
+
+            font-weight: 900;
+
+        }
+
+
+        .no-cover-icon {
+
+            font-size: 48px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .comic-info {
+
+            padding: 14px;
+
+        }
+
+
+        .comic-number {
+
+            display: inline-block;
+
+            background: var(--yellow);
+
+            border:
+                2px solid var(--dark);
+
+            padding:
+                3px 7px;
+
+            margin-bottom: 8px;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+        }
+
+
+        .comic-title {
+
+            font-weight: 900;
+
+            min-height: 42px;
+
+        }
+
+
+        .wishlist-badge {
+
+            display: none;
+
+            margin-top: 12px;
+
+            background: var(--pink);
+
+            border:
+                2px solid var(--dark);
+
+            padding:
+                5px 8px;
+
+            font-weight: 900;
+
+            font-size: 12px;
+
+        }
+
+
+        .comic-card.wishlist
+        .wishlist-badge {
+
+            display: inline-block;
+
+        }
+
+
+        .complete-message {
+
+            display: none;
+
+            background: #d8ffd8;
+
+            border:
+                4px solid var(--dark);
+
+            box-shadow:
+                5px 5px 0 var(--dark);
+
+            padding: 20px;
+
+            font-weight: 900;
+
+        }
+
+
+        @media (max-width: 1100px) {
+
+            .comics-grid {
+
+                grid-template-columns:
+                    repeat(4, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .comics-grid {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            nav {
+
+                padding: 12px;
+
+            }
+
+
+            .logo {
+
+                width: 100%;
+
+            }
+
+
+            .comics-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 14px;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 34px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+
+        ⚡ COMIC VAULT
+
+    </div>
+
+
+    <a href="/">
+
+        🏠 Dashboard
+
+    </a>
+
+
+    {% for category in categories %}
+
+        <a
+            href="/category/{{ category.slug }}"
+        >
+
+            {{ category.name }}
+
+        </a>
+
+    {% endfor %}
+
+</nav>
+
+
+<div class="container">
+
+
+    <div class="hero">
+
+        <h1>
+
+            ❤️ Μου λείπουν
+
+        </h1>
+
+        <p>
+
+            Όλα τα κόμικς που λείπουν από τη συλλογή μου, ανά κατηγορία.
+
+        </p>
+
+    </div>
+
+
+    {% for group in groups %}
+
+
+        <section
+            class="series-section"
+            id="section-{{ group.category.slug }}"
+        >
+
+
+            <div class="series-title">
+
+
+                <h2>
+
+                    {{ group.category.name }}
+
+                </h2>
+
+
+                <div
+                    class="series-count"
+                    id="count-{{ group.category.slug }}"
+                >
+
+                    0
+
+                </div>
+
+
+            </div>
+
+
+            <div
+                class="comics-grid"
+                id="grid-{{ group.category.slug }}"
+            >
+
+
+                {% for comic in group.comics %}
+
+
+                    <div
+                        class="comic-card"
+                        id="missing-{{ group.category.slug }}-{{ comic.number }}"
+                        data-series="{{ group.category.slug }}"
+                        data-number="{{ comic.number }}"
+                    >
+
+
+                        <div class="comic-cover">
+
+
+                            {% if comic.image %}
+
+                                <img
+                                    src="{{ comic.image }}"
+                                    alt="{{ comic.title }}"
+                                >
+
+                            {% else %}
+
+                                <div class="no-cover">
+
+                                    <div class="no-cover-icon">
+
+                                        📖
+
+                                    </div>
+
+                                    {{ comic.title }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                        <div class="comic-info">
+
+
+                            <div class="comic-number">
+
+                                {% if comic.number == "SPECIAL" %}
+
+                                    SPECIAL
+
+                                {% else %}
+
+                                    ΤΕΥΧΟΣ #{{ comic.number }}
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="comic-title">
+
+                                {{ comic.title }}
+
+                            </div>
+
+
+                            <div class="wishlist-badge">
+
+                                ❤️ WISHLIST
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            </div>
+
+
+            <div
+                class="complete-message"
+                id="complete-{{ group.category.slug }}"
+            >
+
+                ✅ Έχεις ολοκληρώσει αυτή την κατηγορία!
+
+            </div>
+
+
+        </section>
+
+
+    {% endfor %}
+
+
+</div>
+
+
+<script>
+
+
+const defaultCollection = {
+
+
+{% for comic in all_comics %}
+
+
+    "{{ comic.series }}-{{ comic.number }}": {
+
+        owned:
+            {% if comic.owned %}
+                true
+            {% else %}
+                false
+            {% endif %},
+
+        wishlist: false,
+
+        duplicate: false
+
+    }
+
+    {% if not loop.last %}
+        ,
+    {% endif %}
+
+
+{% endfor %}
+
+
+};
+
+
+function getCollection() {
+
+
+    let collection = {};
+
+
+    const saved =
+        localStorage.getItem(
+            "comicCollection"
+        );
+
+
+    if (saved) {
+
+        try {
+
+            collection =
+                JSON.parse(saved);
+
+        }
+
+        catch {
+
+            collection = {};
+
+        }
+
+    }
+
+
+    Object.entries(
+        defaultCollection
+    ).forEach(
+
+        function(
+            [key, defaults]
+        ) {
+
+            if (
+                collection[key]
+                === undefined
+            ) {
+
+                collection[key] = {
+                    ...defaults
+                };
+
+            }
+
+        }
+
+    );
+
+
+    localStorage.setItem(
+
+        "comicCollection",
+
+        JSON.stringify(
+            collection
+        )
+
+    );
+
+
+    return collection;
+
+}
+
+
+function updateMissing() {
+
+
+    const collection =
+        getCollection();
+
+
+    const categoryCounts = {};
+
+
+    {% for group in groups %}
+
+        categoryCounts[
+            "{{ group.category.slug }}"
+        ] = 0;
+
+    {% endfor %}
+
+
+    document.querySelectorAll(
+        ".comic-card"
+    ).forEach(
+
+        function(card) {
+
+
+            const series =
+                card.dataset.series;
+
+
+            const number =
+                card.dataset.number;
+
+
+            const key =
+                series
+                +
+                "-"
+                +
+                number;
+
+
+            const comic =
+                collection[key]
+                ||
+                {
+                    owned: false,
+                    wishlist: false,
+                    duplicate: false
+                };
+
+
+            if (
+                comic.owned
+            ) {
+
+                card.classList.add(
+                    "hidden"
+                );
+
+            }
+
+            else {
+
+                card.classList.remove(
+                    "hidden"
+                );
+
+
+                categoryCounts[
+                    series
+                ]++;
+
+
+                card.classList.toggle(
+                    "wishlist",
+                    comic.wishlist
+                );
+
+            }
+
+
+        }
+
+    );
+
+
+    Object.keys(
+        categoryCounts
+    ).forEach(
+
+        function(series) {
+
+
+            const count =
+                categoryCounts[
+                    series
+                ];
+
+
+            document.getElementById(
+                "count-" + series
+            ).textContent =
+                count + " μου λείπουν";
+
+
+            const grid =
+                document.getElementById(
+                    "grid-" + series
+                );
+
+
+            const complete =
+                document.getElementById(
+                    "complete-" + series
+                );
+
+
+            if (
+                count === 0
+            ) {
+
+                grid.style.display =
+                    "none";
+
+
+                complete.style.display =
+                    "block";
+
+            }
+
+            else {
+
+                grid.style.display =
+                    "grid";
+
+
+                complete.style.display =
+                    "none";
+
+            }
+
+
+        }
+
+    );
+
+
+}
+
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    updateMissing
+
+);
+
+
+</script>
+
+
+</body>
+
+</html>

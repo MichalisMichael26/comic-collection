@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ category.name }} - Comic Collection</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        nav {
+            background: #111827;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            margin-right: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            opacity: 0.75;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .comics-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+        }
+
+        .comic-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .comic-cover {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .comic-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .comic-info {
+            padding: 15px;
+        }
+
+        .comic-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+            min-height: 42px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .status-button {
+            border: none;
+            background: #f1f1f1;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .status-button:hover {
+            background: #ddd;
+        }
+
+        .empty-message {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (max-width: 1100px) {
+            .comics-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .comics-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .comics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        📚 Comic Collection
+    </div>
+
+    <a href="/">
+        Dashboard
+    </a>
+
+    <a href="/category/arkas">
+        Αρκάς
+    </a>
+
+    <a href="/category/lucky-luke">
+        Λούκυ Λουκ
+    </a>
+
+    <a href="/category/asterix">
+        Αστερίξ
+    </a>
+
+    <a href="/category/idefix">
+        Ιντεφίξ
+    </a>
+
+</nav>
+
+<div class="container">
+
+    <div class="header">
+        <h1>{{ category.name }}</h1>
+        <p>Η συλλογή μου</p>
+    </div>
+
+    {% if comics %}
+
+        <div class="comics-grid">
+
+            {% for comic in comics %}
+
+                <div class="comic-card">
+
+                    <div class="comic-cover">
+
+                        {% if comic.image %}
+                            <img
+                                src="{{ url_for('static', filename='covers/' + comic.image) }}"
+                                alt="{{ comic.title }}"
+                            >
+                        {% else %}
+                            📖
+                        {% endif %}
+
+                    </div>
+
+                    <div class="comic-info">
+
+                        <div class="comic-title">
+                            {{ comic.title }}
+                        </div>
+
+                        <div class="buttons">
+                            <button class="status-button">
+                                ✅ Έχω
+                            </button>
+
+                            <button class="status-button">
+                                ❤️ Θέλω
+                            </button>
+
+                            <button class="status-button">
+                                🔁 Διπλό
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-message">
+            📚 Δεν έχουμε προσθέσει ακόμα κόμικς σε αυτή την κατηγορία.
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

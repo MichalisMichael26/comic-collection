@@ -29,6 +29,10 @@ from lucky_luke_covers import (
     get_lucky_luke_special_cover
 )
 
+from asterix_covers import (
+    get_asterix_cover
+)
+
 import requests
 
 
@@ -128,7 +132,7 @@ ASTERIX_TITLES = [
     "Η Κόρη του Βερσινζεντορίξ",
     "Ο Αστερίξ και ο Γρύπας",
     "Η Λευκή Ίριδα",
-    "Ο Αστερίξ στη Λουζιτανία"
+    "Ο Αστερίξ στην Λουζιτανία"
 
 ]
 
@@ -146,7 +150,7 @@ def get_asterix_comics():
             {
                 "number": number,
                 "title": title,
-                "image": "",
+                "image": f"/cover/asterix/{number}",
                 "owned": False
             }
         )
@@ -409,7 +413,7 @@ def get_all_comics():
 
 
 # ============================================================
-# GROUPS ΓΙΑ "ΜΟΥ ΛΕΙΠΟΥΝ"
+# GROUPS
 # ============================================================
 
 def get_comic_groups():
@@ -420,13 +424,10 @@ def get_comic_groups():
 
         groups.append(
             {
-                "category":
-                    category,
-
-                "comics":
-                    get_comics(
-                        category["slug"]
-                    )
+                "category": category,
+                "comics": get_comics(
+                    category["slug"]
+                )
             }
         )
 
@@ -434,38 +435,58 @@ def get_comic_groups():
 
 
 # ============================================================
-# IMAGE PROXY
+# REMOTE IMAGE
 # ============================================================
 
-def load_remote_image(
-    image_url
-):
+def load_remote_image(image_url):
 
     if not image_url:
 
         return None
 
+
+    headers = {
+
+        "User-Agent": (
+            "Mozilla/5.0 "
+            "(Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 "
+            "(KHTML, like Gecko) "
+            "Chrome/120 Safari/537.36"
+        )
+
+    }
+
+
+    if "comicstrip.gr" in image_url:
+
+        headers["Referer"] = (
+            "https://comicstrip.gr/"
+        )
+
+
+    elif "comicon-shop.gr" in image_url:
+
+        headers["Referer"] = (
+            "https://comicon-shop.gr/"
+        )
+
+
+    elif "mamouthcomix" in image_url:
+
+        headers["Referer"] = (
+            "https://mamouthcomix-eshop.gr/"
+        )
+
+
     try:
 
         response = requests.get(
-
             image_url,
-
-            headers={
-                "User-Agent":
-                    "Mozilla/5.0 "
-                    "(Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) "
-                    "Chrome/120 Safari/537.36",
-
-                "Referer":
-                    "https://comicon-shop.gr/"
-            },
-
+            headers=headers,
             timeout=15
-
         )
+
 
         if response.status_code != 200:
 
@@ -488,11 +509,8 @@ def load_remote_image(
 
 
         result = Response(
-
             response.content,
-
             content_type=content_type
-
         )
 
 
@@ -512,7 +530,7 @@ def load_remote_image(
 
 
 # ============================================================
-# PLACEHOLDER COVER
+# PLACEHOLDER
 # ============================================================
 
 def placeholder_cover(
@@ -547,8 +565,8 @@ def placeholder_cover(
             x="300"
             y="350"
             text-anchor="middle"
-            font-family="Arial Black, Arial"
-            font-size="50"
+            font-family="Arial"
+            font-size="42"
             font-weight="bold"
             fill="#161616"
         >
@@ -559,7 +577,7 @@ def placeholder_cover(
             x="300"
             y="500"
             text-anchor="middle"
-            font-family="Arial Black, Arial"
+            font-family="Arial"
             font-size="70"
             font-weight="bold"
             fill="#ff3b30"
@@ -583,14 +601,7 @@ def placeholder_cover(
 @app.route(
     "/cover/lucky-luke/<int:number>"
 )
-def lucky_luke_cover_route(
-    number
-):
-
-    if number < 1 or number > 90:
-
-        return "", 404
-
+def lucky_luke_cover_route(number):
 
     image_url = (
         get_lucky_luke_cover(
@@ -644,6 +655,42 @@ def lucky_luke_special_route():
 
 
 # ============================================================
+# COVER ΑΣΤΕΡΙΞ
+# ============================================================
+
+@app.route(
+    "/cover/asterix/<int:number>"
+)
+def asterix_cover_route(number):
+
+    if number < 1 or number > 41:
+
+        return "", 404
+
+
+    image_url = (
+        get_asterix_cover(
+            number
+        )
+    )
+
+
+    image = load_remote_image(
+        image_url
+    )
+
+
+    if image:
+
+        return image
+
+
+    return placeholder_cover(
+        f"ASTERIX #{number}"
+    )
+
+
+# ============================================================
 # DASHBOARD
 # ============================================================
 
@@ -657,31 +704,29 @@ def dashboard():
     )
 
     owned = sum(
-
         1
         for comic in all_comics
         if comic.get(
             "owned",
             False
         )
-
     )
+
 
     stats = {
 
-        "total":
-            total,
+        "total": total,
 
-        "owned":
-            owned,
+        "owned": owned,
 
-        "missing":
-            total - owned,
+        "missing": (
+            total - owned
+        ),
 
-        "duplicates":
-            0
+        "duplicates": 0
 
     }
+
 
     return render_template(
 
@@ -717,7 +762,7 @@ def missing():
 
 
 # ============================================================
-# ΚΑΤΗΓΟΡΙΑ
+# CATEGORY
 # ============================================================
 
 @app.route(
@@ -736,6 +781,7 @@ def category(slug):
         None
 
     )
+
 
     if selected_category is None:
 
@@ -756,7 +802,9 @@ def category(slug):
 
         category=selected_category,
 
-        comics=comics
+        comics=comics,
+
+        categories=categories
 
     )
 

@@ -16,6 +16,10 @@ from iznogoud_data import (
     get_iznogoud_comics as load_iznogoud_comics
 )
 
+from rantanplan_data import (
+    get_rantanplan_comics as load_rantanplan_comics
+)
+
 
 app = Flask(__name__)
 
@@ -49,6 +53,11 @@ categories = [
     {
         "name": "Ιζνογκούντ",
         "slug": "iznogoud"
+    },
+
+    {
+        "name": "Ραντανπλάν",
+        "slug": "rantanplan"
     }
 
 ]
@@ -250,6 +259,36 @@ def get_iznogoud_comics():
 
 
 # ============================================================
+# ΡΑΝΤΑΝΠΛΑΝ
+# ============================================================
+
+def get_rantanplan_comics():
+
+    original = load_rantanplan_comics()
+
+    comics = []
+
+    for comic in original:
+
+        comics.append(
+            {
+                "number": comic["number"],
+                "title": comic["title"],
+                "image": comic.get(
+                    "image",
+                    ""
+                ),
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
+            }
+        )
+
+    return comics
+
+
+# ============================================================
 # COMICS ΑΝΑ ΚΑΤΗΓΟΡΙΑ
 # ============================================================
 
@@ -269,6 +308,9 @@ def get_comics(slug):
 
     if slug == "iznogoud":
         return get_iznogoud_comics()
+
+    if slug == "rantanplan":
+        return get_rantanplan_comics()
 
     return []
 

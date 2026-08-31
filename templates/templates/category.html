@@ -19,6 +19,8 @@
             --yellow: #ffd60a;
             --red: #ff3b30;
             --blue: #2979ff;
+            --green: #39d353;
+            --pink: #ff5d8f;
         }
 
         body {
@@ -32,7 +34,9 @@
             background-size: 18px 18px;
         }
 
-        /* NAV */
+        /* =========================
+           NAV
+        ========================= */
 
         nav {
             background: var(--dark);
@@ -83,7 +87,9 @@
             transform: translateY(-2px);
         }
 
-        /* PAGE */
+        /* =========================
+           PAGE
+        ========================= */
 
         .container {
             max-width: 1350px;
@@ -91,7 +97,9 @@
             padding: 0 20px 60px;
         }
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================= */
 
         .category-header {
             background: var(--yellow);
@@ -116,7 +124,9 @@
             font-weight: bold;
         }
 
-        /* GRID */
+        /* =========================
+           GRID
+        ========================= */
 
         .comics-grid {
             display: grid;
@@ -124,7 +134,9 @@
             gap: 25px;
         }
 
-        /* COMIC CARD */
+        /* =========================
+           COMIC CARD
+        ========================= */
 
         .comic-card {
             background: white;
@@ -142,7 +154,21 @@
             box-shadow: 9px 9px 0 var(--dark);
         }
 
-        /* COVER */
+        .comic-card.owned {
+            outline: 6px solid var(--green);
+        }
+
+        .comic-card.wishlist {
+            outline: 6px solid var(--pink);
+        }
+
+        .comic-card.duplicate {
+            box-shadow: 9px 9px 0 var(--blue);
+        }
+
+        /* =========================
+           COVER
+        ========================= */
 
         .comic-cover {
             width: 100%;
@@ -170,7 +196,9 @@
             display: block;
         }
 
-        /* INFO */
+        /* =========================
+           INFO
+        ========================= */
 
         .comic-info {
             padding: 14px;
@@ -200,7 +228,9 @@
             margin-bottom: 12px;
         }
 
-        /* BUTTONS */
+        /* =========================
+           BUTTONS
+        ========================= */
 
         .buttons {
             display: grid;
@@ -213,7 +243,7 @@
 
             border: 3px solid var(--dark);
 
-            padding: 8px;
+            padding: 9px;
 
             background: white;
 
@@ -225,12 +255,26 @@
         }
 
         .status-button:hover {
-            background: var(--yellow);
             transform: translate(-2px, -2px);
             box-shadow: 3px 3px 0 var(--dark);
         }
 
-        /* EMPTY */
+        .owned-button.active {
+            background: var(--green);
+        }
+
+        .wishlist-button.active {
+            background: var(--pink);
+        }
+
+        .duplicate-button.active {
+            background: var(--blue);
+            color: white;
+        }
+
+        /* =========================
+           EMPTY
+        ========================= */
 
         .empty-message {
             background: white;
@@ -246,7 +290,9 @@
             font-size: 18px;
         }
 
-        /* RESPONSIVE */
+        /* =========================
+           RESPONSIVE
+        ========================= */
 
         @media (max-width: 1100px) {
 
@@ -349,7 +395,7 @@
         </h1>
 
         <p>
-            Διάλεξε ποια τεύχη έχεις στη συλλογή σου.
+            Πάτησε στα κουμπιά για να οργανώσεις τη συλλογή σου.
         </p>
 
     </div>
@@ -364,7 +410,10 @@
             {% for comic in comics %}
 
 
-                <div class="comic-card">
+                <div
+                    class="comic-card"
+                    id="comic-{{ category.slug }}-{{ comic.number }}"
+                >
 
 
                     <div class="comic-cover">
@@ -411,21 +460,30 @@
                         <div class="buttons">
 
 
-                            <button class="status-button">
+                            <button
+                                class="status-button owned-button"
+                                onclick="toggleOwned('{{ category.slug }}', '{{ comic.number }}')"
+                            >
 
                                 ✅ ΕΧΩ
 
                             </button>
 
 
-                            <button class="status-button">
+                            <button
+                                class="status-button wishlist-button"
+                                onclick="toggleWishlist('{{ category.slug }}', '{{ comic.number }}')"
+                            >
 
                                 ❤️ WISHLIST
 
                             </button>
 
 
-                            <button class="status-button">
+                            <button
+                                class="status-button duplicate-button"
+                                onclick="toggleDuplicate('{{ category.slug }}', '{{ comic.number }}')"
+                            >
 
                                 🔁 ΔΙΠΛΟ
 
@@ -461,6 +519,285 @@
 
 
 </div>
+
+
+<script>
+
+    // ============================================
+    // ΔΙΑΒΑΣΜΑ ΤΗΣ ΣΥΛΛΟΓΗΣ ΑΠΟ ΤΟΝ BROWSER
+    // ============================================
+
+    function getCollection() {
+
+        const saved = localStorage.getItem("comicCollection");
+
+        if (!saved) {
+            return {};
+        }
+
+        return JSON.parse(saved);
+    }
+
+
+    // ============================================
+    // ΑΠΟΘΗΚΕΥΣΗ
+    // ============================================
+
+    function saveCollection(collection) {
+
+        localStorage.setItem(
+            "comicCollection",
+            JSON.stringify(collection)
+        );
+
+    }
+
+
+    // ============================================
+    // ΔΗΜΙΟΥΡΓΙΑ ΜΟΝΑΔΙΚΟΥ ID
+    // ============================================
+
+    function comicKey(series, number) {
+
+        return series + "-" + number;
+
+    }
+
+
+    // ============================================
+    // ΕΧΩ
+    // ============================================
+
+    function toggleOwned(series, number) {
+
+        const collection = getCollection();
+
+        const key = comicKey(series, number);
+
+
+        if (!collection[key]) {
+
+            collection[key] = {
+                owned: false,
+                wishlist: false,
+                duplicate: false
+            };
+
+        }
+
+
+        collection[key].owned = !collection[key].owned;
+
+
+        // Αν το έχω, βγαίνει αυτόματα από Wishlist
+
+        if (collection[key].owned) {
+
+            collection[key].wishlist = false;
+
+        }
+
+
+        // Αν βγάλω το "Έχω", βγάζουμε και το "Διπλό"
+
+        if (!collection[key].owned) {
+
+            collection[key].duplicate = false;
+
+        }
+
+
+        saveCollection(collection);
+
+        updateCards();
+
+    }
+
+
+    // ============================================
+    // WISHLIST
+    // ============================================
+
+    function toggleWishlist(series, number) {
+
+        const collection = getCollection();
+
+        const key = comicKey(series, number);
+
+
+        if (!collection[key]) {
+
+            collection[key] = {
+                owned: false,
+                wishlist: false,
+                duplicate: false
+            };
+
+        }
+
+
+        collection[key].wishlist =
+            !collection[key].wishlist;
+
+
+        // Αν μπει Wishlist, σημαίνει ότι δεν το έχουμε
+
+        if (collection[key].wishlist) {
+
+            collection[key].owned = false;
+            collection[key].duplicate = false;
+
+        }
+
+
+        saveCollection(collection);
+
+        updateCards();
+
+    }
+
+
+    // ============================================
+    // ΔΙΠΛΟ
+    // ============================================
+
+    function toggleDuplicate(series, number) {
+
+        const collection = getCollection();
+
+        const key = comicKey(series, number);
+
+
+        if (!collection[key]) {
+
+            collection[key] = {
+                owned: false,
+                wishlist: false,
+                duplicate: false
+            };
+
+        }
+
+
+        collection[key].duplicate =
+            !collection[key].duplicate;
+
+
+        // Αν είναι διπλό, προφανώς το έχουμε
+
+        if (collection[key].duplicate) {
+
+            collection[key].owned = true;
+            collection[key].wishlist = false;
+
+        }
+
+
+        saveCollection(collection);
+
+        updateCards();
+
+    }
+
+
+    // ============================================
+    // ΕΝΗΜΕΡΩΣΗ ΕΜΦΑΝΙΣΗΣ
+    // ============================================
+
+    function updateCards() {
+
+        const collection = getCollection();
+
+
+        {% for comic in comics %}
+
+            updateSingleCard(
+                "{{ category.slug }}",
+                "{{ comic.number }}",
+                collection
+            );
+
+        {% endfor %}
+
+    }
+
+
+    function updateSingleCard(series, number, collection) {
+
+        const key = comicKey(series, number);
+
+        const data = collection[key] || {
+            owned: false,
+            wishlist: false,
+            duplicate: false
+        };
+
+
+        const card =
+            document.getElementById(
+                "comic-" + series + "-" + number
+            );
+
+
+        if (!card) {
+            return;
+        }
+
+
+        const ownedButton =
+            card.querySelector(".owned-button");
+
+        const wishlistButton =
+            card.querySelector(".wishlist-button");
+
+        const duplicateButton =
+            card.querySelector(".duplicate-button");
+
+
+        card.classList.toggle(
+            "owned",
+            data.owned
+        );
+
+        card.classList.toggle(
+            "wishlist",
+            data.wishlist
+        );
+
+        card.classList.toggle(
+            "duplicate",
+            data.duplicate
+        );
+
+
+        ownedButton.classList.toggle(
+            "active",
+            data.owned
+        );
+
+        wishlistButton.classList.toggle(
+            "active",
+            data.wishlist
+        );
+
+        duplicateButton.classList.toggle(
+            "active",
+            data.duplicate
+        );
+
+    }
+
+
+    // ============================================
+    // ΟΤΑΝ ΑΝΟΙΓΕΙ Η ΣΕΛΙΔΑ
+    // ============================================
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        updateCards
+    );
+
+</script>
 
 
 </body>

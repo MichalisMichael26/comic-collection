@@ -1,30 +1,42 @@
 # ============================================================
-# ΙΝΤΕΦΙΞ
+# ΙΝΤΕΦΙΞ - 5 ΚΟΜΙΚΣ
 # ============================================================
 
+IDEFIX_COMICS = [
 
-IDEFIX_TITLES = [
+    {
+        "number": 1,
+        "title": "Ιντεφίξ #1",
+        "image": ""
+    },
 
-    "Κανένας οίκτος για τους Λατίνους"
+    {
+        "number": 2,
+        "title": "Ιντεφίξ #2",
+        "image": ""
+    },
+
+    {
+        "number": 3,
+        "title": "Ιντεφίξ #3",
+        "image": ""
+    },
+
+    {
+        "number": 4,
+        "title": "Ιντεφίξ #4",
+        "image": ""
+    },
+
+    {
+        "number": 5,
+        "title": "Ιντεφίξ #5",
+        "image": ""
+    }
 
 ]
 
 
 def get_idefix_comics():
 
-    comics = []
-
-    for number, title in enumerate(
-        IDEFIX_TITLES,
-        start=1
-    ):
-
-        comics.append(
-            {
-                "number": number,
-                "title": title,
-                "image": ""
-            }
-        )
-
-    return comics
+    return IDEFIX_COMICS

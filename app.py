@@ -41,6 +41,10 @@ from iznogoud_covers import (
     get_iznogoud_cover
 )
 
+from rantanplan_covers import (
+    get_rantanplan_cover
+)
+
 import requests
 
 
@@ -263,25 +267,24 @@ def get_iznogoud_comics():
 
 
 # ============================================================
-# ΑΡΚΑΣ
+# ΡΑΝΤΑΝΠΛΑΝ
 # ============================================================
 
-def get_arkas_comics():
+def get_rantanplan_comics():
 
-    original = load_arkas_comics()
+    original = load_rantanplan_comics()
 
     comics = []
 
     for comic in original:
 
+        number = comic["number"]
+
         comics.append(
             {
-                "number": comic["number"],
+                "number": number,
                 "title": comic["title"],
-                "image": comic.get(
-                    "image",
-                    ""
-                ),
+                "image": f"/cover/rantanplan/{number}",
                 "owned": comic.get(
                     "owned",
                     False
@@ -293,12 +296,12 @@ def get_arkas_comics():
 
 
 # ============================================================
-# ΡΑΝΤΑΝΠΛΑΝ
+# ΑΡΚΑΣ
 # ============================================================
 
-def get_rantanplan_comics():
+def get_arkas_comics():
 
-    original = load_rantanplan_comics()
+    original = load_arkas_comics()
 
     comics = []
 
@@ -514,9 +517,7 @@ def load_remote_image(image_url):
 
         result.headers[
             "Cache-Control"
-        ] = (
-            "public, max-age=86400"
-        )
+        ] = "public, max-age=86400"
 
 
         return result
@@ -739,6 +740,38 @@ def iznogoud_cover_route(number):
 
     return placeholder_cover(
         f"IZNOGOUD #{number}"
+    )
+
+
+# ============================================================
+# COVER ΡΑΝΤΑΝΠΛΑΝ
+# ============================================================
+
+@app.route(
+    "/cover/rantanplan/<int:number>"
+)
+def rantanplan_cover_route(number):
+
+    if number < 1 or number > 17:
+
+        return "", 404
+
+
+    image_url = get_rantanplan_cover(
+        number
+    )
+
+    image = load_remote_image(
+        image_url
+    )
+
+    if image:
+
+        return image
+
+
+    return placeholder_cover(
+        f"RANTANPLAN #{number}"
     )
 
 

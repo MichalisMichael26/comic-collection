@@ -20,6 +20,10 @@ from rantanplan_data import (
     get_rantanplan_comics as load_rantanplan_comics
 )
 
+from sherlock_holmes_data import (
+    get_sherlock_holmes_comics as load_sherlock_holmes_comics
+)
+
 
 app = Flask(__name__)
 
@@ -58,6 +62,11 @@ categories = [
     {
         "name": "Ραντανπλάν",
         "slug": "rantanplan"
+    },
+
+    {
+        "name": "Σέρλοκ Χολμς",
+        "slug": "sherlock-holmes"
     }
 
 ]
@@ -289,6 +298,36 @@ def get_rantanplan_comics():
 
 
 # ============================================================
+# ΣΕΡΛΟΚ ΧΟΛΜΣ
+# ============================================================
+
+def get_sherlock_holmes_comics():
+
+    original = load_sherlock_holmes_comics()
+
+    comics = []
+
+    for comic in original:
+
+        comics.append(
+            {
+                "number": comic["number"],
+                "title": comic["title"],
+                "image": comic.get(
+                    "image",
+                    ""
+                ),
+                "owned": comic.get(
+                    "owned",
+                    False
+                )
+            }
+        )
+
+    return comics
+
+
+# ============================================================
 # COMICS ΑΝΑ ΚΑΤΗΓΟΡΙΑ
 # ============================================================
 
@@ -311,6 +350,9 @@ def get_comics(slug):
 
     if slug == "rantanplan":
         return get_rantanplan_comics()
+
+    if slug == "sherlock-holmes":
+        return get_sherlock_holmes_comics()
 
     return []
 

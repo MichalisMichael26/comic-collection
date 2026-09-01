@@ -22,6 +22,20 @@
         }
 
 
+        :root {
+            --bg: #f4f4f4;
+            --text: #111;
+            --panel: #ffffff;
+            --panel-2: #f8f8f8;
+            --border: #111;
+            --accent: #ffd60a;
+            --accent-2: #ff3b30;
+            --success: #34c759;
+            --wishlist: #ff3b30;
+            --duplicate: #007aff;
+        }
+
+
         body {
 
             margin: 0;
@@ -31,17 +45,53 @@
                 Helvetica,
                 sans-serif;
 
-            background-color: #f4f4f4;
+            background-color: var(--bg);
 
             background-image:
                 radial-gradient(
-                    #d4d4d4 1px,
+                    rgba(0, 0, 0, 0.08) 1px,
                     transparent 1px
                 );
 
             background-size: 12px 12px;
 
-            color: #111;
+            color: var(--text);
+        }
+
+
+        body.theme-asterix {
+            --accent: #f7cf3e;
+            --accent-2: #c92d2d;
+        }
+
+        body.theme-lucky-luke {
+            --accent: #d69c2f;
+            --accent-2: #8b4513;
+        }
+
+        body.theme-idefix {
+            --accent: #ffe16b;
+            --accent-2: #2c7a4b;
+        }
+
+        body.theme-iznogoud {
+            --accent: #f0c75e;
+            --accent-2: #7c4dff;
+        }
+
+        body.theme-rantanplan {
+            --accent: #f2bc57;
+            --accent-2: #cc5a17;
+        }
+
+        body.theme-sherlock-holmes {
+            --accent: #b9c2cf;
+            --accent-2: #3c4655;
+        }
+
+        body.theme-arkas {
+            --accent: #d9d9d9;
+            --accent-2: #444;
         }
 
 
@@ -53,11 +103,9 @@
 
             background: #111;
 
-            border-bottom:
-                6px solid #ffd60a;
+            border-bottom: 6px solid var(--accent);
 
-            padding:
-                12px 18px;
+            padding: 12px 18px;
 
             position: sticky;
 
@@ -85,7 +133,7 @@
 
         .brand {
 
-            color: #ffd60a;
+            color: var(--accent);
 
             font-family:
                 Impact,
@@ -141,7 +189,7 @@
 
             color: #111;
 
-            background: #ffd60a;
+            background: var(--accent);
         }
 
 
@@ -149,7 +197,7 @@
 
             color: #111;
 
-            background: #ffd60a;
+            background: var(--accent);
 
             border-color: white;
         }
@@ -173,23 +221,66 @@
 
             margin: 0 auto;
 
-            padding:
-                30px 20px 60px;
+            padding: 28px 20px 60px;
         }
 
 
+        /* ==================================================
+           HERO
+        ================================================== */
+
         .title-box {
 
-            background: #ffd60a;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--accent) 0%,
+                    #fff 100%
+                );
 
-            border: 5px solid #111;
+            border: 5px solid var(--border);
 
-            box-shadow:
-                8px 8px 0 #111;
+            box-shadow: 8px 8px 0 var(--border);
 
-            padding: 20px;
+            padding: 22px;
 
             margin-bottom: 35px;
+        }
+
+
+        .title-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.4fr)
+                minmax(280px, 0.8fr);
+
+            gap: 22px;
+
+            align-items: center;
+        }
+
+
+        .theme-chip {
+
+            display: inline-block;
+
+            padding: 7px 11px;
+
+            margin-bottom: 12px;
+
+            background: #111;
+
+            color: var(--accent);
+
+            border: 3px solid white;
+
+            font-weight: 900;
+
+            font-size: 13px;
+
+            letter-spacing: 0.6px;
         }
 
 
@@ -207,7 +298,7 @@
                 clamp(
                     36px,
                     6vw,
-                    70px
+                    68px
                 );
 
             text-transform: uppercase;
@@ -216,14 +307,185 @@
         }
 
 
-        .title-box p {
+        .hero-subtitle {
 
-            margin:
-                12px 0 0;
+            margin: 12px 0 16px;
 
-            font-weight: bold;
+            font-weight: 900;
 
             font-size: 17px;
+
+            line-height: 1.4;
+        }
+
+
+        .progress-panel {
+
+            background: rgba(255,255,255,0.88);
+
+            border: 4px solid #111;
+
+            padding: 16px;
+        }
+
+
+        .progress-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            align-items: center;
+
+            margin-bottom: 10px;
+        }
+
+
+        .progress-title {
+
+            font-weight: 900;
+
+            font-size: 15px;
+        }
+
+
+        .progress-numbers {
+
+            font-weight: 900;
+
+            font-size: 15px;
+        }
+
+
+        .progress-big {
+
+            font-family:
+                Impact,
+                "Arial Black",
+                Arial,
+                sans-serif;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .progress-bar {
+
+            width: 100%;
+
+            height: 22px;
+
+            background: #e5e5e5;
+
+            border: 3px solid #111;
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+
+            height: 100%;
+
+            width: 0%;
+
+            background: var(--success);
+
+            transition: width 0.2s ease;
+        }
+
+
+        .mini-stats {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-top: 12px;
+        }
+
+
+        .mini-stat {
+
+            background: #fff;
+
+            border: 2px solid #111;
+
+            padding: 7px 10px;
+
+            font-weight: 900;
+
+            font-size: 13px;
+        }
+
+
+        .hero-covers {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+            align-items: stretch;
+        }
+
+
+        .hero-cover {
+
+            background: #fff;
+
+            border: 4px solid #111;
+
+            box-shadow: 5px 5px 0 #111;
+
+            overflow: hidden;
+
+            min-height: 170px;
+        }
+
+
+        .hero-cover img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        .hero-cover.empty {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: rgba(255,255,255,0.75);
+
+            font-family:
+                Impact,
+                "Arial Black",
+                Arial,
+                sans-serif;
+
+            font-size: 18px;
+
+            text-align: center;
+
+            padding: 12px;
         }
 
 
@@ -254,11 +516,9 @@
 
             background: white;
 
-            border:
-                4px solid #111;
+            border: 4px solid #111;
 
-            box-shadow:
-                7px 7px 0 #111;
+            box-shadow: 7px 7px 0 #111;
 
             overflow: hidden;
 
@@ -268,14 +528,9 @@
 
         .comic-card:hover {
 
-            transform:
-                translate(
-                    -2px,
-                    -2px
-                );
+            transform: translate(-2px, -2px);
 
-            box-shadow:
-                10px 10px 0 #111;
+            box-shadow: 10px 10px 0 #111;
         }
 
 
@@ -291,8 +546,7 @@
 
             background: #ddd;
 
-            border-bottom:
-                4px solid #111;
+            border-bottom: 4px solid #111;
 
             display: flex;
 
@@ -322,7 +576,7 @@
 
             height: 100%;
 
-            background: #ffd60a;
+            background: var(--accent);
 
             display: flex;
 
@@ -346,12 +600,11 @@
 
         .pow {
 
-            color: #ff3b30;
+            color: var(--accent-2);
 
             font-size: 48px;
 
-            transform:
-                rotate(-8deg);
+            transform: rotate(-8deg);
 
             margin-top: 10px;
         }
@@ -373,10 +626,9 @@
 
             background: #111;
 
-            color: #ffd60a;
+            color: var(--accent);
 
-            padding:
-                5px 9px;
+            padding: 5px 9px;
 
             font-family:
                 "Arial Black",
@@ -393,8 +645,7 @@
 
             min-height: 52px;
 
-            margin:
-                0 0 15px;
+            margin: 0 0 15px;
 
             font-size: 18px;
 
@@ -420,11 +671,9 @@
 
             width: 100%;
 
-            border:
-                3px solid #111;
+            border: 3px solid #111;
 
-            padding:
-                10px 7px;
+            padding: 10px 7px;
 
             cursor: pointer;
 
@@ -442,8 +691,7 @@
 
         .comic-button:hover {
 
-            transform:
-                translateY(-2px);
+            transform: translateY(-2px);
 
             background: #eee;
         }
@@ -475,22 +723,19 @@
 
         .comic-card.is-owned {
 
-            outline:
-                5px solid #34c759;
+            outline: 5px solid #34c759;
         }
 
 
         .comic-card.is-wishlist {
 
-            outline:
-                5px solid #ff3b30;
+            outline: 5px solid #ff3b30;
         }
 
 
         .comic-card.is-duplicate {
 
-            outline:
-                5px solid #007aff;
+            outline: 5px solid #007aff;
         }
 
 
@@ -498,73 +743,58 @@
            MOBILE
         ================================================== */
 
-        @media (
-            max-width: 900px
-        ) {
+        @media (max-width: 980px) {
+
+            .title-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-covers {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
 
             .brand {
-
                 width: 100%;
             }
-
 
             .menu {
-
                 width: 100%;
             }
 
-
             .menu a {
-
                 font-size: 12px;
-
-                padding:
-                    7px 8px;
+                padding: 7px 8px;
             }
-
         }
 
 
-        @media (
-            max-width: 600px
-        ) {
+        @media (max-width: 600px) {
 
             .container {
-
-                padding:
-                    20px 12px 40px;
+                padding: 20px 12px 40px;
             }
 
-
             .comic-grid {
-
-                grid-template-columns:
-                    repeat(
-                        2,
-                        minmax(
-                            0,
-                            1fr
-                        )
-                    );
-
+                grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 15px;
             }
 
-
             .comic-title {
-
                 font-size: 15px;
             }
 
-
             .comic-button {
-
                 font-size: 11px;
-
-                padding:
-                    8px 4px;
+                padding: 8px 4px;
             }
 
+            .hero-covers {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .progress-big {
+                font-size: 25px;
+            }
         }
 
     </style>
@@ -572,12 +802,11 @@
 </head>
 
 
-<body>
+<body
+    class="theme-{{ category.slug }}"
+    data-category-slug="{{ category.slug }}"
+>
 
-
-<!-- ======================================================
-     MENU
-====================================================== -->
 
 <nav class="navbar">
 
@@ -601,13 +830,10 @@
             {% for item in categories %}
 
                 <a
-
                     href="/category/{{ item.slug }}"
-
                     {% if item.slug == category.slug %}
                     class="active"
                     {% endif %}
-
                 >
                     {{ item.name }}
                 </a>
@@ -635,13 +861,148 @@
 
     <section class="title-box">
 
-        <h1>
-            {{ category.name }}
-        </h1>
+        <div class="title-grid">
 
-        <p>
-            ✅ ΕΧΩ · ❤️ WISHLIST · 🔁 ΔΙΠΛΟ
-        </p>
+
+            <div>
+
+                <div
+                    class="theme-chip"
+                    id="themeChip"
+                >
+                    COMIC MODE
+                </div>
+
+                <h1>
+                    {{ category.name }}
+                </h1>
+
+                <p
+                    class="hero-subtitle"
+                    id="heroSubtitle"
+                >
+                    Η συλλογή σου, με comic feeling.
+                </p>
+
+
+                <div class="progress-panel">
+
+                    <div class="progress-top">
+
+                        <div class="progress-title">
+                            ΠΡΟΟΔΟΣ ΣΥΛΛΟΓΗΣ
+                        </div>
+
+                        <div
+                            class="progress-numbers"
+                            id="progressNumbers"
+                        >
+                            0 / {{ comics|length }}
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="progress-big"
+                        id="progressBig"
+                    >
+                        0%
+                    </div>
+
+
+                    <div class="progress-bar">
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                        ></div>
+                    </div>
+
+
+                    <div class="mini-stats">
+
+                        <div class="mini-stat">
+                            📚 Σύνολο:
+                            <span id="totalCount">
+                                {{ comics|length }}
+                            </span>
+                        </div>
+
+                        <div class="mini-stat">
+                            ✅ Έχω:
+                            <span id="ownedCount">
+                                0
+                            </span>
+                        </div>
+
+                        <div class="mini-stat">
+                            ❤️ Wishlist:
+                            <span id="wishlistCount">
+                                0
+                            </span>
+                        </div>
+
+                        <div class="mini-stat">
+                            🔁 Διπλά:
+                            <span id="duplicateCount">
+                                0
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-covers">
+
+                {% if comics|length > 0 and comics[0].image %}
+                    <div class="hero-cover">
+                        <img
+                            src="{{ comics[0].image }}"
+                            alt="{{ comics[0].title }}"
+                        >
+                    </div>
+                {% else %}
+                    <div class="hero-cover empty">
+                        NO COVER
+                    </div>
+                {% endif %}
+
+
+                {% if comics|length > 1 and comics[1].image %}
+                    <div class="hero-cover">
+                        <img
+                            src="{{ comics[1].image }}"
+                            alt="{{ comics[1].title }}"
+                        >
+                    </div>
+                {% else %}
+                    <div class="hero-cover empty">
+                        {{ category.name }}
+                    </div>
+                {% endif %}
+
+
+                {% if comics|length > 2 and comics[2].image %}
+                    <div class="hero-cover">
+                        <img
+                            src="{{ comics[2].image }}"
+                            alt="{{ comics[2].title }}"
+                        >
+                    </div>
+                {% else %}
+                    <div class="hero-cover empty">
+                        COMIC
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+        </div>
 
     </section>
 
@@ -649,24 +1010,13 @@
 
     <section class="comic-grid">
 
-
         {% for comic in comics %}
 
-
         <article
-
             class="comic-card"
-
             data-series="{{ category.slug }}"
-
             data-number="{{ comic.number }}"
-
         >
-
-
-            <!-- ==================================================
-                 COVER
-            =================================================== -->
 
             <div class="cover">
 
@@ -697,24 +1047,14 @@
             </div>
 
 
-
-            <!-- ==================================================
-                 INFO
-            =================================================== -->
-
             <div class="comic-info">
-
 
                 <div class="comic-number">
 
                     {% if comic.number == "SPECIAL" %}
-
                         SPECIAL
-
                     {% else %}
-
                         #{{ comic.number }}
-
                     {% endif %}
 
                 </div>
@@ -725,74 +1065,39 @@
                 </h2>
 
 
-
-                <!-- ==================================================
-                     BUTTONS
-                =================================================== -->
-
                 <div class="buttons">
 
-
                     <button
-
                         type="button"
-
-                        class="
-                            comic-button
-                            owned-button
-                        "
-
+                        class="comic-button owned-button"
                         data-action="owned"
-
                     >
                         ✅ ΕΧΩ
                     </button>
 
-
-
                     <button
-
                         type="button"
-
-                        class="
-                            comic-button
-                            wishlist-button
-                        "
-
+                        class="comic-button wishlist-button"
                         data-action="wishlist"
-
                     >
                         ❤️ WISHLIST
                     </button>
 
-
-
                     <button
-
                         type="button"
-
-                        class="
-                            comic-button
-                            duplicate-button
-                        "
-
+                        class="comic-button duplicate-button"
                         data-action="duplicate"
-
                     >
                         🔁 ΔΙΠΛΟ
                     </button>
 
-
                 </div>
-
 
             </div>
 
         </article>
 
-
         {% endfor %}
-
 
     </section>
 
@@ -804,49 +1109,58 @@
 <script>
 
 
-// ==========================================================
-// SETTINGS
-// ==========================================================
+const STORAGE_KEY = "comicCollection";
 
-const STORAGE_KEY =
-    "comicCollection";
-
-
-
-// ==========================================================
-// DEFAULT DATA FROM PYTHON
-// ==========================================================
 
 const defaultCollection = {
 
     {% for comic in comics %}
 
     "{{ category.slug }}-{{ comic.number }}": {
-
-        owned:
-            {{ "true" if comic.owned else "false" }},
-
-        wishlist:
-            false,
-
-        duplicate:
-            false
-
+        owned: {{ "true" if comic.owned else "false" }},
+        wishlist: false,
+        duplicate: false
     }
 
-    {% if not loop.last %}
-    ,
-    {% endif %}
+    {% if not loop.last %},{% endif %}
 
     {% endfor %}
 
 };
 
 
+const themeInfo = {
+    "asterix": {
+        chip: "🛡️ ΓΑΛΑΤΙΚΗ ΣΥΛΛΟΓΗ",
+        subtitle: "Από το μικρό ανυπότακτο χωριό μέχρι τη Ρώμη — όλη η δύναμη του Αστερίξ στη συλλογή σου."
+    },
+    "lucky-luke": {
+        chip: "🤠 WESTERN MODE",
+        subtitle: "Ο άνθρωπος που πυροβολεί πιο γρήγορα από τη σκιά του — και τα τεύχη του όλα μαζεμένα."
+    },
+    "idefix": {
+        chip: "🐶 ΜΙΚΡΟΙ ΑΝΥΠΟΤΑΚΤΟΙ",
+        subtitle: "Ο Ιντεφίξ και η παρέα του σε πιο ανάλαφρο, φωτεινό comic mood."
+    },
+    "iznogoud": {
+        chip: "👑 ΒΕΖΙΡΗΣ MODE",
+        subtitle: "Θέλω να γίνω χαλίφης στη θέση του χαλίφη — και να έχω όλα τα τεύχη."
+    },
+    "rantanplan": {
+        chip: "🐾 WILD WEST CHAOS",
+        subtitle: "Το πιο αδέξιο σκυλί της Δύσης, με western comic ατμόσφαιρα."
+    },
+    "sherlock-holmes": {
+        chip: "🕵️ DETECTIVE FILE",
+        subtitle: "Μυστήριο, έρευνα και σκοτεινό comic vibe — όλα τα τεύχη σε μία σελίδα."
+    },
+    "arkas": {
+        chip: "✒️ ΑΡΚΑΣ UNIVERSE",
+        subtitle: "Σατιρικό, αιχμηρό και ξεχωριστό — ο Αρκάς με δική του ταυτότητα."
+    }
+};
 
-// ==========================================================
-// LOAD
-// ==========================================================
+
 
 function loadCollection() {
 
@@ -857,19 +1171,12 @@ function loadCollection() {
                 STORAGE_KEY
             );
 
-
         if (!raw) {
-
             return {};
-
         }
 
-
         const parsed =
-            JSON.parse(
-                raw
-            );
-
+            JSON.parse(raw);
 
         if (
             typeof parsed !== "object"
@@ -878,987 +1185,563 @@ function loadCollection() {
             ||
             Array.isArray(parsed)
         ) {
-
             return {};
-
         }
-
 
         return parsed;
 
     }
 
     catch (error) {
-
-        console.error(
-            "Storage read error:",
-            error
-        );
-
         return {};
-
     }
 
 }
 
 
 
-// ==========================================================
-// SAVE
-// ==========================================================
-
-function saveCollection(
-    collection
-) {
+function saveCollection(collection) {
 
     try {
 
         localStorage.setItem(
-
             STORAGE_KEY,
-
-            JSON.stringify(
-                collection
-            )
-
+            JSON.stringify(collection)
         );
 
     }
 
-    catch (error) {
-
-        console.error(
-            "Storage save error:",
-            error
-        );
-
-    }
+    catch (error) {}
 
 }
 
 
 
-// ==========================================================
-// NORMALIZE OLD DATA
-//
-// Αυτό είναι το σημαντικό.
-//
-// Μετατρέπει παλιά:
-// true
-// false
-// "wishlist"
-// "owned"
-// arrays / παλιά objects
-//
-// στη νέα σταθερή μορφή.
-// ==========================================================
-
-function normalizeItem(
-    raw,
-    defaultOwned = false
-) {
+function normalizeItem(raw, defaultOwned = false) {
 
     const result = {
-
-        owned:
-            Boolean(defaultOwned),
-
-        wishlist:
-            false,
-
-        duplicate:
-            false
-
+        owned: Boolean(defaultOwned),
+        wishlist: false,
+        duplicate: false
     };
 
 
-    // ------------------------------------------------------
-    // Δεν υπάρχει παλιά τιμή
-    // ------------------------------------------------------
-
-    if (
-        raw === undefined
-        ||
-        raw === null
-    ) {
-
+    if (raw === undefined || raw === null) {
         return result;
-
     }
 
 
-    // ------------------------------------------------------
-    // Παλιά boolean μορφή
-    // true = το έχω
-    // ------------------------------------------------------
-
-    if (
-        typeof raw === "boolean"
-    ) {
-
-        result.owned =
-            raw;
-
+    if (typeof raw === "boolean") {
+        result.owned = raw;
         return result;
-
     }
 
 
-    // ------------------------------------------------------
-    // Παλιά string μορφή
-    // ------------------------------------------------------
-
-    if (
-        typeof raw === "string"
-    ) {
+    if (typeof raw === "string") {
 
         const value =
-            raw
-            .toLowerCase()
-            .trim();
-
+            raw.toLowerCase().trim();
 
         if (
             value === "owned"
-            ||
-            value === "have"
-            ||
-            value === "εχω"
-            ||
-            value === "true"
+            || value === "have"
+            || value === "εχω"
+            || value === "true"
         ) {
-
-            result.owned =
-                true;
-
+            result.owned = true;
         }
-
 
         else if (
             value === "wishlist"
-            ||
-            value === "wish"
+            || value === "wish"
         ) {
-
-            result.wishlist =
-                true;
-
-            result.owned =
-                false;
-
+            result.wishlist = true;
+            result.owned = false;
         }
-
 
         else if (
             value === "duplicate"
-            ||
-            value === "double"
+            || value === "double"
         ) {
-
-            result.duplicate =
-                true;
-
-            result.owned =
-                true;
-
+            result.duplicate = true;
+            result.owned = true;
         }
 
-
         return result;
-
     }
 
 
-    // ------------------------------------------------------
-    // Array
-    // ------------------------------------------------------
-
-    if (
-        Array.isArray(raw)
-    ) {
+    if (Array.isArray(raw)) {
 
         const values =
             raw.map(
-                item =>
-                    String(item)
-                    .toLowerCase()
+                item => String(item).toLowerCase()
             );
 
-
-        if (
-            values.includes(
-                "wishlist"
-            )
-        ) {
-
-            result.wishlist =
-                true;
-
+        if (values.includes("wishlist")) {
+            result.wishlist = true;
         }
 
-
         if (
-            values.includes(
-                "owned"
-            )
-            ||
-            values.includes(
-                "have"
-            )
+            values.includes("owned")
+            || values.includes("have")
         ) {
-
-            result.owned =
-                true;
-
+            result.owned = true;
         }
 
-
         if (
-            values.includes(
-                "duplicate"
-            )
-            ||
-            values.includes(
-                "double"
-            )
+            values.includes("duplicate")
+            || values.includes("double")
         ) {
-
-            result.duplicate =
-                true;
-
-            result.owned =
-                true;
-
+            result.duplicate = true;
+            result.owned = true;
         }
 
-
-        if (
-            result.wishlist
-        ) {
-
-            result.owned =
-                false;
-
-            result.duplicate =
-                false;
-
+        if (result.wishlist) {
+            result.owned = false;
+            result.duplicate = false;
         }
-
 
         return result;
-
     }
 
 
-    // ------------------------------------------------------
-    // Object
-    // ------------------------------------------------------
+    if (typeof raw === "object") {
 
-    if (
-        typeof raw === "object"
-    ) {
-
-
-        // OWNED
-
-        if (
-            raw.owned !== undefined
-        ) {
-
-            result.owned =
-                Boolean(
-                    raw.owned
-                );
-
+        if (raw.owned !== undefined) {
+            result.owned = Boolean(raw.owned);
+        }
+        else if (raw.have !== undefined) {
+            result.owned = Boolean(raw.have);
+        }
+        else if (raw.has !== undefined) {
+            result.owned = Boolean(raw.has);
         }
 
-        else if (
-            raw.have !== undefined
-        ) {
-
-            result.owned =
-                Boolean(
-                    raw.have
-                );
-
+        if (raw.wishlist !== undefined) {
+            result.wishlist = Boolean(raw.wishlist);
+        }
+        else if (raw.wish !== undefined) {
+            result.wishlist = Boolean(raw.wish);
         }
 
-        else if (
-            raw.has !== undefined
-        ) {
-
-            result.owned =
-                Boolean(
-                    raw.has
-                );
-
+        if (raw.duplicate !== undefined) {
+            result.duplicate = Boolean(raw.duplicate);
         }
-
-
-        // WISHLIST
-
-        if (
-            raw.wishlist !== undefined
-        ) {
-
-            result.wishlist =
-                Boolean(
-                    raw.wishlist
-                );
-
+        else if (raw.double !== undefined) {
+            result.duplicate = Boolean(raw.double);
         }
-
-        else if (
-            raw.wish !== undefined
-        ) {
-
-            result.wishlist =
-                Boolean(
-                    raw.wish
-                );
-
+        else if (raw.duplicates !== undefined) {
+            result.duplicate = Boolean(raw.duplicates);
         }
-
-
-        // DUPLICATE
-
-        if (
-            raw.duplicate !== undefined
-        ) {
-
-            result.duplicate =
-                Boolean(
-                    raw.duplicate
-                );
-
-        }
-
-        else if (
-            raw.double !== undefined
-        ) {
-
-            result.duplicate =
-                Boolean(
-                    raw.double
-                );
-
-        }
-
-        else if (
-            raw.duplicates !== undefined
-        ) {
-
-            result.duplicate =
-                Boolean(
-                    raw.duplicates
-                );
-
-        }
-
     }
 
 
-    // ------------------------------------------------------
-    // BUSINESS RULES
-    // ------------------------------------------------------
-
-    if (
-        result.duplicate
-    ) {
-
-        result.owned =
-            true;
-
-        result.wishlist =
-            false;
-
+    if (result.duplicate) {
+        result.owned = true;
+        result.wishlist = false;
     }
 
-
-    else if (
-        result.wishlist
-    ) {
-
-        result.owned =
-            false;
-
-        result.duplicate =
-            false;
-
+    else if (result.wishlist) {
+        result.owned = false;
+        result.duplicate = false;
     }
-
 
     return result;
-
 }
 
 
-
-// ==========================================================
-// MIGRATE ALL OLD COLLECTION DATA
-// ==========================================================
 
 function migrateCollection() {
 
     const collection =
         loadCollection();
 
-
-    // ------------------------------------------------------
-    // Πρώτα διορθώνουμε ό,τι υπάρχει ήδη
-    // ------------------------------------------------------
-
-    Object.keys(
-        collection
-    ).forEach(
+    Object.keys(collection).forEach(
         key => {
-
             collection[key] =
-                normalizeItem(
-                    collection[key],
-                    false
-                );
-
+                normalizeItem(collection[key], false);
         }
     );
 
-
-    // ------------------------------------------------------
-    // Μετά βάζουμε defaults μόνο όπου λείπουν
-    // ------------------------------------------------------
-
-    Object.keys(
-        defaultCollection
-    ).forEach(
+    Object.keys(defaultCollection).forEach(
         key => {
 
             const defaultItem =
                 defaultCollection[key];
 
-
-            if (
-                collection[key]
-                === undefined
-            ) {
-
+            if (collection[key] === undefined) {
                 collection[key] =
-                    normalizeItem(
-                        null,
-                        defaultItem.owned
-                    );
-
+                    normalizeItem(null, defaultItem.owned);
             }
 
             else {
-
                 collection[key] =
-                    normalizeItem(
-                        collection[key],
-                        defaultItem.owned
-                    );
-
+                    normalizeItem(collection[key], defaultItem.owned);
             }
 
         }
     );
 
-
-    saveCollection(
-        collection
-    );
-
+    saveCollection(collection);
 }
 
 
 
-// ==========================================================
-// KEY
-// ==========================================================
-
-function getKey(
-    series,
-    number
-) {
-
-    return (
-        String(series)
-        +
-        "-"
-        +
-        String(number)
-    );
-
+function getKey(series, number) {
+    return String(series) + "-" + String(number);
 }
 
 
 
-// ==========================================================
-// GET ITEM
-// ==========================================================
-
-function getItem(
-    series,
-    number
-) {
+function getItem(series, number) {
 
     const collection =
         loadCollection();
 
-
     const key =
-        getKey(
-            series,
-            number
-        );
-
+        getKey(series, number);
 
     const defaultItem =
         defaultCollection[key]
         ||
         {
-            owned:
-                false,
-
-            wishlist:
-                false,
-
-            duplicate:
-                false
+            owned: false,
+            wishlist: false,
+            duplicate: false
         };
 
-
     collection[key] =
-        normalizeItem(
-            collection[key],
-            defaultItem.owned
-        );
-
+        normalizeItem(collection[key], defaultItem.owned);
 
     return {
-
-        collection:
-            collection,
-
-        key:
-            key,
-
-        item:
-            collection[key]
-
+        collection: collection,
+        key: key,
+        item: collection[key]
     };
-
 }
 
 
 
-// ==========================================================
-// TOGGLE OWNED
-// ==========================================================
-
-function toggleOwned(
-    series,
-    number
-) {
+function toggleOwned(series, number) {
 
     const data =
-        getItem(
-            series,
-            number
-        );
-
+        getItem(series, number);
 
     data.item.owned =
         !data.item.owned;
 
-
-    if (
-        data.item.owned
-    ) {
-
-        data.item.wishlist =
-            false;
-
+    if (data.item.owned) {
+        data.item.wishlist = false;
     }
 
-
-    if (
-        !data.item.owned
-    ) {
-
-        data.item.duplicate =
-            false;
-
+    if (!data.item.owned) {
+        data.item.duplicate = false;
     }
 
+    data.collection[data.key] =
+        data.item;
 
-    data.collection[
-        data.key
-    ] = data.item;
-
-
-    saveCollection(
-        data.collection
-    );
-
+    saveCollection(data.collection);
 
     updateCards();
-
 }
 
 
 
-// ==========================================================
-// TOGGLE WISHLIST
-// ==========================================================
-
-function toggleWishlist(
-    series,
-    number
-) {
+function toggleWishlist(series, number) {
 
     const data =
-        getItem(
-            series,
-            number
-        );
-
+        getItem(series, number);
 
     data.item.wishlist =
         !data.item.wishlist;
 
-
-    if (
-        data.item.wishlist
-    ) {
-
-        data.item.owned =
-            false;
-
-        data.item.duplicate =
-            false;
-
+    if (data.item.wishlist) {
+        data.item.owned = false;
+        data.item.duplicate = false;
     }
 
+    data.collection[data.key] =
+        data.item;
 
-    data.collection[
-        data.key
-    ] = data.item;
-
-
-    saveCollection(
-        data.collection
-    );
-
+    saveCollection(data.collection);
 
     updateCards();
-
 }
 
 
 
-// ==========================================================
-// TOGGLE DUPLICATE
-// ==========================================================
-
-function toggleDuplicate(
-    series,
-    number
-) {
+function toggleDuplicate(series, number) {
 
     const data =
-        getItem(
-            series,
-            number
-        );
-
+        getItem(series, number);
 
     data.item.duplicate =
         !data.item.duplicate;
 
-
-    if (
-        data.item.duplicate
-    ) {
-
-        data.item.owned =
-            true;
-
-        data.item.wishlist =
-            false;
-
+    if (data.item.duplicate) {
+        data.item.owned = true;
+        data.item.wishlist = false;
     }
 
+    data.collection[data.key] =
+        data.item;
 
-    data.collection[
-        data.key
-    ] = data.item;
-
-
-    saveCollection(
-        data.collection
-    );
-
+    saveCollection(data.collection);
 
     updateCards();
-
 }
 
 
-
-// ==========================================================
-// EVENT LISTENERS
-//
-// Δεν χρησιμοποιούμε πλέον onclick μέσα στο HTML.
-// ==========================================================
 
 function setupButtons() {
 
     document
-        .querySelectorAll(
-            ".comic-card"
-        )
-        .forEach(
-            card => {
+        .querySelectorAll(".comic-card")
+        .forEach(card => {
 
+            const series =
+                card.dataset.series;
 
-                const series =
-                    card.dataset.series;
+            const number =
+                card.dataset.number;
 
+            card
+                .querySelectorAll(".comic-button")
+                .forEach(button => {
 
-                const number =
-                    card.dataset.number;
+                    button.addEventListener(
+                        "click",
+                        function(event) {
 
+                            event.preventDefault();
+                            event.stopPropagation();
 
-                card
-                    .querySelectorAll(
-                        ".comic-button"
-                    )
-                    .forEach(
-                        button => {
+                            const action =
+                                button.dataset.action;
 
+                            if (action === "owned") {
+                                toggleOwned(series, number);
+                            }
 
-                            button.addEventListener(
-                                "click",
-                                function(event) {
+                            else if (action === "wishlist") {
+                                toggleWishlist(series, number);
+                            }
 
-                                    event.preventDefault();
-
-                                    event.stopPropagation();
-
-
-                                    const action =
-                                        button.dataset.action;
-
-
-                                    if (
-                                        action === "owned"
-                                    ) {
-
-                                        toggleOwned(
-                                            series,
-                                            number
-                                        );
-
-                                    }
-
-
-                                    else if (
-                                        action === "wishlist"
-                                    ) {
-
-                                        toggleWishlist(
-                                            series,
-                                            number
-                                        );
-
-                                    }
-
-
-                                    else if (
-                                        action === "duplicate"
-                                    ) {
-
-                                        toggleDuplicate(
-                                            series,
-                                            number
-                                        );
-
-                                    }
-
-                                }
-                            );
+                            else if (action === "duplicate") {
+                                toggleDuplicate(series, number);
+                            }
 
                         }
                     );
 
-            }
-        );
+                });
 
+        });
 }
 
 
 
-// ==========================================================
-// UPDATE CARDS
-// ==========================================================
+function applyThemeInfo() {
+
+    const slug =
+        document.body.dataset.categorySlug;
+
+    const info =
+        themeInfo[slug];
+
+    if (!info) {
+        return;
+    }
+
+    const chip =
+        document.getElementById("themeChip");
+
+    const subtitle =
+        document.getElementById("heroSubtitle");
+
+    if (chip) {
+        chip.textContent = info.chip;
+    }
+
+    if (subtitle) {
+        subtitle.textContent = info.subtitle;
+    }
+}
+
+
+
+function updateCategoryStats() {
+
+    const collection =
+        loadCollection();
+
+    const cards =
+        [...document.querySelectorAll(".comic-card")];
+
+    const total =
+        cards.length;
+
+    let owned = 0;
+    let wishlist = 0;
+    let duplicate = 0;
+
+    cards.forEach(card => {
+
+        const key =
+            getKey(
+                card.dataset.series,
+                card.dataset.number
+            );
+
+        const defaultItem =
+            defaultCollection[key]
+            ||
+            {
+                owned: false,
+                wishlist: false,
+                duplicate: false
+            };
+
+        const item =
+            normalizeItem(
+                collection[key],
+                defaultItem.owned
+            );
+
+        if (item.owned) {
+            owned++;
+        }
+
+        if (item.wishlist) {
+            wishlist++;
+        }
+
+        if (item.duplicate) {
+            duplicate++;
+        }
+
+    });
+
+    const percent =
+        total > 0
+            ? ((owned / total) * 100).toFixed(1)
+            : "0.0";
+
+    document.getElementById("totalCount").textContent =
+        total;
+
+    document.getElementById("ownedCount").textContent =
+        owned;
+
+    document.getElementById("wishlistCount").textContent =
+        wishlist;
+
+    document.getElementById("duplicateCount").textContent =
+        duplicate;
+
+    document.getElementById("progressNumbers").textContent =
+        `${owned} / ${total}`;
+
+    document.getElementById("progressBig").textContent =
+        `${percent}%`;
+
+    document.getElementById("progressFill").style.width =
+        `${percent}%`;
+}
+
+
 
 function updateCards() {
 
     const collection =
         loadCollection();
 
-
     document
-        .querySelectorAll(
-            ".comic-card"
-        )
-        .forEach(
-            card => {
+        .querySelectorAll(".comic-card")
+        .forEach(card => {
 
+            const series =
+                card.dataset.series;
 
-                const series =
-                    card.dataset.series;
+            const number =
+                card.dataset.number;
 
+            const key =
+                getKey(series, number);
 
-                const number =
-                    card.dataset.number;
+            const defaultItem =
+                defaultCollection[key]
+                ||
+                {
+                    owned: false,
+                    wishlist: false,
+                    duplicate: false
+                };
 
-
-                const key =
-                    getKey(
-                        series,
-                        number
-                    );
-
-
-                const defaultItem =
-                    defaultCollection[key]
-                    ||
-                    {
-                        owned:
-                            false,
-
-                        wishlist:
-                            false,
-
-                        duplicate:
-                            false
-                    };
-
-
-                const item =
-                    normalizeItem(
-                        collection[key],
-                        defaultItem.owned
-                    );
-
-
-                const ownedButton =
-                    card.querySelector(
-                        ".owned-button"
-                    );
-
-
-                const wishlistButton =
-                    card.querySelector(
-                        ".wishlist-button"
-                    );
-
-
-                const duplicateButton =
-                    card.querySelector(
-                        ".duplicate-button"
-                    );
-
-
-                card.classList.remove(
-
-                    "is-owned",
-
-                    "is-wishlist",
-
-                    "is-duplicate"
-
+            const item =
+                normalizeItem(
+                    collection[key],
+                    defaultItem.owned
                 );
 
+            const ownedButton =
+                card.querySelector(".owned-button");
 
-                ownedButton
-                    .classList
-                    .toggle(
-                        "active",
-                        item.owned
-                    );
+            const wishlistButton =
+                card.querySelector(".wishlist-button");
 
+            const duplicateButton =
+                card.querySelector(".duplicate-button");
 
-                wishlistButton
-                    .classList
-                    .toggle(
-                        "active",
-                        item.wishlist
-                    );
+            card.classList.remove(
+                "is-owned",
+                "is-wishlist",
+                "is-duplicate"
+            );
 
+            ownedButton.classList.toggle(
+                "active",
+                item.owned
+            );
 
-                duplicateButton
-                    .classList
-                    .toggle(
-                        "active",
-                        item.duplicate
-                    );
+            wishlistButton.classList.toggle(
+                "active",
+                item.wishlist
+            );
 
+            duplicateButton.classList.toggle(
+                "active",
+                item.duplicate
+            );
 
-                if (
-                    item.duplicate
-                ) {
-
-                    card.classList.add(
-                        "is-duplicate"
-                    );
-
-                }
-
-
-                else if (
-                    item.wishlist
-                ) {
-
-                    card.classList.add(
-                        "is-wishlist"
-                    );
-
-                }
-
-
-                else if (
-                    item.owned
-                ) {
-
-                    card.classList.add(
-                        "is-owned"
-                    );
-
-                }
-
+            if (item.duplicate) {
+                card.classList.add("is-duplicate");
             }
-        );
 
+            else if (item.wishlist) {
+                card.classList.add("is-wishlist");
+            }
+
+            else if (item.owned) {
+                card.classList.add("is-owned");
+            }
+
+        });
+
+    updateCategoryStats();
 }
 
 
 
-// ==========================================================
-// START
-// ==========================================================
-
 document.addEventListener(
     "DOMContentLoaded",
     function() {
-
         migrateCollection();
-
+        applyThemeInfo();
         setupButtons();
-
         updateCards();
-
     }
 );
 

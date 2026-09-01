@@ -10,248 +10,460 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Comic Vault</title>
+    <title>Comic Collection</title>
+
 
     <style>
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
 
         :root {
-            --dark: #161616;
             --yellow: #ffd60a;
+            --black: #111;
+            --green: #34c759;
             --red: #ff3b30;
-            --blue: #2979ff;
-            --green: #39d353;
-            --pink: #ff5d8f;
+            --blue: #007aff;
+            --white: #ffffff;
         }
 
 
         body {
+
+            margin: 0;
 
             font-family:
                 Arial,
                 Helvetica,
                 sans-serif;
 
-            color: var(--dark);
-
-            min-height: 100vh;
-
-            background-color: #f5f0df;
+            background-color: #f4f4f4;
 
             background-image:
                 radial-gradient(
-                    #d4cfbf 1.4px,
-                    transparent 1.4px
+                    #d2d2d2 1px,
+                    transparent 1px
                 );
 
-            background-size: 18px 18px;
+            background-size:
+                12px 12px;
 
+            color: #111;
         }
 
 
-        nav {
+        /* ==================================================
+           NAVBAR
+        ================================================== */
 
-            background: var(--dark);
+        .navbar {
+
+            background: #111;
 
             border-bottom:
-                6px solid var(--yellow);
+                6px solid #ffd60a;
 
             padding:
-                14px 28px;
+                12px 18px;
 
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            flex-wrap: wrap;
-
-            position: sticky;
+            position:
+                sticky;
 
             top: 0;
 
-            z-index: 100;
-
+            z-index:
+                1000;
         }
 
 
-        .logo {
+        .navbar-inner {
 
-            color: var(--yellow);
+            max-width:
+                1500px;
+
+            margin:
+                0 auto;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+            flex-wrap:
+                wrap;
+        }
+
+
+        .brand {
+
+            color:
+                #ffd60a;
 
             font-family:
                 Impact,
                 "Arial Black",
+                Arial,
                 sans-serif;
 
-            font-size: 28px;
+            font-size:
+                25px;
 
-            margin-right: 20px;
+            text-decoration:
+                none;
 
+            letter-spacing:
+                1px;
+
+            white-space:
+                nowrap;
         }
 
 
-        nav a {
+        .menu {
 
-            color: white;
+            display:
+                flex;
 
-            text-decoration: none;
+            flex-wrap:
+                wrap;
 
-            font-weight: 900;
+            gap:
+                7px;
 
-            text-transform: uppercase;
+            align-items:
+                center;
+
+            flex:
+                1;
+        }
+
+
+        .menu a {
+
+            display:
+                inline-block;
 
             padding:
-                9px 14px;
+                8px 11px;
+
+            color:
+                white;
+
+            text-decoration:
+                none;
 
             border:
-                3px solid white;
+                2px solid transparent;
 
+            font-weight:
+                bold;
+
+            font-size:
+                14px;
+
+            white-space:
+                nowrap;
         }
 
 
-        nav a:hover {
+        .menu a:hover {
 
-            background: var(--yellow);
+            background:
+                #ffd60a;
 
-            color: var(--dark);
-
+            color:
+                #111;
         }
 
+
+        .menu a.active {
+
+            background:
+                #ffd60a;
+
+            color:
+                #111;
+
+            border-color:
+                white;
+        }
+
+
+        .missing-link {
+
+            background:
+                #ff3b30;
+
+            border-color:
+                #ff3b30 !important;
+        }
+
+
+        /* ==================================================
+           CONTAINER
+        ================================================== */
 
         .container {
 
-            max-width: 1250px;
+            max-width:
+                1450px;
 
             margin:
-                38px auto;
+                0 auto;
 
             padding:
-                0 20px 60px;
-
+                30px 20px 60px;
         }
 
 
+        /* ==================================================
+           HERO
+        ================================================== */
+
         .hero {
 
-            background: var(--yellow);
+            background:
+                #ffd60a;
 
             border:
-                5px solid var(--dark);
+                6px solid #111;
 
             box-shadow:
-                8px 8px 0 var(--dark);
+                10px 10px 0 #111;
 
             padding:
-                28px 32px;
+                28px;
 
-            margin-bottom: 35px;
+            margin-bottom:
+                38px;
 
+            position:
+                relative;
+
+            overflow:
+                hidden;
+        }
+
+
+        .hero::after {
+
+            content:
+                "POW!";
+
+            position:
+                absolute;
+
+            right:
+                30px;
+
+            top:
+                18px;
+
+            font-family:
+                Impact,
+                "Arial Black",
+                Arial,
+                sans-serif;
+
+            font-size:
+                clamp(
+                    55px,
+                    10vw,
+                    120px
+                );
+
+            color:
+                rgba(
+                    255,
+                    59,
+                    48,
+                    0.16
+                );
+
+            transform:
+                rotate(-8deg);
         }
 
 
         .hero h1 {
 
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            margin:
+                0;
+
             font-family:
                 Impact,
                 "Arial Black",
+                Arial,
                 sans-serif;
 
-            font-size: 46px;
+            font-size:
+                clamp(
+                    45px,
+                    8vw,
+                    90px
+                );
 
-            text-transform: uppercase;
+            line-height:
+                0.95;
 
+            text-transform:
+                uppercase;
         }
 
 
         .hero p {
 
-            font-weight: bold;
+            position:
+                relative;
 
-            margin-top: 7px;
+            z-index:
+                2;
 
+            font-weight:
+                900;
+
+            font-size:
+                18px;
+
+            margin:
+                15px 0 0;
         }
 
+
+        /* ==================================================
+           GENERAL PROGRESS
+        ================================================== */
+
+        .overall-progress {
+
+            margin-top:
+                22px;
+
+            max-width:
+                700px;
+
+            position:
+                relative;
+
+            z-index:
+                2;
+        }
+
+
+        .overall-progress-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            font-weight:
+                900;
+
+            margin-bottom:
+                7px;
+        }
+
+
+        .overall-progress-bar {
+
+            height:
+                28px;
+
+            background:
+                white;
+
+            border:
+                4px solid #111;
+
+            overflow:
+                hidden;
+        }
+
+
+        .overall-progress-fill {
+
+            height:
+                100%;
+
+            width:
+                0%;
+
+            background:
+                #34c759;
+
+            transition:
+                width 0.25s ease;
+        }
+
+
+        /* ==================================================
+           STATS
+        ================================================== */
 
         .stats {
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(4, 1fr);
+                repeat(
+                    5,
+                    minmax(
+                        150px,
+                        1fr
+                    )
+                );
 
-            gap: 20px;
+            gap:
+                18px;
 
-            margin-bottom: 45px;
-
+            margin-bottom:
+                40px;
         }
 
 
-        .stat-card {
+        .stat {
 
-            display: block;
-
-            color: var(--dark);
-
-            text-decoration: none;
+            background:
+                white;
 
             border:
-                4px solid var(--dark);
-
-            padding: 22px;
+                4px solid #111;
 
             box-shadow:
-                6px 6px 0 var(--dark);
+                6px 6px 0 #111;
 
-            transition: 0.15s;
+            padding:
+                18px;
 
-        }
+            min-height:
+                120px;
 
+            display:
+                flex;
 
-        .stat-card:hover {
+            flex-direction:
+                column;
 
-            transform:
-                translate(-3px, -3px);
-
-            box-shadow:
-                9px 9px 0 var(--dark);
-
-        }
-
-
-        .stat-total {
-            background: white;
-        }
-
-
-        .stat-owned {
-            background: #d8ffd8;
-        }
-
-
-        .stat-missing {
-            background: #ffe4ea;
-        }
-
-
-        .stat-duplicate {
-            background: #dceaff;
-        }
-
-
-        .stat-icon {
-
-            font-size: 34px;
-
-            margin-bottom: 8px;
-
+            justify-content:
+                center;
         }
 
 
@@ -260,177 +472,491 @@
             font-family:
                 Impact,
                 "Arial Black",
+                Arial,
                 sans-serif;
 
-            font-size: 45px;
+            font-size:
+                42px;
 
+            line-height:
+                1;
         }
 
 
         .stat-label {
 
-            margin-top: 7px;
+            font-weight:
+                900;
 
-            font-weight: 900;
-
-            text-transform: uppercase;
-
+            margin-top:
+                8px;
         }
 
 
+        .stat.owned {
+
+            background:
+                #b9f6c5;
+        }
+
+
+        .stat.missing {
+
+            background:
+                #ffd0cc;
+        }
+
+
+        .stat.wishlist {
+
+            background:
+                #ffe0e0;
+        }
+
+
+        .stat.duplicates {
+
+            background:
+                #cfe4ff;
+        }
+
+
+        /* ==================================================
+           SECTION TITLE
+        ================================================== */
+
         .section-title {
 
-            display: inline-block;
+            display:
+                inline-block;
 
-            background: var(--red);
+            background:
+                #111;
 
-            color: white;
-
-            border:
-                4px solid var(--dark);
-
-            box-shadow:
-                5px 5px 0 var(--dark);
-
-            padding:
-                9px 20px;
-
-            margin-bottom: 25px;
+            color:
+                #ffd60a;
 
             font-family:
                 Impact,
                 "Arial Black",
+                Arial,
                 sans-serif;
 
-            font-size: 26px;
+            font-size:
+                32px;
 
+            padding:
+                10px 16px;
+
+            margin-bottom:
+                25px;
+
+            transform:
+                rotate(-1deg);
         }
 
 
-        .categories {
+        /* ==================================================
+           CATEGORY GRID
+        ================================================== */
 
-            display: grid;
+        .category-grid {
+
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(4, 1fr);
+                repeat(
+                    auto-fit,
+                    minmax(
+                        280px,
+                        1fr
+                    )
+                );
 
-            gap: 24px;
-
+            gap:
+                25px;
         }
 
 
         .category-card {
 
-            min-height: 180px;
+            --category-accent:
+                #ffd60a;
+
+            display:
+                block;
+
+            position:
+                relative;
+
+            background:
+                white;
 
             border:
-                5px solid var(--dark);
+                5px solid #111;
 
             box-shadow:
-                7px 7px 0 var(--dark);
+                8px 8px 0 #111;
 
-            display: flex;
+            padding:
+                20px;
 
-            flex-direction: column;
+            text-decoration:
+                none;
 
-            justify-content: center;
+            color:
+                #111;
 
-            align-items: center;
+            overflow:
+                hidden;
 
-            text-decoration: none;
-
-            color: var(--dark);
-
-            padding: 20px;
-
+            transition:
+                0.15s;
         }
 
 
-        .category-card:nth-child(1) {
-            background: #fff0c7;
+        .category-card:hover {
+
+            transform:
+                translate(
+                    -3px,
+                    -3px
+                );
+
+            box-shadow:
+                12px 12px 0 #111;
         }
 
 
-        .category-card:nth-child(2) {
-            background: #d9ebff;
+        .category-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            left:
+                0;
+
+            top:
+                0;
+
+            width:
+                100%;
+
+            height:
+                11px;
+
+            background:
+                var(--category-accent);
         }
 
 
-        .category-card:nth-child(3) {
-            background: #ffe15c;
+        .category-card[data-series="asterix"] {
+            --category-accent:
+                #f7cf3e;
         }
 
 
-        .category-card:nth-child(4) {
-            background: #daf7df;
+        .category-card[data-series="lucky-luke"] {
+            --category-accent:
+                #d69c2f;
+        }
+
+
+        .category-card[data-series="idefix"] {
+            --category-accent:
+                #83d6a1;
+        }
+
+
+        .category-card[data-series="iznogoud"] {
+            --category-accent:
+                #a787ff;
+        }
+
+
+        .category-card[data-series="rantanplan"] {
+            --category-accent:
+                #e9964c;
+        }
+
+
+        .category-card[data-series="sherlock-holmes"] {
+            --category-accent:
+                #9aa4b2;
+        }
+
+
+        .category-card[data-series="arkas"] {
+            --category-accent:
+                #c7c7c7;
+        }
+
+
+        .category-top {
+
+            margin-top:
+                8px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-start;
+
+            gap:
+                15px;
         }
 
 
         .category-icon {
 
-            font-size: 50px;
+            font-size:
+                42px;
 
-            margin-bottom: 12px;
-
+            line-height:
+                1;
         }
 
 
-        .category-name {
+        .category-card h2 {
 
             font-family:
                 Impact,
                 "Arial Black",
+                Arial,
                 sans-serif;
 
-            font-size: 27px;
+            font-size:
+                31px;
 
-            text-transform: uppercase;
+            margin:
+                0;
 
+            text-transform:
+                uppercase;
         }
 
 
-        @media (max-width: 900px) {
+        .category-theme {
 
-            .stats,
-            .categories {
+            margin-top:
+                8px;
+
+            font-weight:
+                900;
+
+            font-size:
+                13px;
+
+            min-height:
+                34px;
+        }
+
+
+        .category-percent {
+
+            font-family:
+                Impact,
+                "Arial Black",
+                Arial,
+                sans-serif;
+
+            font-size:
+                36px;
+
+            margin-top:
+                20px;
+        }
+
+
+        .category-numbers {
+
+            font-weight:
+                900;
+
+            margin-top:
+                3px;
+
+            font-size:
+                14px;
+        }
+
+
+        .category-progress {
+
+            width:
+                100%;
+
+            height:
+                20px;
+
+            background:
+                #eee;
+
+            border:
+                3px solid #111;
+
+            margin-top:
+                12px;
+
+            overflow:
+                hidden;
+        }
+
+
+        .category-progress-fill {
+
+            width:
+                0%;
+
+            height:
+                100%;
+
+            background:
+                var(--category-accent);
+
+            transition:
+                width 0.25s ease;
+        }
+
+
+        .category-bottom {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+            margin-top:
+                15px;
+        }
+
+
+        .badge {
+
+            border:
+                2px solid #111;
+
+            padding:
+                5px 8px;
+
+            background:
+                #f5f5f5;
+
+            font-size:
+                12px;
+
+            font-weight:
+                900;
+        }
+
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
+
+        @media (
+            max-width: 1000px
+        ) {
+
+            .stats {
 
                 grid-template-columns:
-                    repeat(2, 1fr);
-
+                    repeat(
+                        2,
+                        minmax(
+                            0,
+                            1fr
+                        )
+                    );
             }
 
         }
 
 
-        @media (max-width: 600px) {
+        @media (
+            max-width: 650px
+        ) {
 
-            nav {
-                padding: 12px;
-            }
+            .container {
 
-
-            .logo {
-                width: 100%;
+                padding:
+                    20px 12px 45px;
             }
 
 
             .stats {
 
                 grid-template-columns:
-                    repeat(2, 1fr);
+                    repeat(
+                        2,
+                        minmax(
+                            0,
+                            1fr
+                        )
+                    );
 
-                gap: 12px;
-
+                gap:
+                    12px;
             }
 
 
-            .categories {
+            .stat {
+
+                padding:
+                    13px;
+
+                min-height:
+                    100px;
+            }
+
+
+            .stat-number {
+
+                font-size:
+                    32px;
+            }
+
+
+            .category-grid {
 
                 grid-template-columns:
-                    repeat(2, 1fr);
+                    1fr;
+            }
 
-                gap: 14px;
 
+            .brand {
+
+                width:
+                    100%;
+            }
+
+
+            .menu {
+
+                width:
+                    100%;
+            }
+
+
+            .menu a {
+
+                font-size:
+                    12px;
+
+                padding:
+                    7px 8px;
             }
 
         }
@@ -443,112 +969,142 @@
 <body>
 
 
-<nav>
+<!-- ======================================================
+     NAVBAR
+====================================================== -->
 
-    <div class="logo">
+<nav class="navbar">
 
-        ⚡ COMIC VAULT
-
-    </div>
-
-
-    <a href="/">
-
-        🏠 Dashboard
-
-    </a>
-
-
-    {% for category in categories %}
+    <div class="navbar-inner">
 
         <a
-            href="/category/{{ category.slug }}"
+            href="/"
+            class="brand"
         >
-
-            {{ category.name }}
-
+            💥 COMIC COLLECTION
         </a>
 
-    {% endfor %}
 
+        <div class="menu">
+
+            <a
+                href="/"
+                class="active"
+            >
+                🏠 Dashboard
+            </a>
+
+
+            {% for category in categories %}
+
+                <a
+                    href="/category/{{ category.slug }}"
+                >
+                    {{ category.name }}
+                </a>
+
+            {% endfor %}
+
+
+            <a
+                href="/missing"
+                class="missing-link"
+            >
+                ❤️ Μου λείπουν
+            </a>
+
+        </div>
+
+    </div>
 
 </nav>
 
 
-<div class="container">
+
+<main class="container">
 
 
-    <div class="hero">
+    <!-- ==================================================
+         HERO
+    =================================================== -->
+
+    <section class="hero">
 
         <h1>
-
-            📚 Η Συλλογή μου
-
+            MY COMIC<br>
+            COLLECTION
         </h1>
 
         <p>
-
-            Όλα τα κόμικς μου σε ένα μέρος.
-
+            📚 Παρακολούθησε ολόκληρη τη συλλογή σου,
+            τις Wishlist επιλογές και τα διπλά σου.
         </p>
 
-    </div>
 
+        <div class="overall-progress">
 
-    <div class="stats">
+            <div class="overall-progress-header">
 
+                <span>
+                    ΣΥΝΟΛΙΚΗ ΠΡΟΟΔΟΣ
+                </span>
 
-        <div
-            class="stat-card stat-total"
-        >
-
-            <div class="stat-icon">
-
-                📚
-
-            </div>
-
-            <div
-                class="stat-number"
-                id="totalComics"
-            >
-
-                {{ stats.total }}
+                <span id="overallProgressText">
+                    0 / 0 · 0%
+                </span>
 
             </div>
 
-            <div class="stat-label">
 
-                Σύνολο κόμικς
+            <div class="overall-progress-bar">
+
+                <div
+                    class="overall-progress-fill"
+                    id="overallProgressFill"
+                ></div>
 
             </div>
 
         </div>
 
+    </section>
 
-        <div
-            class="stat-card stat-owned"
-        >
 
-            <div class="stat-icon">
 
-                ✅
+    <!-- ==================================================
+         STATS
+    =================================================== -->
 
-            </div>
+    <section class="stats">
+
+
+        <div class="stat">
 
             <div
                 class="stat-number"
-                id="ownedComics"
+                id="totalStat"
             >
-
-                {{ stats.owned }}
-
+                0
             </div>
 
             <div class="stat-label">
+                📚 Σύνολο κόμικς
+            </div>
 
-                Στη συλλογή
+        </div>
 
+
+        <div class="stat owned">
+
+            <div
+                class="stat-number"
+                id="ownedStat"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                ✅ Στη συλλογή
             </div>
 
         </div>
@@ -556,93 +1112,199 @@
 
         <a
             href="/missing"
-            class="stat-card stat-missing"
+            class="stat missing"
+            style="
+                text-decoration:none;
+                color:#111;
+            "
         >
-
-            <div class="stat-icon">
-
-                ❤️
-
-            </div>
 
             <div
                 class="stat-number"
-                id="missingComics"
+                id="missingStat"
             >
-
-                {{ stats.missing }}
-
+                0
             </div>
 
             <div class="stat-label">
-
-                Μου λείπουν
-
+                💔 Μου λείπουν
             </div>
 
         </a>
 
 
-        <div
-            class="stat-card stat-duplicate"
-        >
-
-            <div class="stat-icon">
-
-                🔁
-
-            </div>
+        <div class="stat wishlist">
 
             <div
                 class="stat-number"
-                id="duplicateComics"
+                id="wishlistStat"
             >
-
                 0
-
             </div>
 
             <div class="stat-label">
-
-                Διπλά
-
+                ❤️ Wishlist
             </div>
 
         </div>
 
 
-    </div>
+        <div class="stat duplicates">
 
+            <div
+                class="stat-number"
+                id="duplicateStat"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                🔁 Διπλά
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         SERIES
+    =================================================== -->
 
     <div class="section-title">
-
-        💥 COMIC UNIVERSES
-
+        💥 ΟΙ ΣΥΛΛΟΓΕΣ ΜΟΥ
     </div>
 
 
-    <div class="categories">
+    <section class="category-grid">
 
 
         {% for category in categories %}
 
 
             <a
-                class="category-card"
+
                 href="/category/{{ category.slug }}"
+
+                class="category-card"
+
+                data-series="{{ category.slug }}"
+
             >
 
-                <div class="category-icon">
 
-                    📖
+                <div class="category-top">
+
+                    <div>
+
+                        <div
+                            class="category-icon"
+                            data-icon-for="{{ category.slug }}"
+                        >
+                            📚
+                        </div>
+
+
+                        <h2>
+                            {{ category.name }}
+                        </h2>
+
+
+                        <div
+                            class="category-theme"
+                            data-theme-for="{{ category.slug }}"
+                        >
+                            Comic Collection
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <div class="category-name">
 
-                    {{ category.name }}
+
+                <div
+                    class="category-percent"
+                    data-percent-for="{{ category.slug }}"
+                >
+                    0%
+                </div>
+
+
+                <div
+                    class="category-numbers"
+                    data-numbers-for="{{ category.slug }}"
+                >
+                    0 / 0
+                </div>
+
+
+                <div class="category-progress">
+
+                    <div
+
+                        class="category-progress-fill"
+
+                        data-progress-for="{{ category.slug }}"
+
+                    ></div>
 
                 </div>
+
+
+                <div class="category-bottom">
+
+                    <div class="badge">
+
+                        ✅
+                        <span
+                            data-owned-for="{{ category.slug }}"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div class="badge">
+
+                        ❤️
+                        <span
+                            data-wishlist-for="{{ category.slug }}"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div class="badge">
+
+                        🔁
+                        <span
+                            data-duplicate-for="{{ category.slug }}"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div class="badge">
+
+                        💔
+                        <span
+                            data-missing-for="{{ category.slug }}"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+                </div>
+
 
             </a>
 
@@ -650,206 +1312,777 @@
         {% endfor %}
 
 
-    </div>
+    </section>
 
 
-</div>
+</main>
+
 
 
 <script>
 
 
-const defaultCollection = {
+// ==========================================================
+// STORAGE
+// ==========================================================
+
+const STORAGE_KEY =
+    "comicCollection";
 
 
-{% for comic in all_comics %}
 
+// ==========================================================
+// ALL COMICS FROM PYTHON
+// ==========================================================
 
-    "{{ comic.series }}-{{ comic.number }}": {
+const comics = [
 
-        owned:
-            {% if comic.owned %}
-                true
-            {% else %}
-                false
-            {% endif %},
+    {% for comic in all_comics %}
 
-        wishlist: false,
+    {
 
-        duplicate: false
+        series:
+            {{ comic.series|tojson }},
+
+        number:
+            {{ comic.number|tojson }},
+
+        title:
+            {{ comic.title|tojson }},
+
+        defaultOwned:
+            {{ "true" if comic.owned else "false" }}
 
     }
 
     {% if not loop.last %}
-        ,
+    ,
     {% endif %}
 
+    {% endfor %}
 
-{% endfor %}
+];
 
+
+
+// ==========================================================
+// SERIES INFO
+// ==========================================================
+
+const seriesInfo = {
+
+    "arkas": {
+        icon: "✒️",
+        theme: "Σάτιρα · Αρκάς Universe"
+    },
+
+    "lucky-luke": {
+        icon: "🤠",
+        theme: "Wild West · Faster than his shadow"
+    },
+
+    "asterix": {
+        icon: "🛡️",
+        theme: "Γαλατικό χωριό · Ρωμαίοι · Μαγικό φίλτρο"
+    },
+
+    "idefix": {
+        icon: "🐶",
+        theme: "Ιντεφίξ και οι Ανυπότακτοι"
+    },
+
+    "iznogoud": {
+        icon: "👑",
+        theme: "Χαλίφης · Βεζίρης · Ανατολή"
+    },
+
+    "rantanplan": {
+        icon: "🐾",
+        theme: "Wild West Chaos"
+    },
+
+    "sherlock-holmes": {
+        icon: "🕵️",
+        theme: "London · Mystery · Detective"
+    }
 
 };
 
 
-function getCollection() {
+
+// ==========================================================
+// LOAD
+// ==========================================================
+
+function loadCollection() {
+
+    try {
+
+        const raw =
+            localStorage.getItem(
+                STORAGE_KEY
+            );
 
 
-    let collection = {};
+        if (!raw) {
 
-
-    const saved =
-        localStorage.getItem(
-            "comicCollection"
-        );
-
-
-    if (saved) {
-
-        try {
-
-            collection =
-                JSON.parse(saved);
+            return {};
 
         }
 
-        catch {
 
-            collection = {};
+        const parsed =
+            JSON.parse(
+                raw
+            );
+
+
+        if (
+            typeof parsed !== "object"
+            ||
+            parsed === null
+            ||
+            Array.isArray(parsed)
+        ) {
+
+            return {};
+
+        }
+
+
+        return parsed;
+
+    }
+
+    catch (error) {
+
+        return {};
+
+    }
+
+}
+
+
+
+// ==========================================================
+// NORMALIZE
+// ==========================================================
+
+function normalizeItem(
+    raw,
+    defaultOwned = false
+) {
+
+    const result = {
+
+        owned:
+            Boolean(defaultOwned),
+
+        wishlist:
+            false,
+
+        duplicate:
+            false
+
+    };
+
+
+    if (
+        raw === undefined
+        ||
+        raw === null
+    ) {
+
+        return result;
+
+    }
+
+
+    if (
+        typeof raw === "boolean"
+    ) {
+
+        result.owned =
+            raw;
+
+        return result;
+
+    }
+
+
+    if (
+        typeof raw === "string"
+    ) {
+
+        const value =
+            raw
+            .toLowerCase()
+            .trim();
+
+
+        if (
+            value === "owned"
+            ||
+            value === "have"
+            ||
+            value === "true"
+        ) {
+
+            result.owned =
+                true;
+
+        }
+
+
+        else if (
+            value === "wishlist"
+            ||
+            value === "wish"
+        ) {
+
+            result.wishlist =
+                true;
+
+            result.owned =
+                false;
+
+        }
+
+
+        else if (
+            value === "duplicate"
+            ||
+            value === "double"
+        ) {
+
+            result.duplicate =
+                true;
+
+            result.owned =
+                true;
+
+        }
+
+
+        return result;
+
+    }
+
+
+    if (
+        typeof raw === "object"
+    ) {
+
+        if (
+            raw.owned !== undefined
+        ) {
+
+            result.owned =
+                Boolean(
+                    raw.owned
+                );
+
+        }
+
+
+        if (
+            raw.wishlist !== undefined
+        ) {
+
+            result.wishlist =
+                Boolean(
+                    raw.wishlist
+                );
+
+        }
+
+
+        if (
+            raw.duplicate !== undefined
+        ) {
+
+            result.duplicate =
+                Boolean(
+                    raw.duplicate
+                );
 
         }
 
     }
 
 
-    Object.entries(
-        defaultCollection
-    ).forEach(
+    if (
+        result.duplicate
+    ) {
 
-        function(
-            [key, defaults]
-        ) {
+        result.owned =
+            true;
+
+        result.wishlist =
+            false;
+
+    }
+
+
+    else if (
+        result.wishlist
+    ) {
+
+        result.owned =
+            false;
+
+        result.duplicate =
+            false;
+
+    }
+
+
+    return result;
+
+}
+
+
+
+// ==========================================================
+// KEY
+// ==========================================================
+
+function getKey(
+    series,
+    number
+) {
+
+    return (
+        String(series)
+        +
+        "-"
+        +
+        String(number)
+    );
+
+}
+
+
+
+// ==========================================================
+// UPDATE DASHBOARD
+// ==========================================================
+
+function updateDashboard() {
+
+    const collection =
+        loadCollection();
+
+
+    const totals = {};
+
+
+    comics.forEach(
+        comic => {
 
             if (
-                collection[key]
-                === undefined
+                !totals[
+                    comic.series
+                ]
             ) {
 
-                collection[key] = {
-                    ...defaults
+                totals[
+                    comic.series
+                ] = {
+
+                    total:
+                        0,
+
+                    owned:
+                        0,
+
+                    wishlist:
+                        0,
+
+                    duplicate:
+                        0
+
                 };
 
             }
 
+
+            totals[
+                comic.series
+            ].total++;
+
+
+            const key =
+                getKey(
+                    comic.series,
+                    comic.number
+                );
+
+
+            const item =
+                normalizeItem(
+                    collection[key],
+                    comic.defaultOwned
+                );
+
+
+            if (
+                item.owned
+            ) {
+
+                totals[
+                    comic.series
+                ].owned++;
+
+            }
+
+
+            if (
+                item.wishlist
+            ) {
+
+                totals[
+                    comic.series
+                ].wishlist++;
+
+            }
+
+
+            if (
+                item.duplicate
+            ) {
+
+                totals[
+                    comic.series
+                ].duplicate++;
+
+            }
+
         }
-
     );
 
 
-    localStorage.setItem(
 
-        "comicCollection",
+    // ======================================================
+    // GLOBAL TOTALS
+    // ======================================================
 
-        JSON.stringify(
-            collection
-        )
+    let totalAll = 0;
 
-    );
+    let ownedAll = 0;
 
+    let wishlistAll = 0;
 
-    return collection;
-
-}
+    let duplicateAll = 0;
 
 
-function updateDashboard() {
-
-
-    const collection =
-        getCollection();
-
-
-    const total =
-        Object.keys(
-            defaultCollection
-        ).length;
-
-
-    let owned = 0;
-
-    let duplicates = 0;
-
-
-    Object.keys(
-        defaultCollection
+    Object.values(
+        totals
     ).forEach(
+        item => {
 
-        function(key) {
+            totalAll +=
+                item.total;
 
+            ownedAll +=
+                item.owned;
 
-            const comic =
-                collection[key];
+            wishlistAll +=
+                item.wishlist;
 
-
-            if (
-                comic
-                &&
-                comic.owned
-            ) {
-
-                owned++;
-
-            }
-
-
-            if (
-                comic
-                &&
-                comic.duplicate
-            ) {
-
-                duplicates++;
-
-            }
-
+            duplicateAll +=
+                item.duplicate;
 
         }
-
     );
 
 
-    const missing =
-        total - owned;
+    const missingAll =
+        totalAll
+        -
+        ownedAll;
+
+
+    const overallPercent =
+        totalAll > 0
+        ?
+        (
+            ownedAll
+            /
+            totalAll
+            *
+            100
+        )
+        :
+        0;
 
 
     document.getElementById(
-        "totalComics"
-    ).textContent = total;
+        "totalStat"
+    ).textContent =
+        totalAll;
 
 
     document.getElementById(
-        "ownedComics"
-    ).textContent = owned;
+        "ownedStat"
+    ).textContent =
+        ownedAll;
 
 
     document.getElementById(
-        "missingComics"
-    ).textContent = missing;
+        "missingStat"
+    ).textContent =
+        missingAll;
 
 
     document.getElementById(
-        "duplicateComics"
-    ).textContent = duplicates;
+        "wishlistStat"
+    ).textContent =
+        wishlistAll;
 
+
+    document.getElementById(
+        "duplicateStat"
+    ).textContent =
+        duplicateAll;
+
+
+    document.getElementById(
+        "overallProgressText"
+    ).textContent =
+
+        `${ownedAll} / ${totalAll} · ${overallPercent.toFixed(1)}%`;
+
+
+    document.getElementById(
+        "overallProgressFill"
+    ).style.width =
+
+        `${overallPercent}%`;
+
+
+
+    // ======================================================
+    // PER SERIES
+    // ======================================================
+
+    Object.entries(
+        totals
+    ).forEach(
+        ([series, stats]) => {
+
+
+            const percent =
+                stats.total > 0
+                ?
+                (
+                    stats.owned
+                    /
+                    stats.total
+                    *
+                    100
+                )
+                :
+                0;
+
+
+            const missing =
+                stats.total
+                -
+                stats.owned;
+
+
+            const percentElement =
+                document.querySelector(
+                    `[data-percent-for="${series}"]`
+                );
+
+
+            const numbersElement =
+                document.querySelector(
+                    `[data-numbers-for="${series}"]`
+                );
+
+
+            const progressElement =
+                document.querySelector(
+                    `[data-progress-for="${series}"]`
+                );
+
+
+            const ownedElement =
+                document.querySelector(
+                    `[data-owned-for="${series}"]`
+                );
+
+
+            const wishlistElement =
+                document.querySelector(
+                    `[data-wishlist-for="${series}"]`
+                );
+
+
+            const duplicateElement =
+                document.querySelector(
+                    `[data-duplicate-for="${series}"]`
+                );
+
+
+            const missingElement =
+                document.querySelector(
+                    `[data-missing-for="${series}"]`
+                );
+
+
+            if (
+                percentElement
+            ) {
+
+                percentElement.textContent =
+                    `${percent.toFixed(1)}%`;
+
+            }
+
+
+            if (
+                numbersElement
+            ) {
+
+                numbersElement.textContent =
+                    `${stats.owned} / ${stats.total}`;
+
+            }
+
+
+            if (
+                progressElement
+            ) {
+
+                progressElement.style.width =
+                    `${percent}%`;
+
+            }
+
+
+            if (
+                ownedElement
+            ) {
+
+                ownedElement.textContent =
+                    stats.owned;
+
+            }
+
+
+            if (
+                wishlistElement
+            ) {
+
+                wishlistElement.textContent =
+                    stats.wishlist;
+
+            }
+
+
+            if (
+                duplicateElement
+            ) {
+
+                duplicateElement.textContent =
+                    stats.duplicate;
+
+            }
+
+
+            if (
+                missingElement
+            ) {
+
+                missingElement.textContent =
+                    missing;
+
+            }
+
+        }
+    );
 
 }
 
+
+
+// ==========================================================
+// SET SERIES THEMES
+// ==========================================================
+
+function setupSeriesThemes() {
+
+    Object.entries(
+        seriesInfo
+    ).forEach(
+        ([series, info]) => {
+
+
+            const icon =
+                document.querySelector(
+                    `[data-icon-for="${series}"]`
+                );
+
+
+            const theme =
+                document.querySelector(
+                    `[data-theme-for="${series}"]`
+                );
+
+
+            if (
+                icon
+            ) {
+
+                icon.textContent =
+                    info.icon;
+
+            }
+
+
+            if (
+                theme
+            ) {
+
+                theme.textContent =
+                    info.theme;
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// ==========================================================
+// START
+// ==========================================================
 
 document.addEventListener(
-
     "DOMContentLoaded",
+    function() {
 
-    updateDashboard
+        setupSeriesThemes();
 
+        updateDashboard();
+
+    }
+);
+
+
+window.addEventListener(
+    "storage",
+    function() {
+
+        updateDashboard();
+
+    }
 );
 
 

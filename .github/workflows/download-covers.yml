@@ -2,9 +2,15 @@ name: Download Comic Covers
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 1"
 
 permissions:
   contents: write
+
+concurrency:
+  group: download-covers
+  cancel-in-progress: false
 
 jobs:
   download-covers:
@@ -40,6 +46,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No new covers to commit."
           else
-            git commit -m "Add downloaded comic covers"
+            git commit -m "Update downloaded comic covers"
             git push
           fi

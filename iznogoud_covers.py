@@ -1,18 +1,16 @@
 # ============================================================
 # IZNOGOUD COVER SERVICE
-# Ελληνική σειρά Μαμούθ #01 - #30
 #
-# ΝΕΑ ΕΚΔΟΣΗ:
-# 1. WooCommerce Store API
-# 2. Γενικός κατάλογος comics
-# 3. Search fallback
+# Βρίσκει covers Ιζνογκούντ από την επίσημη
+# κατηγορία της Μαμούθ.
 #
-# ΟΛΑ γίνονται μόνο όταν τρέχει το download_covers.py.
-# Το κανονικό app χρησιμοποιεί μετά τα τοπικά αρχεία.
+# Δεν χρησιμοποιείται όταν ανοίγει το site.
+# Χρησιμοποιείται μόνο από download_covers.py.
 # ============================================================
 
 from functools import lru_cache
 from urllib.parse import urljoin
+import json
 import re
 import unicodedata
 
@@ -27,20 +25,23 @@ from bs4 import BeautifulSoup
 BASE_URL = "https://mamouthcomix-eshop.gr/"
 
 
-STORE_API_URL = (
-    BASE_URL
-    + "wp-json/wc/store/v1/products"
-)
+CATEGORY_URLS = [
 
+    (
+        "https://mamouthcomix-eshop.gr/"
+        "product-category/"
+        "%CE%BA%CF%8C%CE%BC%CE%B9%CE%BE/"
+        "%CE%B9%CE%B6%CE%BD%CE%BF%CE%B3%CE%BA%CE%BF%CF%8D%CE%BD%CF%84/"
+    ),
 
-COMICS_CATEGORY_URL = (
-    BASE_URL
-    + "product-category/"
-    + "%CE%BA%CF%8C%CE%BC%CE%B9%CE%BE/"
-)
+    (
+        "https://mamouthcomix-eshop.gr/"
+        "en/product-category/"
+        "%CE%BA%CF%8C%CE%BC%CE%B9%CE%BE/"
+        "%CE%B9%CE%B6%CE%BD%CE%BF%CE%B3%CE%BA%CE%BF%CF%8D%CE%BD%CF%84/"
+    )
 
-
-SEARCH_URL = BASE_URL
+]
 
 
 HEADERS = {
@@ -50,123 +51,98 @@ HEADERS = {
         "(Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 "
         "(KHTML, like Gecko) "
-        "Chrome/120 Safari/537.36"
+        "Chrome/120.0 Safari/537.36"
     ),
 
     "Accept": (
         "text/html,"
         "application/xhtml+xml,"
-        "application/json;q=0.9,"
+        "application/xml;q=0.9,"
+        "image/avif,"
+        "image/webp,"
         "*/*;q=0.8"
     ),
 
     "Accept-Language":
-        "el-GR,el;q=0.9,en;q=0.8"
+        "el-GR,el;q=0.9,en;q=0.8",
+
+    "Cache-Control":
+        "no-cache"
 
 }
 
 
 # ============================================================
-# ΕΠΙΣΗΜΟΙ ΤΙΤΛΟΙ
+# TITLES
 # ============================================================
 
 IZNOGOUD_TITLES = {
 
-    1:
-        "Ο μεγάλος Βεζίρης Ιζνογκούντ",
+    1: "Ο μεγάλος Βεζίρης Ιζνογκούντ",
 
-    2:
-        "Οι συνωμοσίες του μεγάλου Βεζίρη Ιζνογκούντ",
+    2: "Οι συνωμοσίες του μεγάλου Βεζίρη Ιζνογκούντ",
 
-    3:
-        "Οι διακοπές του Χαλίφη",
+    3: "Οι διακοπές του Χαλίφη",
 
-    4:
-        "Αστράκια για τον Ιζνογκούντ",
+    4: "Αστράκια για τον Ιζνογκούντ",
 
-    5:
-        "Ιζνογκούντ ο απαίσιος",
+    5: "Ιζνογκούντ ο απαίσιος",
 
-    6:
-        "Ο μαγικός υπολογιστής",
+    6: "Ο μαγικός υπολογιστής",
 
-    7:
-        "Ένα καρότο για τον Ιζνογκούντ",
+    7: "Ένα καρότο για τον Ιζνογκούντ",
 
-    8:
-        "Η μέρα των τρελών",
+    8: "Η μέρα των τρελών",
 
-    9:
-        "Το μαγικό χαλί",
+    9: "Το μαγικό χαλί",
 
-    10:
-        "Ο μαινόμενος",
+    10: "Ο μαινόμενος",
 
-    11:
-        "Το κεφάλι του Τούρκου του Ιζνογκούντ",
+    11: "Το κεφάλι του Τούρκου του Ιζνογκούντ",
 
-    12:
-        "Μια νεράιδα για τον Ιζνογκούντ",
+    12: "Μια νεράιδα για τον Ιζνογκούντ",
 
-    13:
-        "Θέλω να γίνω Χαλίφης στη θέση του Χαλίφη",
+    13: "Θέλω να γίνω Χαλίφης στη θέση του Χαλίφη",
 
-    14:
-        "Ο συνένοχος του Ιζνογκούντ",
+    14: "Ο συνένοχος του Ιζνογκούντ",
 
-    15:
-        "Ο Ιζνογκούντ επιτέλους Χαλίφης",
+    15: "Ο Ιζνογκούντ επιτέλους Χαλίφης",
 
-    16:
-        "Ο Ιζνογκούντ και οι γυναίκες",
+    16: "Ο Ιζνογκούντ και οι γυναίκες",
 
-    17:
-        "Η επέτειος του Ιζνογκούντ",
+    17: "Η επέτειος του Ιζνογκούντ",
 
-    18:
-        "Τα παιδικά χρόνια του Ιζνογκούντ",
+    18: "Τα παιδικά χρόνια του Ιζνογκούντ",
 
-    19:
-        "Η παγίδα της σειρήνας",
+    19: "Η παγίδα της σειρήνας",
 
-    20:
-        "Οι επιστροφές του Ιζνογκούντ",
+    20: "Οι επιστροφές του Ιζνογκούντ",
 
-    21:
-        "Οι εφιάλτες του Ιζνογκούντ - Τόμος 1",
+    21: "Οι εφιάλτες του Ιζνογκούντ - Τόμος 1",
 
-    22:
-        "Οι εφιάλτες του Ιζνογκούντ - Τόμος 2",
+    22: "Οι εφιάλτες του Ιζνογκούντ - Τόμος 2",
 
-    23:
-        "Οι εφιάλτες του Ιζνογκούντ - Τόμος 3",
+    23: "Οι εφιάλτες του Ιζνογκούντ - Τόμος 3",
 
-    24:
-        "Οι εφιάλτες του Ιζνογκούντ - Τόμος 4",
+    24: "Οι εφιάλτες του Ιζνογκούντ - Τόμος 4",
 
-    25:
-        "Ποιος σκότωσε το Χαλίφη;",
+    25: "Ποιος σκότωσε το Χαλίφη;",
 
-    26:
-        "Το συμπαθητικό τέρας",
+    26: "Το συμπαθητικό τέρας",
 
-    27:
-        "Το λάθος του προγόνου",
+    27: "Το λάθος του προγόνου",
 
-    28:
-        "Οι Χίλιες και Μία Νύχτες του Χαλίφη",
+    28: "Οι Χίλιες και Μία Νύχτες του Χαλίφη",
 
-    29:
-        "Ο Ιζνογκούντ Πρόεδρος",
+    29: "Ο Ιζνογκούντ Πρόεδρος",
 
-    30:
-        "Από Πατέρα σε Γιο"
+    30: "Από Πατέρα σε Γιο"
 
 }
 
 
 # ============================================================
-# NORMALIZE TEXT
+# NORMALIZE
 # ============================================================
 
 def normalize_text(text):
@@ -184,7 +160,8 @@ def normalize_text(text):
     text = "".join(
         character
         for character in text
-        if unicodedata.category(character) != "Mn"
+        if unicodedata.category(character)
+        != "Mn"
     )
 
     text = text.lower()
@@ -204,16 +181,18 @@ def normalize_text(text):
 
 
 # ============================================================
-# ΒΡΙΣΚΟΥΜΕ ISSUE NUMBER
+# ISSUE NUMBER
 # ============================================================
 
 def extract_number(text):
 
-    normalized = normalize_text(
+    text = normalize_text(
         text
     )
 
-    if "ιζνογκουντ" not in normalized:
+
+    if "ιζνογκουντ" not in text:
+
         return None
 
 
@@ -221,9 +200,9 @@ def extract_number(text):
 
         r"ιζνογκουντ\s*#?\s*0?(\d{1,2})",
 
-        r"ιζνογκουντ\s*[-–—]\s*0?(\d{1,2})",
+        r"ιζνογκουντ\s*[-–—:]\s*0?(\d{1,2})",
 
-        r"ιζνογκουντ.*?#\s*0?(\d{1,2})"
+        r"ιζνογκουντ.*?0?(\d{1,2})"
 
     ]
 
@@ -232,11 +211,14 @@ def extract_number(text):
 
         match = re.search(
             pattern,
-            normalized
+            text
         )
 
+
         if not match:
+
             continue
+
 
         try:
 
@@ -258,270 +240,92 @@ def extract_number(text):
 
 
 # ============================================================
-# ΕΛΕΓΧΟΣ IMAGE URL
+# CLEAN URL
 # ============================================================
 
-def clean_image_url(
-    image_url,
+def clean_url(
+    url,
     base_url=BASE_URL
 ):
 
-    if not image_url:
+    if not url:
+
         return None
 
-    image_url = str(
-        image_url
+
+    url = str(
+        url
     ).strip()
 
-    if not image_url:
+
+    if not url:
+
         return None
 
-    if image_url.startswith(
+
+    if url.startswith(
         "data:"
     ):
+
         return None
+
 
     return urljoin(
         base_url,
-        image_url
+        url
     )
 
 
 # ============================================================
-# 1. WOOCOMMERCE STORE API
+# GET IMAGE FROM IMG
 # ============================================================
 
-def get_catalog_from_store_api():
-
-    catalog = {}
-
-
-    searches = [
-
-        "Ιζνογκούντ",
-
-        "ΙΖΝΟΓΚΟΥΝΤ",
-
-        "Iznogoud"
-
-    ]
-
-
-    for search_term in searches:
-
-        try:
-
-            response = requests.get(
-
-                STORE_API_URL,
-
-                params={
-                    "search":
-                        search_term,
-
-                    "per_page":
-                        100
-                },
-
-                headers=HEADERS,
-
-                timeout=25
-
-            )
-
-
-            if response.status_code != 200:
-
-                continue
-
-
-            content_type = (
-                response.headers
-                .get(
-                    "Content-Type",
-                    ""
-                )
-                .lower()
-            )
-
-
-            if (
-                "json"
-                not in content_type
-            ):
-
-                continue
-
-
-            products = response.json()
-
-
-            if not isinstance(
-                products,
-                list
-            ):
-
-                continue
-
-
-            for product in products:
-
-                if not isinstance(
-                    product,
-                    dict
-                ):
-
-                    continue
-
-
-                title = (
-                    product.get(
-                        "name"
-                    )
-                    or
-                    ""
-                )
-
-
-                number = extract_number(
-                    title
-                )
-
-
-                if number is None:
-
-                    continue
-
-
-                images = (
-                    product.get(
-                        "images"
-                    )
-                    or
-                    []
-                )
-
-
-                image_url = None
-
-
-                if (
-                    isinstance(
-                        images,
-                        list
-                    )
-                    and
-                    images
-                ):
-
-                    first_image = (
-                        images[0]
-                    )
-
-
-                    if isinstance(
-                        first_image,
-                        dict
-                    ):
-
-                        image_url = (
-
-                            first_image.get(
-                                "src"
-                            )
-
-                            or first_image.get(
-                                "thumbnail"
-                            )
-
-                        )
-
-
-                image_url = clean_image_url(
-                    image_url
-                )
-
-
-                if not image_url:
-
-                    continue
-
-
-                if number not in catalog:
-
-                    catalog[number] = (
-                        image_url
-                    )
-
-
-        except Exception:
-
-            continue
-
-
-    return catalog
-
-
-# ============================================================
-# HTML PRODUCT IMAGE
-# ============================================================
-
-def get_image_from_product_card(
-    product,
-    page_url
+def image_from_tag(
+    image,
+    base_url
 ):
-
-    image = product.select_one(
-        "img"
-    )
-
 
     if not image:
 
         return None
 
 
-    candidates = [
+    attributes = [
 
-        image.get(
-            "data-large_image"
-        ),
+        "data-large_image",
 
-        image.get(
-            "data-lazy-src"
-        ),
+        "data-lazy-src",
 
-        image.get(
-            "data-src"
-        ),
+        "data-src",
 
-        image.get(
-            "data-original"
-        ),
+        "data-original",
 
-        image.get(
-            "src"
-        )
+        "src"
 
     ]
 
 
-    for candidate in candidates:
+    for attribute in attributes:
 
-        candidate = clean_image_url(
-            candidate,
-            page_url
+        value = image.get(
+            attribute
         )
 
 
-        if candidate:
+        value = clean_url(
+            value,
+            base_url
+        )
 
-            return candidate
+
+        if value:
+
+            return value
 
 
-    # --------------------------------------------------------
-    # SRCSET FALLBACK
-    # --------------------------------------------------------
+    # ========================================================
+    # SRCSET
+    # ========================================================
 
     srcset = image.get(
         "srcset"
@@ -530,27 +334,25 @@ def get_image_from_product_card(
 
     if srcset:
 
-        parts = srcset.split(
-            ","
+        entries = (
+            srcset.split(",")
         )
 
 
-        # Συνήθως το τελευταίο είναι
-        # η μεγαλύτερη διαθέσιμη εικόνα.
-
-        for part in reversed(
-            parts
+        for entry in reversed(
+            entries
         ):
 
             candidate = (
-                part.strip()
+                entry
+                .strip()
                 .split(" ")[0]
             )
 
 
-            candidate = clean_image_url(
+            candidate = clean_url(
                 candidate,
-                page_url
+                base_url
             )
 
 
@@ -563,457 +365,10 @@ def get_image_from_product_card(
 
 
 # ============================================================
-# HTML PRODUCT TITLE
+# PRODUCT PAGE IMAGE
 # ============================================================
 
-def get_title_from_product_card(
-    product
-):
-
-    selectors = [
-
-        ".woocommerce-loop-product__title",
-
-        "h2",
-
-        "h3",
-
-        ".product-title",
-
-        ".woocommerce-loop-product__link"
-
-    ]
-
-
-    for selector in selectors:
-
-        element = product.select_one(
-            selector
-        )
-
-
-        if not element:
-
-            continue
-
-
-        title = element.get_text(
-            " ",
-            strip=True
-        )
-
-
-        if title:
-
-            return title
-
-
-    return ""
-
-
-# ============================================================
-# 2. ΓΕΝΙΚΗ ΚΑΤΗΓΟΡΙΑ COMICS
-# ============================================================
-
-def get_catalog_from_comics_pages():
-
-    catalog = {}
-
-
-    # Ψάχνουμε αρκετές σελίδες,
-    # επειδή ο Ιζνογκούντ μπορεί να είναι
-    # μοιρασμένος σε όλο το catalog.
-
-    for page in range(
-        1,
-        21
-    ):
-
-
-        if page == 1:
-
-            url = (
-                COMICS_CATEGORY_URL
-            )
-
-
-        else:
-
-            url = (
-                COMICS_CATEGORY_URL
-                +
-                f"page/{page}/"
-            )
-
-
-        try:
-
-            response = requests.get(
-                url,
-                headers=HEADERS,
-                timeout=20
-            )
-
-
-            if response.status_code == 404:
-
-                break
-
-
-            if response.status_code != 200:
-
-                continue
-
-
-            soup = BeautifulSoup(
-                response.text,
-                "html.parser"
-            )
-
-
-            products = soup.select(
-                "li.product"
-            )
-
-
-            if not products:
-
-                products = soup.select(
-                    ".product"
-                )
-
-
-            if not products:
-
-                continue
-
-
-            for product in products:
-
-                title = (
-                    get_title_from_product_card(
-                        product
-                    )
-                )
-
-
-                number = extract_number(
-                    title
-                )
-
-
-                if number is None:
-
-                    continue
-
-
-                image_url = (
-                    get_image_from_product_card(
-                        product,
-                        url
-                    )
-                )
-
-
-                if not image_url:
-
-                    continue
-
-
-                if number not in catalog:
-
-                    catalog[number] = (
-                        image_url
-                    )
-
-
-        except Exception:
-
-            continue
-
-
-    return catalog
-
-
-# ============================================================
-# 3. WORDPRESS SEARCH FALLBACK
-# ============================================================
-
-def get_catalog_from_search():
-
-    catalog = {}
-
-
-    search_terms = [
-
-        "Ιζνογκούντ",
-
-        "ΙΖΝΟΓΚΟΥΝΤ"
-
-    ]
-
-
-    for search_term in search_terms:
-
-        for page in range(
-            1,
-            6
-        ):
-
-
-            params = {
-
-                "s":
-                    search_term,
-
-                "post_type":
-                    "product"
-
-            }
-
-
-            if page > 1:
-
-                params["paged"] = (
-                    page
-                )
-
-
-            try:
-
-                response = requests.get(
-
-                    SEARCH_URL,
-
-                    params=params,
-
-                    headers=HEADERS,
-
-                    timeout=20
-
-                )
-
-
-                if response.status_code != 200:
-
-                    continue
-
-
-                soup = BeautifulSoup(
-                    response.text,
-                    "html.parser"
-                )
-
-
-                products = soup.select(
-                    "li.product"
-                )
-
-
-                if not products:
-
-                    products = soup.select(
-                        ".product"
-                    )
-
-
-                if not products:
-
-                    continue
-
-
-                for product in products:
-
-                    title = (
-                        get_title_from_product_card(
-                            product
-                        )
-                    )
-
-
-                    number = extract_number(
-                        title
-                    )
-
-
-                    if number is None:
-
-                        continue
-
-
-                    image_url = (
-                        get_image_from_product_card(
-                            product,
-                            response.url
-                        )
-                    )
-
-
-                    if not image_url:
-
-                        continue
-
-
-                    if number not in catalog:
-
-                        catalog[number] = (
-                            image_url
-                        )
-
-
-            except Exception:
-
-                continue
-
-
-    return catalog
-
-
-# ============================================================
-# 4. PRODUCT PAGE FALLBACK
-# ============================================================
-
-def get_product_links_from_html():
-
-    links = {}
-
-
-    for page in range(
-        1,
-        21
-    ):
-
-
-        if page == 1:
-
-            url = (
-                COMICS_CATEGORY_URL
-            )
-
-
-        else:
-
-            url = (
-                COMICS_CATEGORY_URL
-                +
-                f"page/{page}/"
-            )
-
-
-        try:
-
-            response = requests.get(
-                url,
-                headers=HEADERS,
-                timeout=20
-            )
-
-
-            if response.status_code == 404:
-
-                break
-
-
-            if response.status_code != 200:
-
-                continue
-
-
-            soup = BeautifulSoup(
-                response.text,
-                "html.parser"
-            )
-
-
-            products = soup.select(
-                "li.product"
-            )
-
-
-            if not products:
-
-                continue
-
-
-            for product in products:
-
-                title = (
-                    get_title_from_product_card(
-                        product
-                    )
-                )
-
-
-                number = extract_number(
-                    title
-                )
-
-
-                if number is None:
-
-                    continue
-
-
-                link = (
-
-                    product.select_one(
-                        "a.woocommerce-LoopProduct-link"
-                    )
-
-                    or product.select_one(
-                        "a.woocommerce-loop-product__link"
-                    )
-
-                    or product.select_one(
-                        'a[href*="/product/"]'
-                    )
-
-                    or product.find(
-                        "a"
-                    )
-
-                )
-
-
-                if not link:
-
-                    continue
-
-
-                href = link.get(
-                    "href"
-                )
-
-
-                if not href:
-
-                    continue
-
-
-                if number not in links:
-
-                    links[number] = (
-                        urljoin(
-                            url,
-                            href
-                        )
-                    )
-
-
-        except Exception:
-
-            continue
-
-
-    return links
-
-
-# ============================================================
-# COVER FROM PRODUCT PAGE
-# ============================================================
-
-@lru_cache(maxsize=100)
-def get_cover_from_product_page(
+def get_product_page_image(
     product_url
 ):
 
@@ -1025,15 +380,502 @@ def get_cover_from_product_page(
     try:
 
         response = requests.get(
+
             product_url,
+
             headers=HEADERS,
-            timeout=20
+
+            timeout=25,
+
+            allow_redirects=True
+
         )
+
+
+    except Exception:
+
+        return None
+
+
+    if response.status_code != 200:
+
+        return None
+
+
+    soup = BeautifulSoup(
+        response.text,
+        "html.parser"
+    )
+
+
+    # ========================================================
+    # OG IMAGE
+    # ========================================================
+
+    meta_selectors = [
+
+        'meta[property="og:image"]',
+
+        'meta[property="og:image:secure_url"]',
+
+        'meta[name="twitter:image"]',
+
+        'meta[property="twitter:image"]'
+
+    ]
+
+
+    for selector in meta_selectors:
+
+        meta = soup.select_one(
+            selector
+        )
+
+
+        if not meta:
+
+            continue
+
+
+        image_url = clean_url(
+            meta.get("content"),
+            response.url
+        )
+
+
+        if image_url:
+
+            return image_url
+
+
+    # ========================================================
+    # WOOCOMMERCE IMAGE
+    # ========================================================
+
+    selectors = [
+
+        ".woocommerce-product-gallery__image img",
+
+        ".woocommerce-product-gallery img",
+
+        "img.wp-post-image",
+
+        ".product-images img",
+
+        ".product-image img"
+
+    ]
+
+
+    for selector in selectors:
+
+        image = soup.select_one(
+            selector
+        )
+
+
+        image_url = image_from_tag(
+            image,
+            response.url
+        )
+
+
+        if image_url:
+
+            return image_url
+
+
+    # ========================================================
+    # JSON-LD
+    # ========================================================
+
+    scripts = soup.select(
+        'script[type="application/ld+json"]'
+    )
+
+
+    for script in scripts:
+
+        try:
+
+            data = json.loads(
+                script.string
+                or
+                script.get_text()
+            )
+
+
+        except Exception:
+
+            continue
+
+
+        objects = []
+
+
+        if isinstance(
+            data,
+            list
+        ):
+
+            objects.extend(
+                data
+            )
+
+
+        elif isinstance(
+            data,
+            dict
+        ):
+
+            objects.append(
+                data
+            )
+
+
+            graph = data.get(
+                "@graph"
+            )
+
+
+            if isinstance(
+                graph,
+                list
+            ):
+
+                objects.extend(
+                    graph
+                )
+
+
+        for item in objects:
+
+            if not isinstance(
+                item,
+                dict
+            ):
+
+                continue
+
+
+            image = item.get(
+                "image"
+            )
+
+
+            if isinstance(
+                image,
+                str
+            ):
+
+                image_url = clean_url(
+                    image,
+                    response.url
+                )
+
+
+                if image_url:
+
+                    return image_url
+
+
+            if isinstance(
+                image,
+                list
+            ):
+
+                for value in image:
+
+                    if isinstance(
+                        value,
+                        str
+                    ):
+
+                        image_url = clean_url(
+                            value,
+                            response.url
+                        )
+
+
+                        if image_url:
+
+                            return image_url
+
+
+    return None
+
+
+# ============================================================
+# PARSE CATEGORY
+# ============================================================
+
+def parse_category_page(
+    url
+):
+
+    results = {}
+
+
+    try:
+
+        response = requests.get(
+
+            url,
+
+            headers=HEADERS,
+
+            timeout=25,
+
+            allow_redirects=True
+
+        )
+
+
+    except Exception:
+
+        return results
+
+
+    if response.status_code != 200:
+
+        return results
+
+
+    soup = BeautifulSoup(
+        response.text,
+        "html.parser"
+    )
+
+
+    # ========================================================
+    # ΜΕΘΟΔΟΣ 1:
+    # PRODUCT CARDS
+    # ========================================================
+
+    cards = soup.select(
+        "li.product"
+    )
+
+
+    for card in cards:
+
+        card_text = card.get_text(
+            " ",
+            strip=True
+        )
+
+
+        number = extract_number(
+            card_text
+        )
+
+
+        if number is None:
+
+            continue
+
+
+        product_link = (
+
+            card.select_one(
+                'a[href*="/product/"]'
+            )
+
+            or card.find(
+                "a",
+                href=True
+            )
+
+        )
+
+
+        product_url = None
+
+
+        if product_link:
+
+            product_url = clean_url(
+                product_link.get(
+                    "href"
+                ),
+                response.url
+            )
+
+
+        # ====================================================
+        # ΠΡΩΤΑ ΠΡΟΣΠΑΘΟΥΜΕ ΑΠΟ ΤΟ CARD
+        # ====================================================
+
+        card_image = image_from_tag(
+
+            card.find(
+                "img"
+            ),
+
+            response.url
+
+        )
+
+
+        results[number] = {
+
+            "product_url":
+                product_url,
+
+            "card_image":
+                card_image
+
+        }
+
+
+    # ========================================================
+    # ΜΕΘΟΔΟΣ 2:
+    # ΟΛΑ ΤΑ LINKS
+    #
+    # Αυτό είναι fallback αν αλλάξει το WooCommerce template.
+    # ========================================================
+
+    anchors = soup.find_all(
+        "a",
+        href=True
+    )
+
+
+    for anchor in anchors:
+
+        href = anchor.get(
+            "href",
+            ""
+        )
+
+
+        if "/product/" not in href:
+
+            continue
+
+
+        text = anchor.get_text(
+            " ",
+            strip=True
+        )
+
+
+        number = extract_number(
+            text
+        )
+
+
+        if number is None:
+
+            title_attribute = (
+                anchor.get("title")
+                or
+                anchor.get("aria-label")
+                or
+                ""
+            )
+
+
+            number = extract_number(
+                title_attribute
+            )
+
+
+        if number is None:
+
+            continue
+
+
+        product_url = clean_url(
+            href,
+            response.url
+        )
+
+
+        if number not in results:
+
+            results[number] = {
+
+                "product_url":
+                    product_url,
+
+                "card_image":
+                    None
+
+            }
+
+
+        elif not results[
+            number
+        ].get(
+            "product_url"
+        ):
+
+            results[
+                number
+            ][
+                "product_url"
+            ] = product_url
+
+
+    return results
+
+
+# ============================================================
+# SEARCH FALLBACK
+# ============================================================
+
+def search_product(
+    number
+):
+
+    search_terms = [
+
+        f"Ιζνογκούντ {number:02d}",
+
+        f"Ιζνογκούντ {number}",
+
+        (
+            f"Ιζνογκούντ "
+            f"{IZNOGOUD_TITLES[number]}"
+        )
+
+    ]
+
+
+    for search_term in search_terms:
+
+        try:
+
+            response = requests.get(
+
+                BASE_URL,
+
+                params={
+                    "s":
+                        search_term,
+
+                    "post_type":
+                        "product"
+                },
+
+                headers=HEADERS,
+
+                timeout=20,
+
+                allow_redirects=True
+
+            )
+
+
+        except Exception:
+
+            continue
 
 
         if response.status_code != 200:
 
-            return None
+            continue
 
 
         soup = BeautifulSoup(
@@ -1042,217 +884,220 @@ def get_cover_from_product_page(
         )
 
 
-        selectors = [
-
-            'meta[property="og:image"]',
-
-            'meta[name="twitter:image"]',
-
-            'meta[property="twitter:image"]'
-
-        ]
+        anchors = soup.find_all(
+            "a",
+            href=True
+        )
 
 
-        for selector in selectors:
+        for anchor in anchors:
 
-            element = soup.select_one(
-                selector
+            href = anchor.get(
+                "href",
+                ""
             )
 
 
-            if (
-                element
-                and
-                element.get(
-                    "content"
-                )
-            ):
-
-                image_url = clean_image_url(
-                    element.get(
-                        "content"
-                    ),
-                    product_url
-                )
-
-
-                if image_url:
-
-                    return image_url
-
-
-        image_selectors = [
-
-            ".woocommerce-product-gallery img",
-
-            "img.wp-post-image",
-
-            ".product img"
-
-        ]
-
-
-        for selector in image_selectors:
-
-            image = soup.select_one(
-                selector
-            )
-
-
-            if not image:
+            if "/product/" not in href:
 
                 continue
 
 
-            candidates = [
-
-                image.get(
-                    "data-large_image"
-                ),
-
-                image.get(
-                    "data-lazy-src"
-                ),
-
-                image.get(
-                    "data-src"
-                ),
-
-                image.get(
-                    "src"
-                )
-
-            ]
+            text = anchor.get_text(
+                " ",
+                strip=True
+            )
 
 
-            for candidate in candidates:
-
-                image_url = clean_image_url(
-                    candidate,
-                    product_url
-                )
+            detected = extract_number(
+                text
+            )
 
 
-                if image_url:
+            if detected != number:
 
-                    return image_url
+                continue
 
 
-    except Exception:
+            product_url = clean_url(
+                href,
+                response.url
+            )
 
-        return None
+
+            image_url = get_product_page_image(
+                product_url
+            )
+
+
+            if image_url:
+
+                return image_url
 
 
     return None
 
 
 # ============================================================
-# BUILD FULL CATALOG
+# BUILD CATALOG
 # ============================================================
 
 @lru_cache(maxsize=1)
-def get_iznogoud_catalog():
+def build_catalog():
 
     catalog = {}
 
 
-    # --------------------------------------------------------
-    # 1. STORE API
-    # --------------------------------------------------------
-
-    api_catalog = (
-        get_catalog_from_store_api()
-    )
+    product_data = {}
 
 
-    catalog.update(
-        api_catalog
-    )
+    # ========================================================
+    # DIRECT IZNOGOUD CATEGORY
+    # ========================================================
 
+    for category_url in CATEGORY_URLS:
 
-    # --------------------------------------------------------
-    # 2. COMICS CATEGORY
-    # --------------------------------------------------------
-
-    if len(catalog) < 30:
-
-        html_catalog = (
-            get_catalog_from_comics_pages()
+        found = parse_category_page(
+            category_url
         )
 
 
-        for number, image_url in (
-            html_catalog.items()
-        ):
+        for number, data in found.items():
 
-            if number not in catalog:
+            if number not in product_data:
 
-                catalog[number] = (
-                    image_url
-                )
+                product_data[
+                    number
+                ] = data
 
 
-    # --------------------------------------------------------
-    # 3. SEARCH
-    # --------------------------------------------------------
+            else:
 
-    if len(catalog) < 30:
+                if (
+                    not product_data[
+                        number
+                    ].get(
+                        "product_url"
+                    )
+                    and
+                    data.get(
+                        "product_url"
+                    )
+                ):
 
-        search_catalog = (
-            get_catalog_from_search()
+                    product_data[
+                        number
+                    ][
+                        "product_url"
+                    ] = (
+                        data[
+                            "product_url"
+                        ]
+                    )
+
+
+                if (
+                    not product_data[
+                        number
+                    ].get(
+                        "card_image"
+                    )
+                    and
+                    data.get(
+                        "card_image"
+                    )
+                ):
+
+                    product_data[
+                        number
+                    ][
+                        "card_image"
+                    ] = (
+                        data[
+                            "card_image"
+                        ]
+                    )
+
+
+    # ========================================================
+    # VISIT PRODUCT PAGES
+    # ========================================================
+
+    for number, data in product_data.items():
+
+        product_url = data.get(
+            "product_url"
         )
 
 
-        for number, image_url in (
-            search_catalog.items()
-        ):
-
-            if number not in catalog:
-
-                catalog[number] = (
-                    image_url
-                )
+        image_url = None
 
 
-    # --------------------------------------------------------
-    # 4. PRODUCT PAGE
-    # --------------------------------------------------------
+        if product_url:
 
-    if len(catalog) < 30:
-
-        product_links = (
-            get_product_links_from_html()
-        )
-
-
-        for number, product_url in (
-            product_links.items()
-        ):
-
-            if number in catalog:
-
-                continue
-
-
-            image_url = (
-                get_cover_from_product_page(
-                    product_url
-                )
+            image_url = get_product_page_image(
+                product_url
             )
 
 
-            if image_url:
+        # Αν δεν βρούμε full product image,
+        # χρησιμοποιούμε την εικόνα από το card.
 
-                catalog[number] = (
-                    image_url
-                )
+        if not image_url:
+
+            image_url = data.get(
+                "card_image"
+            )
+
+
+        if image_url:
+
+            catalog[
+                number
+            ] = image_url
+
+
+    # ========================================================
+    # SEARCH FALLBACK ΓΙΑ ΟΣΑ ΛΕΙΠΟΥΝ
+    # ========================================================
+
+    for number in range(
+        1,
+        31
+    ):
+
+        if number in catalog:
+
+            continue
+
+
+        image_url = search_product(
+            number
+        )
+
+
+        if image_url:
+
+            catalog[
+                number
+            ] = image_url
+
+
+    print()
+    print(
+        "IZNOGOUD CATALOG:"
+    )
+    print(
+        f"Found {len(catalog)}/30 covers"
+    )
+    print()
 
 
     return catalog
 
 
 # ============================================================
-# MAIN FUNCTION
+# PUBLIC FUNCTION
 # ============================================================
 
 @lru_cache(maxsize=50)
@@ -1280,9 +1125,7 @@ def get_iznogoud_cover(
         return None
 
 
-    catalog = (
-        get_iznogoud_catalog()
-    )
+    catalog = build_catalog()
 
 
     return catalog.get(

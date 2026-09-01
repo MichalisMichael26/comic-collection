@@ -1,0 +1,882 @@
+{
+    "generated_at": "2026-09-01T05:07:34.967267+00:00",
+    "covers": {
+        "lucky-luke": {
+            "1": {
+                "path": "/static/covers/lucky-luke/01.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/%CE%BB%CE%BB-01.png"
+            },
+            "2": {
+                "path": "/static/covers/lucky-luke/02.jpg",
+                "source": "https://cdn.slidesharecdn.com/ss_thumbnails/02-230414110324-cc954bd8-thumbnail.jpg?fit=bounds&height=640&width=640"
+            },
+            "3": {
+                "path": "/static/covers/lucky-luke/03.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ντάλτον-Σίτυ.jpg"
+            },
+            "4": {
+                "path": "/static/covers/lucky-luke/04.jpg",
+                "source": "https://production-metabook-covers-7.ams3.digitaloceanspaces.com/files/b9/86/9dad759f-ba9c-4c9f-87bc-d5013c815d93.jpg"
+            },
+            "5": {
+                "path": "/static/covers/lucky-luke/05.jpg",
+                "source": "https://i.ebayimg.com/images/g/-qwAAOSwEeFVDLef/s-l1200.jpg"
+            },
+            "6": {
+                "path": "/static/covers/lucky-luke/06.webp",
+                "source": "https://bcdn.vendora.gr/0/4b/92/4b924e5a4cfe0ba9c2a4182ca0e61e1eae7977d2.jpg?class=lsq"
+            },
+            "7": {
+                "path": "/static/covers/lucky-luke/07.jpg",
+                "source": "https://a.scdn.gr/images/sku_main_images/003871/3871251/xlarge_20210608170616_mama_ntalton.jpeg"
+            },
+            "8": {
+                "path": "/static/covers/lucky-luke/08.jpg",
+                "source": "https://mamouthcomix.gr/wp-content/uploads/2018/02/LL-08.jpg"
+            },
+            "9": {
+                "path": "/static/covers/lucky-luke/09.jpg",
+                "source": "https://mamouthcomix.gr/wp-content/uploads/2018/02/LL-09-298x300.jpg"
+            },
+            "10": {
+                "path": "/static/covers/lucky-luke/10.jpg",
+                "source": "https://www.e-shop.gr/images/BKS/BKS.0762069.jpg"
+            },
+            "11": {
+                "path": "/static/covers/lucky-luke/11.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Ντάλτον-Στα-Χιόνια.jpg"
+            },
+            "12": {
+                "path": "/static/covers/lucky-luke/12.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Δικαστής.jpg"
+            },
+            "13": {
+                "path": "/static/covers/lucky-luke/13.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Σάρα-Μπερνάρ.jpg"
+            },
+            "14": {
+                "path": "/static/covers/lucky-luke/14.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Μαύροι-Λόφοι.jpg"
+            },
+            "15": {
+                "path": "/static/covers/lucky-luke/15.png",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
+            },
+            "16": {
+                "path": "/static/covers/lucky-luke/16.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Τηγανίτες-Για-Τους-Ντάλτον-scaled.jpg"
+            },
+            "17": {
+                "path": "/static/covers/lucky-luke/17.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Nταίηλυ-Σταρ.jpg"
+            },
+            "18": {
+                "path": "/static/covers/lucky-luke/18.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Τρυφερό-Πόδι.jpg"
+            },
+            "19": {
+                "path": "/static/covers/lucky-luke/19.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Σύρματα-Στα-Λιβάδια.jpg"
+            },
+            "20": {
+                "path": "/static/covers/lucky-luke/20.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Τζέσσε-Τζαίημς.jpg"
+            },
+            "21": {
+                "path": "/static/covers/lucky-luke/21.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Μπίλυ-Ο-Τρομερός.jpg"
+            },
+            "22": {
+                "path": "/static/covers/lucky-luke/22.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Θησαυρός-Των-Ντάλτον.jpg"
+            },
+            "23": {
+                "path": "/static/covers/lucky-luke/23.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κάνυον-Απάτσι1.jpg"
+            },
+            "24": {
+                "path": "/static/covers/lucky-luke/24.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κάνυον-Απάτσι1.jpg"
+            },
+            "25": {
+                "path": "/static/covers/lucky-luke/25.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Απόδραση-Των-Ντάλτον.jpg"
+            },
+            "26": {
+                "path": "/static/covers/lucky-luke/26.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/H-Mνηστή-Του-Λούκυ-Λουκ.jpg"
+            },
+            "27": {
+                "path": "/static/covers/lucky-luke/27.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Λευκός-Ιππότης.jpg"
+            },
+            "28": {
+                "path": "/static/covers/lucky-luke/28.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Σύρμα-Που-Τραγουδάει.jpg"
+            },
+            "29": {
+                "path": "/static/covers/lucky-luke/29.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Μπαλάντα-Των-Ντάλτον.jpg"
+            },
+            "30": {
+                "path": "/static/covers/lucky-luke/30.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Κούρσα-Του-Μισισιπή.jpg"
+            },
+            "31": {
+                "path": "/static/covers/lucky-luke/31.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Ντάλτον-Στους-Ινδιάνους.jpg"
+            },
+            "32": {
+                "path": "/static/covers/lucky-luke/32.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Αντιμέτωπος-Με-Τον-Πατ-Πόκερ.jpg"
+            },
+            "33": {
+                "path": "/static/covers/lucky-luke/33.jpg",
+                "source": "https://comicstrip.gr/image/catalog/product/lucky-luke-33-h-e3agora-twn-ntalton.jpg"
+            },
+            "34": {
+                "path": "/static/covers/lucky-luke/34.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-20ο-Σύνταγμα-Ιππικού.jpg"
+            },
+            "35": {
+                "path": "/static/covers/lucky-luke/35.png",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
+            },
+            "36": {
+                "path": "/static/covers/lucky-luke/36.png",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
+            },
+            "37": {
+                "path": "/static/covers/lucky-luke/37.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Μεγάλος-Δούκας.jpg"
+            },
+            "38": {
+                "path": "/static/covers/lucky-luke/38.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/lucky-luke-38-nitroglykerinh-800x800-1.jpg"
+            },
+            "39": {
+                "path": "/static/covers/lucky-luke/39.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Κοράκι.jpg"
+            },
+            "40": {
+                "path": "/static/covers/lucky-luke/40.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Σιδερένιο-Άλογο.jpg"
+            },
+            "41": {
+                "path": "/static/covers/lucky-luke/41.png",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
+            },
+            "42": {
+                "path": "/static/covers/lucky-luke/42.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Προς-Την-Οκλαχόμα.jpg"
+            },
+            "43": {
+                "path": "/static/covers/lucky-luke/43.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Στα-Ίχνη-Των-Ντάλτον.jpg"
+            },
+            "44": {
+                "path": "/static/covers/lucky-luke/44.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Συναγερμός-Στους-Γαλαζοπόδαρους.jpg"
+            },
+            "45": {
+                "path": "/static/covers/lucky-luke/45.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Συναγερμός-Στους-Γαλαζοπόδαρους.jpg"
+            },
+            "46": {
+                "path": "/static/covers/lucky-luke/46.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Εναντίον-Τζος-Τζέημον.jpg"
+            },
+            "47": {
+                "path": "/static/covers/lucky-luke/47.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Πόλη-Φάντασμα.jpg"
+            },
+            "48": {
+                "path": "/static/covers/lucky-luke/48.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Αντίπαλοι.jpg"
+            },
+            "49": {
+                "path": "/static/covers/lucky-luke/49.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Άλλοθι.jpg"
+            },
+            "50": {
+                "path": "/static/covers/lucky-luke/50.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Παράνομοι.jpg"
+            },
+            "51": {
+                "path": "/static/covers/lucky-luke/51.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Τσίρκο.jpg"
+            },
+            "52": {
+                "path": "/static/covers/lucky-luke/52.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Πόνυ-Εξπρές.jpg"
+            },
+            "53": {
+                "path": "/static/covers/lucky-luke/53.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Ελιξήριο.jpg"
+            },
+            "54": {
+                "path": "/static/covers/lucky-luke/54.png",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
+            },
+            "55": {
+                "path": "/static/covers/lucky-luke/55.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Επικίνδυνο-Πέρασμα.jpg"
+            },
+            "56": {
+                "path": "/static/covers/lucky-luke/56.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κίτρινος-Πυρετός.jpg"
+            },
+            "57": {
+                "path": "/static/covers/lucky-luke/57.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Ροντέο.jpg"
+            },
+            "58": {
+                "path": "/static/covers/lucky-luke/58.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Αμνησία-Των-Ντάλτον.jpg"
+            },
+            "59": {
+                "path": "/static/covers/lucky-luke/59.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κυνήγι-Φαντασμάτων.jpg"
+            },
+            "60": {
+                "path": "/static/covers/lucky-luke/60.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Αριζόνα.jpg"
+            },
+            "61": {
+                "path": "/static/covers/lucky-luke/61.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Επιστροφή-Του-Τζόε-“Η-Σκανδάλη”.jpg"
+            },
+            "62": {
+                "path": "/static/covers/lucky-luke/62.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Ντάλτον-Σε-Γάμο.jpg"
+            },
+            "63": {
+                "path": "/static/covers/lucky-luke/63.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Γέφυρα-Του-Μισισιπή.jpg"
+            },
+            "64": {
+                "path": "/static/covers/lucky-luke/64.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Μπελ-Σταρ.jpg"
+            },
+            "65": {
+                "path": "/static/covers/lucky-luke/65.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κλοντάικ.jpg"
+            },
+            "66": {
+                "path": "/static/covers/lucky-luke/66.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ένας-Σεΐχης-στο-Φαρ-Ουέστ.jpg"
+            },
+            "67": {
+                "path": "/static/covers/lucky-luke/67.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Παντρεύεται-Ο-Λούκυ.jpg"
+            },
+            "68": {
+                "path": "/static/covers/lucky-luke/68.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Παντρεύεται-Ο-Λούκυ.jpg"
+            },
+            "69": {
+                "path": "/static/covers/lucky-luke/69.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Μακ-Στους-Ινδιάνους.jpg"
+            },
+            "70": {
+                "path": "/static/covers/lucky-luke/70.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/18.jpg"
+            },
+            "71": {
+                "path": "/static/covers/lucky-luke/71.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Μπόμπιρας-Λούκυ.jpg"
+            },
+            "72": {
+                "path": "/static/covers/lucky-luke/72.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οκλαχόμα-Τζιμ.jpg"
+            },
+            "73": {
+                "path": "/static/covers/lucky-luke/73.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Προφήτης.jpg"
+            },
+            "74": {
+                "path": "/static/covers/lucky-luke/74.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Ζωγράφος.jpg"
+            },
+            "75": {
+                "path": "/static/covers/lucky-luke/75.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Θρύλος-Της-Δύσης.jpg"
+            },
+            "76": {
+                "path": "/static/covers/lucky-luke/76.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Ωραία-Προβένς.jpg"
+            },
+            "77": {
+                "path": "/static/covers/lucky-luke/77.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Ντάλτον-Στην-Κρεμάλα-Λούκυ-Λουκ-77.jpg"
+            },
+            "78": {
+                "path": "/static/covers/lucky-luke/78.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Άνθρωπος-Από-Την-Ουάσινγκτον.jpg"
+            },
+            "79": {
+                "path": "/static/covers/lucky-luke/79.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Λούκυ-Λουκ-Εναντίον-Πίνκερτον.jpg"
+            },
+            "80": {
+                "path": "/static/covers/lucky-luke/80.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2015/03/Μοναχικός-Καβαλάρης.jpg"
+            },
+            "81": {
+                "path": "/static/covers/lucky-luke/81.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2024/02/Εκείνες-εμπρος.jpg"
+            },
+            "82": {
+                "path": "/static/covers/lucky-luke/82.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2017/04/Λούκυ-Λουκ-H-Γη-Της-Επαγγελίας-No82.jpg"
+            },
+            "83": {
+                "path": "/static/covers/lucky-luke/83.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2017/05/Ο-Αγνωστος-Του-Magnus-Τόμος-1.jpg"
+            },
+            "84": {
+                "path": "/static/covers/lucky-luke/84.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2024/10/Τα-Κοσμήματα-Της-Κασταφιόρε-ΤενΤεν-20.jpg"
+            },
+            "85": {
+                "path": "/static/covers/lucky-luke/85.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2019/12/Λούκυ-Λουκ-85.jpg"
+            },
+            "86": {
+                "path": "/static/covers/lucky-luke/86.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2020/07/Λούκυ-Κιντ-Αταξία-Και-Τιμωρία-Λούκυ-Λουκ-86.jpg"
+            },
+            "87": {
+                "path": "/static/covers/lucky-luke/87.png",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Τεντεν-7-Το-μυστικό-του-μονόκερου.png"
+            },
+            "88": {
+                "path": "/static/covers/lucky-luke/88.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2021/06/Μάθε-τέχνη-κι-άστηνε-001-rotated.jpg"
+            },
+            "89": {
+                "path": "/static/covers/lucky-luke/89.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2020/11/Λούκυ-Λουκ-87-Μπελάδες-στις-φυτείες.jpg"
+            },
+            "90": {
+                "path": "/static/covers/lucky-luke/90.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2025/10/1-2.jpg"
+            },
+            "SPECIAL": {
+                "path": "/static/covers/lucky-luke/special.jpg",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2018/06/Ο-Ντόλης-Δεν-Απαντάει-Πιά.jpg"
+            }
+        },
+        "asterix": {
+            "1": {
+                "path": "/static/covers/asterix/01.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-01:-o-agwnas-twn-arxhgwn-1-600x315.png"
+            },
+            "2": {
+                "path": "/static/covers/asterix/02.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-02:-obelix-sia-600x315.png"
+            },
+            "3": {
+                "path": "/static/covers/asterix/03.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-03:-o-asterix-sthn-ispania-600x315.png"
+            },
+            "4": {
+                "path": "/static/covers/asterix/04.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-04:-o-asterix-kai-oi-got8oi-600x315.png"
+            },
+            "5": {
+                "path": "/static/covers/asterix/05.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-05:-asterix-kai-kleopatra-1-600x315.png"
+            },
+            "6": {
+                "path": "/static/covers/asterix/06.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-06:-h-dixonoia-1-600x315.png"
+            },
+            "7": {
+                "path": "/static/covers/asterix/07.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-07:-h-katoikia-twn-8ewn-600x315.png"
+            },
+            "8": {
+                "path": "/static/covers/asterix/08.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-08:-o-manths-600x315.png"
+            },
+            "9": {
+                "path": "/static/covers/asterix/09.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-09:-o-gyros-ths-galatias-600x315.png"
+            },
+            "10": {
+                "path": "/static/covers/asterix/10.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-10:-asterix-o-galaths-600x315.png"
+            },
+            "11": {
+                "path": "/static/covers/asterix/11.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-11:-o-asterix-stoys-belgoys-2-600x315.png"
+            },
+            "12": {
+                "path": "/static/covers/asterix/12.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-12:-o-asterix-sthn-korsikh-2-600x315.png"
+            },
+            "13": {
+                "path": "/static/covers/asterix/13.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-13:-o-asterix-monomaxos-600x315.png"
+            },
+            "14": {
+                "path": "/static/covers/asterix/14.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-14:-o-asterix-kai-oi-normandoi-1-600x315.png"
+            },
+            "15": {
+                "path": "/static/covers/asterix/15.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-15:-oi-dafnes-toy-kaisara-600x315.png"
+            },
+            "16": {
+                "path": "/static/covers/asterix/16.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-16:-to-xryso-drepani-600x315.png"
+            },
+            "17": {
+                "path": "/static/covers/asterix/17.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-17:-o-asterix-stoys-bretanoys-2-600x315.png"
+            },
+            "18": {
+                "path": "/static/covers/asterix/18.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-18:-o-asterix-kai-h-xytra-2-600x315.png"
+            },
+            "19": {
+                "path": "/static/covers/asterix/19.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-19:-h-aspida-ths-arbernhs-600x315.png"
+            },
+            "20": {
+                "path": "/static/covers/asterix/20.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-20:-o-asterix-stoys-elbetoys-2-600x315.png"
+            },
+            "21": {
+                "path": "/static/covers/asterix/21.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-21:-to-dwro-toy-kaisara-600x315.png"
+            },
+            "22": {
+                "path": "/static/covers/asterix/22.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-22:-rodo-kai-3ifos-600x315.png"
+            },
+            "23": {
+                "path": "/static/covers/asterix/23.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-23:-to-megalo-ta3idi-600x315.png"
+            },
+            "24": {
+                "path": "/static/covers/asterix/24.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-24:-o-asterix-legewnarios-600x315.png"
+            },
+            "25": {
+                "path": "/static/covers/asterix/25.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-25:-o-asterix-stoys-olympiakoys-agwnes-1-600x315.png"
+            },
+            "26": {
+                "path": "/static/covers/asterix/26.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-26:-h-megalh-tafros-2-600x315.png"
+            },
+            "27": {
+                "path": "/static/covers/asterix/27.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-27:-h-odysseia-toy-asterix-600x315.png"
+            },
+            "28": {
+                "path": "/static/covers/asterix/28.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-28:-o-gios-toy-asterix-600x315.png"
+            },
+            "29": {
+                "path": "/static/covers/asterix/29.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-29-o-asterix-kai-h-xalalima-600x315.png"
+            },
+            "30": {
+                "path": "/static/covers/asterix/30.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-30:-h-galera-toy-obelix-600x315.png"
+            },
+            "31": {
+                "path": "/static/covers/asterix/31.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-31:-o-asterix-kai-h-latrabiata-600x315.png"
+            },
+            "32": {
+                "path": "/static/covers/asterix/32.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-32:-o-asterix-kai-h-epistrofh-twn-galatwn-600x315.png"
+            },
+            "33": {
+                "path": "/static/covers/asterix/33.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-33:-kai-o-oyranos-epese-sto-kefali-toys-600x315.png"
+            },
+            "34": {
+                "path": "/static/covers/asterix/34.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-34:-ta-gene8lia-twn-asterix-kai-obelix-600x315.png"
+            },
+            "35": {
+                "path": "/static/covers/asterix/35.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-35:-o-asterix-stoys-piktoys-600x315.png"
+            },
+            "36": {
+                "path": "/static/covers/asterix/36.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-36:-o-papyros-toy-kaisara-600x315.png"
+            },
+            "37": {
+                "path": "/static/covers/asterix/37.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-37:-o-asterix-kai-o-yperitalikos-600x315.png"
+            },
+            "38": {
+                "path": "/static/covers/asterix/38.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-38:-h-korh-toy-bersinzetori3-600x315.png"
+            },
+            "39": {
+                "path": "/static/covers/asterix/39.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-39:-o-asterix-kai-o-grypas-600x315.png"
+            },
+            "40": {
+                "path": "/static/covers/asterix/40.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-40:-h-leykh-irida-600x315.png"
+            },
+            "41": {
+                "path": "/static/covers/asterix/41.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-41:-o-asterix-sthn-loyzitania-600x315.png"
+            }
+        },
+        "idefix": {
+            "1": {
+                "path": "/static/covers/idefix/01.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/o-intefi3-kai-oi-anypotaktoi-1:-kanenas-oiktos-gia-toys-latinoys-600x315.png"
+            },
+            "2": {
+                "path": "/static/covers/idefix/02.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/o-intefi3-kai-oi-anypotaktoi-2:-o-intefi3-kai-o-droyidhs-600x315.png"
+            }
+        },
+        "iznogoud": {},
+        "rantanplan": {
+            "17": {
+                "path": "/static/covers/rantanplan/17.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2026/06/ραντανπλαν-17-Cover.png"
+            }
+        },
+        "sherlock-holmes": {
+            "1": {
+                "path": "/static/covers/sherlock-holmes/01.jpg",
+                "source": "https://static.efantasy.gr/products/367679/367679-0-0000-serlok-xolms-1-den-fobatai-tipota.jpg"
+            },
+            "2": {
+                "path": "/static/covers/sherlock-holmes/02.jpg",
+                "source": "https://static.efantasy.gr/products/367681/367681-0-0000-serlok-xolms-2-i-lesxi-ton-akraion-spor.jpg"
+            },
+            "3": {
+                "path": "/static/covers/sherlock-holmes/03.jpg",
+                "source": "https://static.efantasy.gr/products/367683/367683-0-0000-serlok-xolms-3-oi-anthropoi-tis-kamelias.jpg"
+            },
+            "4": {
+                "path": "/static/covers/sherlock-holmes/04.jpg",
+                "source": "https://static.efantasy.gr/products/367685/367685-0-0000-serlok-xolms-4-i-skia-tou-m.jpg"
+            }
+        },
+        "arkas": {
+            "1": {
+                "path": "/static/covers/arkas/01.webp",
+                "source": "https://external.webstorage.gr/mmimages/image/40/15/76/93/0087977-264x264-800x800.jpg"
+            },
+            "5": {
+                "path": "/static/covers/arkas/05.jpg",
+                "source": "https://d.scdn.gr/images/sku_main_images/037384/37384239/20220808155715_i_zoi_meta_epitomo.jpeg"
+            },
+            "7": {
+                "path": "/static/covers/arkas/07.jpg",
+                "source": "https://www.lifo.gr/sites/default/files/styles/max_1920x1920/public/articles/2021-01-21/show_businnes.jpg?itok=Rk5y6WFg"
+            },
+            "8": {
+                "path": "/static/covers/arkas/08.jpg",
+                "source": "https://d.scdn.gr/images/sku_main_images/000119/119107/xlarge_20220824162857_xypnas_mesa_mou_to_zoo.jpeg"
+            },
+            "12": {
+                "path": "/static/covers/arkas/12.webp",
+                "source": "https://external.webstorage.gr/mmimages/image/70/37/29/60/0170119-264x264-800x800-96x96-560x560.jpg"
+            },
+            "14": {
+                "path": "/static/covers/arkas/14.webp",
+                "source": "https://bcdn.vendora.gr/0/07/93/07932f06833c818444188afee46ee013132cd314.jpg?class=lsq"
+            },
+            "15": {
+                "path": "/static/covers/arkas/15.webp",
+                "source": "https://bcdn.vendora.gr/0/27/90/279024bc1d332b2cd10d198dd8ea1cc082e39439.jpg?class=lsq"
+            },
+            "19": {
+                "path": "/static/covers/arkas/19.jpg",
+                "source": "https://c.scdn.gr/images/sku_main_images/014522/14522477/20200219105454_i_apoikia.jpeg"
+            },
+            "21": {
+                "path": "/static/covers/arkas/21.webp",
+                "source": "https://external.webstorage.gr/mmimages/image/96/51/94/29/1104410-264x264-800x800.jpg"
+            }
+        }
+    },
+    "missing": {
+        "lucky-luke": [],
+        "asterix": [],
+        "idefix": [],
+        "iznogoud": [
+            {
+                "number": 1,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 2,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 3,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 4,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 5,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 6,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 7,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 8,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 9,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 10,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 11,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 12,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 13,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 14,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 15,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 16,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 17,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 18,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 19,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 20,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 21,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 22,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 23,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 24,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 25,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 26,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 27,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 28,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 29,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 30,
+                "reason": "Δεν βρέθηκε image URL"
+            }
+        ],
+        "rantanplan": [
+            {
+                "number": 1,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 2,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 3,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 4,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 5,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 6,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 7,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 8,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 9,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 10,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 11,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 12,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 13,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 14,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 15,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 16,
+                "reason": "Δεν βρέθηκε image URL"
+            }
+        ],
+        "sherlock-holmes": [],
+        "arkas": [
+            {
+                "number": 2,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 3,
+                "reason": "Δεν είναι υποστηριζόμενη εικόνα: image/avif",
+                "source": "https://external.webstorage.gr/mmimages/image/20/50/58/95/1683863-264x264-800x800.jpg"
+            },
+            {
+                "number": 4,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 6,
+                "reason": "Δεν είναι υποστηριζόμενη εικόνα: image/avif",
+                "source": "https://external.webstorage.gr/mmimages/image/40/68/31/57/0203231-264x264-800x800-96x96-560x560.jpg"
+            },
+            {
+                "number": 9,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 10,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 11,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 13,
+                "reason": "HTTP 403",
+                "source": "https://cdn-s3.insomnia.gr/monthly_2018_07/-1-638.jpg.604657943bcb3d56af0d65ef4eb0b5f3.jpg"
+            },
+            {
+                "number": 16,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 17,
+                "reason": "HTTP 404",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2021/02/%CE%BF-%CF%80%CF%81%CE%BF%CF%86%CE%AE%CF%84%CE%B7%CF%82.jpg"
+            },
+            {
+                "number": 18,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 20,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 22,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 23,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 24,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 25,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 26,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 27,
+                "reason": "Δεν βρέθηκε image URL"
+            }
+        ]
+    }
+}

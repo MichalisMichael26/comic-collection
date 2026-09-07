@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-09-01T05:07:34.967267+00:00",
+    "generated_at": "2026-09-07T04:08:28.879951+00:00",
     "covers": {
         "lucky-luke": {
             "1": {
@@ -434,7 +434,7 @@
             },
             "17": {
                 "path": "/static/covers/asterix/17.png",
-                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-17:-o-asterix-stoys-bretanoys-2-600x315.png"
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-17:-o-asterix-stoys-bretanoys-600x315.png"
             },
             "18": {
                 "path": "/static/covers/asterix/18.png",
@@ -543,7 +543,96 @@
                 "source": "https://comicstrip.gr/image/cache/catalog/product/o-intefi3-kai-oi-anypotaktoi-2:-o-intefi3-kai-o-droyidhs-600x315.png"
             }
         },
-        "iznogoud": {},
+        "iznogoud": {
+            "1": {
+                "path": "/static/covers/iznogoud/01.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/ιζν-01.png"
+            },
+            "3": {
+                "path": "/static/covers/iznogoud/03.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-03.png"
+            },
+            "4": {
+                "path": "/static/covers/iznogoud/04.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-04.png"
+            },
+            "5": {
+                "path": "/static/covers/iznogoud/05.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-05.png"
+            },
+            "6": {
+                "path": "/static/covers/iznogoud/06.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-06.png"
+            },
+            "7": {
+                "path": "/static/covers/iznogoud/07.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-07.png"
+            },
+            "8": {
+                "path": "/static/covers/iznogoud/08.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/05/ιζνογκούντ-08-η-μέρα-των-τρελών.png"
+            },
+            "9": {
+                "path": "/static/covers/iznogoud/09.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-09.png"
+            },
+            "10": {
+                "path": "/static/covers/iznogoud/10.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-10.png"
+            },
+            "11": {
+                "path": "/static/covers/iznogoud/11.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-11.png"
+            },
+            "12": {
+                "path": "/static/covers/iznogoud/12.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-12.png"
+            },
+            "13": {
+                "path": "/static/covers/iznogoud/13.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-13.png"
+            },
+            "14": {
+                "path": "/static/covers/iznogoud/14.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-14.png"
+            },
+            "22": {
+                "path": "/static/covers/iznogoud/22.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-22.png"
+            },
+            "23": {
+                "path": "/static/covers/iznogoud/23.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-23.png"
+            },
+            "24": {
+                "path": "/static/covers/iznogoud/24.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-24.png"
+            },
+            "25": {
+                "path": "/static/covers/iznogoud/25.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-25.png"
+            },
+            "26": {
+                "path": "/static/covers/iznogoud/26.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-26.png"
+            },
+            "27": {
+                "path": "/static/covers/iznogoud/27.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-27.png"
+            },
+            "28": {
+                "path": "/static/covers/iznogoud/28.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/ιζν-28.png"
+            },
+            "29": {
+                "path": "/static/covers/iznogoud/29.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/07/Ιζνογκούντ-29.png"
+            },
+            "30": {
+                "path": "/static/covers/iznogoud/30.png",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2024/11/Ιζνογκούντ-30-από-πατέρα-σε-γιό.png"
+            }
+        },
         "rantanplan": {
             "17": {
                 "path": "/static/covers/rantanplan/17.png",
@@ -613,59 +702,7 @@
         "idefix": [],
         "iznogoud": [
             {
-                "number": 1,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
                 "number": 2,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 3,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 4,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 5,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 6,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 7,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 8,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 9,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 10,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 11,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 12,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 13,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 14,
                 "reason": "Δεν βρέθηκε image URL"
             },
             {
@@ -694,42 +731,6 @@
             },
             {
                 "number": 21,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 22,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 23,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 24,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 25,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 26,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 27,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 28,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 29,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 30,
                 "reason": "Δεν βρέθηκε image URL"
             }
         ],

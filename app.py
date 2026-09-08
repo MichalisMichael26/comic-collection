@@ -3,31 +3,62 @@ from pathlib import Path
 
 
 # ============================================================
-# DATA
+# DATA - ΠΑΛΙΕΣ ΚΑΤΗΓΟΡΙΕΣ
 # ============================================================
 
 from lucky_luke_data import (
-    get_lucky_luke_comics as load_lucky_luke_comics
+    get_lucky_luke_comics
+    as load_lucky_luke_comics
 )
 
 from idefix_data import (
-    get_idefix_comics as load_idefix_comics
+    get_idefix_comics
+    as load_idefix_comics
 )
 
 from arkas_data import (
-    get_arkas_comics as load_arkas_comics
+    get_arkas_comics
+    as load_arkas_comics
 )
 
 from iznogoud_data import (
-    get_iznogoud_comics as load_iznogoud_comics
+    get_iznogoud_comics
+    as load_iznogoud_comics
 )
 
 from rantanplan_data import (
-    get_rantanplan_comics as load_rantanplan_comics
+    get_rantanplan_comics
+    as load_rantanplan_comics
 )
 
 from sherlock_holmes_data import (
-    get_sherlock_holmes_comics as load_sherlock_holmes_comics
+    get_sherlock_holmes_comics
+    as load_sherlock_holmes_comics
+)
+
+
+# ============================================================
+# DATA - ΝΕΕΣ ΚΑΤΗΓΟΡΙΕΣ
+# ============================================================
+
+from zelda_data import (
+    get_zelda_comics
+    as load_zelda_comics
+)
+
+from dc_comics_data import (
+    get_dc_comics
+    as load_dc_comics
+)
+
+from marvel_data import (
+    get_marvel_comics
+    as load_marvel_comics
+)
+
+from marvel_graphic_novel_data import (
+    get_marvel_graphic_novels
+    as load_marvel_graphic_novels
 )
 
 
@@ -46,38 +77,62 @@ categories = [
 
     {
         "name": "Αρκάς",
-        "slug": "arkas"
+        "slug": "arkas",
     },
 
     {
         "name": "Λούκυ Λουκ",
-        "slug": "lucky-luke"
+        "slug": "lucky-luke",
     },
 
     {
         "name": "Αστερίξ",
-        "slug": "asterix"
+        "slug": "asterix",
     },
 
     {
         "name": "Ιντεφίξ",
-        "slug": "idefix"
+        "slug": "idefix",
     },
 
     {
         "name": "Ιζνογκούντ",
-        "slug": "iznogoud"
+        "slug": "iznogoud",
     },
 
     {
         "name": "Ραντανπλάν",
-        "slug": "rantanplan"
+        "slug": "rantanplan",
     },
 
     {
         "name": "Σέρλοκ Χολμς",
-        "slug": "sherlock-holmes"
-    }
+        "slug": "sherlock-holmes",
+    },
+
+    # ========================================================
+    # ΝΕΕΣ ΚΑΤΗΓΟΡΙΕΣ
+    # ========================================================
+
+    {
+        "name": "Zelda",
+        "slug": "zelda",
+    },
+
+    {
+        "name": "DC Comics",
+        "slug": "dc-comics",
+    },
+
+    {
+        "name": "Marvel",
+        "slug": "marvel",
+    },
+
+    {
+        "name": "Marvel Graphic Novel",
+        "slug": "marvel-graphic-novel",
+    },
 
 ]
 
@@ -131,7 +186,7 @@ ASTERIX_TITLES = [
     "Η Κόρη του Βερσινζεντορίξ",
     "Ο Αστερίξ και ο Γρύπας",
     "Η Λευκή Ίριδα",
-    "Ο Αστερίξ στην Λουζιτανία"
+    "Ο Αστερίξ στην Λουζιτανία",
 
 ]
 
@@ -142,17 +197,14 @@ ASTERIX_TITLES = [
 
 def get_local_cover(
     series,
-    number
+    number,
 ):
 
     folder = (
         Path(app.static_folder)
-        /
-        "covers"
-        /
-        series
+        / "covers"
+        / series
     )
-
 
     # --------------------------------------------------------
     # SPECIAL
@@ -160,68 +212,134 @@ def get_local_cover(
 
     if str(number).upper() == "SPECIAL":
 
-        filename_base = "special"
+        filename_bases = [
+            "special",
+            "SPECIAL",
+        ]
 
     else:
 
         try:
 
-            filename_base = (
-                f"{int(number):02d}"
+            int_number = int(
+                number
             )
+
+            # Υποστηρίζουμε:
+            #
+            # 001.jpg  -> νέα μορφή
+            # 01.jpg   -> παλιά μορφή
+            # 1.jpg    -> fallback
+
+            filename_bases = [
+                f"{int_number:03d}",
+                f"{int_number:02d}",
+                str(int_number),
+            ]
 
         except Exception:
 
-            filename_base = str(number)
-
+            filename_bases = [
+                str(number)
+            ]
 
     # --------------------------------------------------------
-    # ΠΙΘΑΝΑ FORMAT
+    # ΠΙΘΑΝΑ IMAGE FORMATS
     # --------------------------------------------------------
 
     extensions = [
-
         ".jpg",
         ".jpeg",
         ".png",
         ".webp",
-        ".gif"
-
+        ".gif",
     ]
 
+    # --------------------------------------------------------
+    # ΕΛΕΓΧΟΣ ΑΡΧΕΙΩΝ
+    # --------------------------------------------------------
 
-    for extension in extensions:
+    for filename_base in filename_bases:
 
-        filename = (
-            filename_base
-            +
-            extension
-        )
+        for extension in extensions:
 
-
-        full_path = (
-            folder
-            /
-            filename
-        )
-
-
-        if full_path.exists():
-
-            return url_for(
-                "static",
-                filename=(
-                    f"covers/"
-                    f"{series}/"
-                    f"{filename}"
-                )
+            filename = (
+                filename_base
+                + extension
             )
 
+            full_path = (
+                folder
+                / filename
+            )
 
-    # Δεν υπάρχει τοπικό cover.
-    # ΔΕΝ ψάχνουμε online.
+            if full_path.exists():
+
+                return url_for(
+                    "static",
+                    filename=(
+                        f"covers/"
+                        f"{series}/"
+                        f"{filename}"
+                    ),
+                )
+
+    # Δεν υπάρχει local cover.
 
     return ""
+
+
+# ============================================================
+# HELPER - ΜΕΤΑΤΡΟΠΗ DATA ΣΕ COMICS
+# ============================================================
+
+def build_comics(
+    original,
+    series_slug,
+):
+
+    comics = []
+
+    for comic in original:
+
+        number = (
+            comic.get(
+                "number"
+            )
+        )
+
+        comics.append(
+            {
+                "number":
+                    number,
+
+                "title":
+                    comic.get(
+                        "title",
+                        "",
+                    ),
+
+                "image":
+                    get_local_cover(
+                        series_slug,
+                        number,
+                    ),
+
+                "owned":
+                    comic.get(
+                        "owned",
+                        False,
+                    ),
+
+                "search_title":
+                    comic.get(
+                        "search_title",
+                        "",
+                    ),
+            }
+        )
+
+    return comics
 
 
 # ============================================================
@@ -232,10 +350,9 @@ def get_asterix_comics():
 
     comics = []
 
-
     for number, title in enumerate(
         ASTERIX_TITLES,
-        start=1
+        start=1,
     ):
 
         comics.append(
@@ -249,14 +366,13 @@ def get_asterix_comics():
                 "image":
                     get_local_cover(
                         "asterix",
-                        number
+                        number,
                     ),
 
                 "owned":
-                    False
+                    False,
             }
         )
-
 
     return comics
 
@@ -267,43 +383,10 @@ def get_asterix_comics():
 
 def get_lucky_luke_comics():
 
-    original = (
-        load_lucky_luke_comics()
+    return build_comics(
+        load_lucky_luke_comics(),
+        "lucky-luke",
     )
-
-
-    comics = []
-
-
-    for comic in original:
-
-        number = comic["number"]
-
-
-        comics.append(
-            {
-                "number":
-                    number,
-
-                "title":
-                    comic["title"],
-
-                "image":
-                    get_local_cover(
-                        "lucky-luke",
-                        number
-                    ),
-
-                "owned":
-                    comic.get(
-                        "owned",
-                        False
-                    )
-            }
-        )
-
-
-    return comics
 
 
 # ============================================================
@@ -312,43 +395,10 @@ def get_lucky_luke_comics():
 
 def get_idefix_comics():
 
-    original = (
-        load_idefix_comics()
+    return build_comics(
+        load_idefix_comics(),
+        "idefix",
     )
-
-
-    comics = []
-
-
-    for comic in original:
-
-        number = comic["number"]
-
-
-        comics.append(
-            {
-                "number":
-                    number,
-
-                "title":
-                    comic["title"],
-
-                "image":
-                    get_local_cover(
-                        "idefix",
-                        number
-                    ),
-
-                "owned":
-                    comic.get(
-                        "owned",
-                        False
-                    )
-            }
-        )
-
-
-    return comics
 
 
 # ============================================================
@@ -357,43 +407,10 @@ def get_idefix_comics():
 
 def get_iznogoud_comics():
 
-    original = (
-        load_iznogoud_comics()
+    return build_comics(
+        load_iznogoud_comics(),
+        "iznogoud",
     )
-
-
-    comics = []
-
-
-    for comic in original:
-
-        number = comic["number"]
-
-
-        comics.append(
-            {
-                "number":
-                    number,
-
-                "title":
-                    comic["title"],
-
-                "image":
-                    get_local_cover(
-                        "iznogoud",
-                        number
-                    ),
-
-                "owned":
-                    comic.get(
-                        "owned",
-                        False
-                    )
-            }
-        )
-
-
-    return comics
 
 
 # ============================================================
@@ -402,43 +419,10 @@ def get_iznogoud_comics():
 
 def get_rantanplan_comics():
 
-    original = (
-        load_rantanplan_comics()
+    return build_comics(
+        load_rantanplan_comics(),
+        "rantanplan",
     )
-
-
-    comics = []
-
-
-    for comic in original:
-
-        number = comic["number"]
-
-
-        comics.append(
-            {
-                "number":
-                    number,
-
-                "title":
-                    comic["title"],
-
-                "image":
-                    get_local_cover(
-                        "rantanplan",
-                        number
-                    ),
-
-                "owned":
-                    comic.get(
-                        "owned",
-                        False
-                    )
-            }
-        )
-
-
-    return comics
 
 
 # ============================================================
@@ -447,43 +431,10 @@ def get_rantanplan_comics():
 
 def get_sherlock_holmes_comics():
 
-    original = (
-        load_sherlock_holmes_comics()
+    return build_comics(
+        load_sherlock_holmes_comics(),
+        "sherlock-holmes",
     )
-
-
-    comics = []
-
-
-    for comic in original:
-
-        number = comic["number"]
-
-
-        comics.append(
-            {
-                "number":
-                    number,
-
-                "title":
-                    comic["title"],
-
-                "image":
-                    get_local_cover(
-                        "sherlock-holmes",
-                        number
-                    ),
-
-                "owned":
-                    comic.get(
-                        "owned",
-                        False
-                    )
-            }
-        )
-
-
-    return comics
 
 
 # ============================================================
@@ -492,85 +443,137 @@ def get_sherlock_holmes_comics():
 
 def get_arkas_comics():
 
-    original = (
-        load_arkas_comics()
+    return build_comics(
+        load_arkas_comics(),
+        "arkas",
     )
 
 
-    comics = []
+# ============================================================
+# ZELDA
+# ============================================================
+
+def get_zelda_comics():
+
+    return build_comics(
+        load_zelda_comics(),
+        "zelda",
+    )
 
 
-    for comic in original:
+# ============================================================
+# DC COMICS
+# ============================================================
 
-        number = comic["number"]
+def get_dc_comics():
 
-
-        comics.append(
-            {
-                "number":
-                    number,
-
-                "title":
-                    comic["title"],
-
-                "image":
-                    get_local_cover(
-                        "arkas",
-                        number
-                    ),
-
-                "owned":
-                    comic.get(
-                        "owned",
-                        False
-                    )
-            }
-        )
+    return build_comics(
+        load_dc_comics(),
+        "dc-comics",
+    )
 
 
-    return comics
+# ============================================================
+# MARVEL
+# ============================================================
+
+def get_marvel_comics():
+
+    return build_comics(
+        load_marvel_comics(),
+        "marvel",
+    )
+
+
+# ============================================================
+# MARVEL GRAPHIC NOVEL
+# ============================================================
+
+def get_marvel_graphic_novels():
+
+    return build_comics(
+        load_marvel_graphic_novels(),
+        "marvel-graphic-novel",
+    )
 
 
 # ============================================================
 # GET COMICS
 # ============================================================
 
-def get_comics(slug):
+def get_comics(
+    slug
+):
 
     if slug == "arkas":
 
-        return get_arkas_comics()
-
+        return (
+            get_arkas_comics()
+        )
 
     if slug == "lucky-luke":
 
-        return get_lucky_luke_comics()
-
+        return (
+            get_lucky_luke_comics()
+        )
 
     if slug == "asterix":
 
-        return get_asterix_comics()
-
+        return (
+            get_asterix_comics()
+        )
 
     if slug == "idefix":
 
-        return get_idefix_comics()
-
+        return (
+            get_idefix_comics()
+        )
 
     if slug == "iznogoud":
 
-        return get_iznogoud_comics()
-
+        return (
+            get_iznogoud_comics()
+        )
 
     if slug == "rantanplan":
 
-        return get_rantanplan_comics()
-
+        return (
+            get_rantanplan_comics()
+        )
 
     if slug == "sherlock-holmes":
 
-        return get_sherlock_holmes_comics()
+        return (
+            get_sherlock_holmes_comics()
+        )
 
+    # ========================================================
+    # ΝΕΕΣ ΚΑΤΗΓΟΡΙΕΣ
+    # ========================================================
+
+    if slug == "zelda":
+
+        return (
+            get_zelda_comics()
+        )
+
+    if slug == "dc-comics":
+
+        return (
+            get_dc_comics()
+        )
+
+    if slug == "marvel":
+
+        return (
+            get_marvel_comics()
+        )
+
+    if slug == "marvel-graphic-novel":
+
+        return (
+            get_marvel_graphic_novels()
+        )
 
     return []
 
@@ -583,33 +586,29 @@ def get_all_comics():
 
     all_comics = []
 
-
     for category in categories:
 
         comics = get_comics(
             category["slug"]
         )
 
-
         for comic in comics:
 
-            item = comic.copy()
-
+            item = (
+                comic.copy()
+            )
 
             item["series"] = (
                 category["slug"]
             )
 
-
             item["series_name"] = (
                 category["name"]
             )
 
-
             all_comics.append(
                 item
             )
-
 
     return all_comics
 
@@ -622,7 +621,6 @@ def get_comic_groups():
 
     groups = []
 
-
     for category in categories:
 
         groups.append(
@@ -632,11 +630,12 @@ def get_comic_groups():
 
                 "comics":
                     get_comics(
-                        category["slug"]
-                    )
+                        category[
+                            "slug"
+                        ]
+                    ),
             }
         )
-
 
     return groups
 
@@ -652,24 +651,20 @@ def dashboard():
         get_all_comics()
     )
 
-
     total = len(
         all_comics
     )
-
 
     owned = sum(
         1
         for comic in all_comics
         if comic.get(
             "owned",
-            False
+            False,
         )
     )
 
-
     stats = {
-
         "total":
             total,
 
@@ -680,21 +675,20 @@ def dashboard():
             total - owned,
 
         "duplicates":
-            0
-
+            0,
     }
 
-
     return render_template(
-
         "dashboard.html",
 
-        categories=categories,
+        categories=
+            categories,
 
-        stats=stats,
+        stats=
+            stats,
 
-        all_comics=all_comics
-
+        all_comics=
+            all_comics,
     )
 
 
@@ -702,19 +696,22 @@ def dashboard():
 # MISSING
 # ============================================================
 
-@app.route("/missing")
+@app.route(
+    "/missing"
+)
 def missing():
 
     return render_template(
-
         "missing.html",
 
-        categories=categories,
+        categories=
+            categories,
 
-        groups=get_comic_groups(),
+        groups=
+            get_comic_groups(),
 
-        all_comics=get_all_comics()
-
+        all_comics=
+            get_all_comics(),
     )
 
 
@@ -730,39 +727,34 @@ def category(
 ):
 
     selected_category = next(
-
         (
             item
             for item in categories
             if item["slug"] == slug
         ),
-
-        None
-
+        None,
     )
-
 
     if selected_category is None:
 
         return (
             "Η κατηγορία δεν βρέθηκε.",
-            404
+            404,
         )
 
-
     return render_template(
-
         "category.html",
 
         category=
             selected_category,
 
         comics=
-            get_comics(slug),
+            get_comics(
+                slug
+            ),
 
         categories=
-            categories
-
+            categories,
     )
 
 
@@ -774,5 +766,5 @@ if __name__ == "__main__":
 
     app.run(
         host="0.0.0.0",
-        port=5000
+        port=5000,
     )

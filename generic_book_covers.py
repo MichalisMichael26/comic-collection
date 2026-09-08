@@ -1,9 +1,15 @@
 # ============================================================
-# GENERIC COVER SERVICE
-# Zelda / DC Comics / Marvel / Marvel Graphic Novel
+# GENERIC COMIC / BOOK COVER SEARCH
 #
-# Ψάχνει στο Google Books και επιστρέφει το καλύτερο
-# διαθέσιμο cover URL.
+# Sources:
+# 1. Open Library
+# 2. Google Books
+#
+# Used by:
+# Zelda
+# DC Comics
+# Marvel
+# Marvel Graphic Novel
 # ============================================================
 
 from functools import lru_cache
@@ -14,8 +20,12 @@ import requests
 
 
 # ============================================================
-# GOOGLE BOOKS
+# API URLS
 # ============================================================
+
+OPEN_LIBRARY_URL = (
+    "https://openlibrary.org/search.json"
+)
 
 GOOGLE_BOOKS_URL = (
     "https://www.googleapis.com/books/v1/volumes"
@@ -34,6 +44,7 @@ HEADERS = {
         "(KHTML, like Gecko) "
         "Chrome/120 Safari/537.36"
     ),
+    "Accept": "application/json",
     "Accept-Language": (
         "en-US,en;q=0.9,el;q=0.8"
     ),
@@ -41,25 +52,31 @@ HEADERS = {
 
 
 # ============================================================
-# NORMALIZE TEXT
+# NORMALIZE
 # ============================================================
 
 def normalize_text(text):
+
+    text = str(
+        text or ""
+    )
+
     text = unicodedata.normalize(
         "NFD",
-        str(text or ""),
+        text,
     )
 
     text = "".join(
         char
         for char in text
-        if unicodedata.category(char) != "Mn"
+        if unicodedata.category(char)
+        != "Mn"
     )
 
     text = text.lower()
 
     text = re.sub(
-        r"[^a-zα-ω0-9]+",
+        r"[^a-z0-9α-ω]+",
         " ",
         text,
     )
@@ -68,19 +85,50 @@ def normalize_text(text):
 
 
 # ============================================================
-# TITLE SCORE
+# LATIN-ONLY QUERY
+# ============================================================
+
+def latin_query(text):
+
+    text = normalize_text(
+        text
+    )
+
+    # Κρατάμε αγγλικά / αριθμούς.
+    text = re.sub(
+        r"[^a-z0-9 ]+",
+        " ",
+        text,
+    )
+
+    text = re.sub(
+        r"\s+",
+        " ",
+        text,
+    )
+
+    return text.strip()
+
+
+# ============================================================
+# SCORE
 # ============================================================
 
 def title_score(
     query,
     candidate,
 ):
+
     query_tokens = set(
-        normalize_text(query).split()
+        latin_query(
+            query
+        ).split()
     )
 
     candidate_tokens = set(
-        normalize_text(candidate).split()
+        latin_query(
+            candidate
+        ).split()
     )
 
     if (
@@ -101,12 +149,205 @@ def title_score(
 
 
 # ============================================================
-# BEST IMAGE
+# QUERY VARIATIONS
 # ============================================================
 
-def best_image_link(
+def build_queries(
+    search_title,
+):
+
+    raw = str(
+        search_title or ""
+    ).strip()
+
+    latin = (
+        latin_query(
+            raw
+        )
+    )
+
+    queries = []
+
+    if raw:
+        queries.append(
+            raw
+        )
+
+    if (
+        latin
+        and latin not in queries
+    ):
+        queries.append(
+            latin
+        )
+
+    # Αφαιρούμε γενικούς όρους
+    # που μερικές φορές χαλάνε
+    # την αναζήτηση.
+
+    simpler = latin
+
+    remove_terms = [
+        "marvel graphic novel collection",
+        "graphic novel collection",
+        "dc comics",
+        "marvel comics",
+        "marvel",
+        "graphic novel",
+    ]
+
+    for term in remove_terms:
+
+        simpler = (
+            simpler.replace(
+                term,
+                " ",
+            )
+        )
+
+    simpler = re.sub(
+        r"\s+",
+        " ",
+        simpler,
+    ).strip()
+
+    if (
+        simpler
+        and simpler not in queries
+    ):
+        queries.append(
+            simpler
+        )
+
+    return queries
+
+
+# ============================================================
+# OPEN LIBRARY
+# ============================================================
+
+def get_open_library_cover(
+    search_title,
+):
+
+    queries = (
+        build_queries(
+            search_title
+        )
+    )
+
+    for query in queries:
+
+        try:
+
+            response = requests.get(
+                OPEN_LIBRARY_URL,
+                params={
+                    "q": query,
+                    "limit": 10,
+                },
+                headers=HEADERS,
+                timeout=20,
+            )
+
+            if response.status_code != 200:
+
+                print(
+                    "OpenLibrary HTTP",
+                    response.status_code,
+                    "for:",
+                    query,
+                )
+
+                continue
+
+            payload = (
+                response.json()
+            )
+
+        except Exception as error:
+
+            print(
+                "OpenLibrary error:",
+                error,
+            )
+
+            continue
+
+        docs = (
+            payload.get(
+                "docs"
+            )
+            or []
+        )
+
+        candidates = []
+
+        for doc in docs:
+
+            cover_id = (
+                doc.get(
+                    "cover_i"
+                )
+            )
+
+            if not cover_id:
+                continue
+
+            title = (
+                doc.get(
+                    "title"
+                )
+                or ""
+            )
+
+            score = (
+                title_score(
+                    search_title,
+                    title,
+                )
+            )
+
+            candidates.append(
+                (
+                    score,
+                    cover_id,
+                    title,
+                )
+            )
+
+        if not candidates:
+            continue
+
+        candidates.sort(
+            key=lambda item: item[0],
+            reverse=True,
+        )
+
+        best = (
+            candidates[0]
+        )
+
+        cover_id = (
+            best[1]
+        )
+
+        return (
+            "https://covers.openlibrary.org/"
+            f"b/id/{cover_id}-L.jpg"
+        )
+
+    return None
+
+
+# ============================================================
+# GOOGLE BOOKS IMAGE
+# ============================================================
+
+def best_google_image(
     volume_info,
 ):
+
     links = (
         volume_info.get(
             "imageLinks"
@@ -122,22 +363,28 @@ def best_image_link(
         "thumbnail",
         "smallThumbnail",
     ):
-        url = links.get(key)
+
+        url = (
+            links.get(
+                key
+            )
+        )
 
         if not url:
             continue
 
-        url = url.replace(
-            "http://",
-            "https://",
+        url = (
+            url.replace(
+                "http://",
+                "https://",
+            )
         )
 
-        # Αφαιρούμε το curl effect
-        # που βάζει μερικές φορές
-        # το Google Books.
-        url = url.replace(
-            "&edge=curl",
-            "",
+        url = (
+            url.replace(
+                "&edge=curl",
+                "",
+            )
         )
 
         return url
@@ -146,108 +393,171 @@ def best_image_link(
 
 
 # ============================================================
-# GOOGLE BOOKS COVER SEARCH
+# GOOGLE BOOKS
 # ============================================================
 
-@lru_cache(maxsize=512)
+def get_google_books_only_cover(
+    search_title,
+):
+
+    queries = (
+        build_queries(
+            search_title
+        )
+    )
+
+    for query in queries:
+
+        try:
+
+            response = requests.get(
+                GOOGLE_BOOKS_URL,
+                params={
+                    "q": query,
+                    "maxResults": 10,
+                    "printType": "books",
+                },
+                headers=HEADERS,
+                timeout=20,
+            )
+
+            if response.status_code != 200:
+
+                print(
+                    "Google Books HTTP",
+                    response.status_code,
+                    "for:",
+                    query,
+                )
+
+                continue
+
+            payload = (
+                response.json()
+            )
+
+        except Exception as error:
+
+            print(
+                "Google Books error:",
+                error,
+            )
+
+            continue
+
+        items = (
+            payload.get(
+                "items"
+            )
+            or []
+        )
+
+        candidates = []
+
+        for item in items:
+
+            info = (
+                item.get(
+                    "volumeInfo"
+                )
+                or {}
+            )
+
+            title = (
+                info.get(
+                    "title"
+                )
+                or ""
+            )
+
+            subtitle = (
+                info.get(
+                    "subtitle"
+                )
+                or ""
+            )
+
+            candidate_title = (
+                f"{title} {subtitle}"
+                .strip()
+            )
+
+            image = (
+                best_google_image(
+                    info
+                )
+            )
+
+            if not image:
+                continue
+
+            score = (
+                title_score(
+                    search_title,
+                    candidate_title,
+                )
+            )
+
+            candidates.append(
+                (
+                    score,
+                    image,
+                )
+            )
+
+        if not candidates:
+            continue
+
+        candidates.sort(
+            key=lambda item: item[0],
+            reverse=True,
+        )
+
+        return (
+            candidates[0][1]
+        )
+
+    return None
+
+
+# ============================================================
+# MAIN COVER GETTER
+# ============================================================
+
+@lru_cache(
+    maxsize=1024
+)
 def get_google_books_cover(
     search_title,
 ):
+
     if not search_title:
         return None
 
-    try:
-        response = requests.get(
-            GOOGLE_BOOKS_URL,
-            params={
-                "q":
-                    search_title,
+    # --------------------------------------------------------
+    # 1. OPEN LIBRARY
+    # --------------------------------------------------------
 
-                "maxResults":
-                    10,
-
-                "printType":
-                    "books",
-            },
-            headers=HEADERS,
-            timeout=20,
+    cover = (
+        get_open_library_cover(
+            search_title
         )
-
-        response.raise_for_status()
-
-        payload = (
-            response.json()
-        )
-
-    except Exception:
-        return None
-
-    items = (
-        payload.get(
-            "items"
-        )
-        or []
     )
 
-    if not items:
-        return None
+    if cover:
+        return cover
 
-    ranked = []
+    # --------------------------------------------------------
+    # 2. GOOGLE BOOKS
+    # --------------------------------------------------------
 
-    for item in items:
-        info = (
-            item.get(
-                "volumeInfo"
-            )
-            or {}
+    cover = (
+        get_google_books_only_cover(
+            search_title
         )
-
-        title = (
-            info.get(
-                "title"
-            )
-            or ""
-        )
-
-        subtitle = (
-            info.get(
-                "subtitle"
-            )
-            or ""
-        )
-
-        candidate = (
-            f"{title} {subtitle}"
-            .strip()
-        )
-
-        image = (
-            best_image_link(
-                info
-            )
-        )
-
-        if not image:
-            continue
-
-        ranked.append(
-            (
-                title_score(
-                    search_title,
-                    candidate,
-                ),
-                image,
-            )
-        )
-
-    if not ranked:
-        return None
-
-    ranked.sort(
-        key=lambda item: (
-            item[0]
-        ),
-        reverse=True,
     )
 
-    return ranked[0][1]
+    if cover:
+        return cover
+
+    return None

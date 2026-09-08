@@ -6,11 +6,12 @@ ZELDA_COMICS = [
     {
         "number": 1,
         "title": "The Legend of Zelda: Ocarina of Time",
-        "search_title": (
-            "The Legend of Zelda Legendary Edition "
-            "Ocarina of Time Akira Himekawa"
+        "image_url": (
+            "https://d28hgpri8am2if.cloudfront.net/"
+            "book_images/onix/cvr9781421589596/"
+            "the-legend-of-zelda-ocarina-of-time-"
+            "legendary-edition-9781421589596_hr.jpg"
         ),
-        "image": "",
         "owned": True,
     },
     {
@@ -19,12 +20,12 @@ ZELDA_COMICS = [
             "The Legend of Zelda: "
             "Majora's Mask / A Link to the Past"
         ),
-        "search_title": (
-            "The Legend of Zelda Legendary Edition "
-            "Majora's Mask A Link to the Past "
-            "Akira Himekawa"
+        "image_url": (
+            "https://d28hgpri8am2if.cloudfront.net/"
+            "book_images/onix/cvr9781421589619/"
+            "the-legend-of-zelda-legendary-edition-"
+            "vol-3-9781421589619_hr.jpg"
         ),
-        "image": "",
         "owned": True,
     },
     {
@@ -33,12 +34,13 @@ ZELDA_COMICS = [
             "The Legend of Zelda: "
             "The Minish Cap / Phantom Hourglass"
         ),
-        "search_title": (
-            "The Legend of Zelda Legendary Edition "
-            "Minish Cap Phantom Hourglass "
-            "Akira Himekawa"
+        "image_url": (
+            "https://d28hgpri8am2if.cloudfront.net/"
+            "book_images/onix/cvr9781421589626/"
+            "the-legend-of-zelda-the-minish-cap-"
+            "phantom-hourglass-legendary-edition-"
+            "9781421589626_hr.jpg"
         ),
-        "image": "",
         "owned": True,
     },
     {
@@ -47,12 +49,13 @@ ZELDA_COMICS = [
             "The Legend of Zelda: "
             "Oracle of Seasons / Oracle of Ages"
         ),
-        "search_title": (
-            "The Legend of Zelda Legendary Edition "
-            "Oracle of Seasons Oracle of Ages "
-            "Akira Himekawa"
+        "image_url": (
+            "https://d28hgpri8am2if.cloudfront.net/"
+            "book_images/onix/cvr9781421589602/"
+            "the-legend-of-zelda-oracle-of-seasons-"
+            "oracle-of-ages-legendary-edition-"
+            "9781421589602_hr.jpg"
         ),
-        "image": "",
         "owned": True,
     },
 ]

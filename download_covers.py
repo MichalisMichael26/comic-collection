@@ -1,7 +1,7 @@
 # ============================================================
 # DOWNLOAD ALL COMIC COVERS
 #
-# Κατεβάζει μία φορά όλα τα covers και τα αποθηκεύει:
+# Κατεβάζει όλα τα covers και τα αποθηκεύει:
 #
 # static/covers/lucky-luke/
 # static/covers/asterix/
@@ -10,6 +10,10 @@
 # static/covers/rantanplan/
 # static/covers/sherlock-holmes/
 # static/covers/arkas/
+# static/covers/zelda/
+# static/covers/dc-comics/
+# static/covers/marvel/
+# static/covers/marvel-graphic-novel/
 #
 # Δημιουργεί επίσης:
 # static/covers/manifest.json
@@ -24,36 +28,48 @@ import requests
 
 
 # ============================================================
-# COVER SERVICES
+# ΠΑΛΙΑ COVER SERVICES
 # ============================================================
 
 from lucky_luke_covers import (
     get_lucky_luke_cover,
-    get_lucky_luke_special_cover
+    get_lucky_luke_special_cover,
 )
 
 from asterix_covers import (
-    get_asterix_cover
+    get_asterix_cover,
 )
 
 from idefix_covers import (
-    get_idefix_cover
+    get_idefix_cover,
 )
 
 from iznogoud_covers import (
-    get_iznogoud_cover
+    get_iznogoud_cover,
 )
 
 from rantanplan_covers import (
-    get_rantanplan_cover
+    get_rantanplan_cover,
 )
 
 from sherlock_holmes_covers import (
-    get_sherlock_holmes_cover
+    get_sherlock_holmes_cover,
 )
 
 from arkas_covers import (
-    get_arkas_cover
+    get_arkas_cover,
+)
+
+
+# ============================================================
+# ΝΕΑ COVER SERVICES
+# ============================================================
+
+from new_category_covers import (
+    get_zelda_cover,
+    get_dc_comics_cover,
+    get_marvel_cover,
+    get_marvel_graphic_novel_cover,
 )
 
 
@@ -80,7 +96,6 @@ MANIFEST_FILE = (
 # ============================================================
 
 DEFAULT_HEADERS = {
-
     "User-Agent": (
         "Mozilla/5.0 "
         "(Windows NT 10.0; Win64; x64) "
@@ -89,68 +104,140 @@ DEFAULT_HEADERS = {
         "Chrome/120 Safari/537.36"
     ),
 
-    "Accept":
+    "Accept": (
         "image/avif,"
         "image/webp,"
         "image/apng,"
         "image/svg+xml,"
         "image/*,"
-        "*/*;q=0.8",
+        "*/*;q=0.8"
+    ),
 
-    "Accept-Language":
+    "Accept-Language": (
         "el-GR,el;q=0.9,en;q=0.8"
-
+    ),
 }
 
 
 # ============================================================
-# SERIES
+# ΟΛΕΣ ΟΙ ΣΕΙΡΕΣ
 # ============================================================
 
 SERIES = {
 
+    # --------------------------------------------------------
+    # ΛΟΥΚΥ ΛΟΥΚ
+    # --------------------------------------------------------
+
     "lucky-luke": {
         "name": "Λούκυ Λουκ",
         "count": 90,
-        "getter": get_lucky_luke_cover
+        "getter": get_lucky_luke_cover,
     },
+
+    # --------------------------------------------------------
+    # ΑΣΤΕΡΙΞ
+    # --------------------------------------------------------
 
     "asterix": {
         "name": "Αστερίξ",
         "count": 41,
-        "getter": get_asterix_cover
+        "getter": get_asterix_cover,
     },
+
+    # --------------------------------------------------------
+    # ΙΝΤΕΦΙΞ
+    # --------------------------------------------------------
 
     "idefix": {
         "name": "Ιντεφίξ",
         "count": 2,
-        "getter": get_idefix_cover
+        "getter": get_idefix_cover,
     },
+
+    # --------------------------------------------------------
+    # ΙΖΝΟΓΚΟΥΝΤ
+    # --------------------------------------------------------
 
     "iznogoud": {
         "name": "Ιζνογκούντ",
         "count": 30,
-        "getter": get_iznogoud_cover
+        "getter": get_iznogoud_cover,
     },
+
+    # --------------------------------------------------------
+    # ΡΑΝΤΑΝΠΛΑΝ
+    # --------------------------------------------------------
 
     "rantanplan": {
         "name": "Ραντανπλάν",
         "count": 17,
-        "getter": get_rantanplan_cover
+        "getter": get_rantanplan_cover,
     },
+
+    # --------------------------------------------------------
+    # ΣΕΡΛΟΚ ΧΟΛΜΣ
+    # --------------------------------------------------------
 
     "sherlock-holmes": {
         "name": "Σέρλοκ Χολμς",
         "count": 4,
-        "getter": get_sherlock_holmes_cover
+        "getter": get_sherlock_holmes_cover,
     },
+
+    # --------------------------------------------------------
+    # ΑΡΚΑΣ
+    # --------------------------------------------------------
 
     "arkas": {
         "name": "Αρκάς",
         "count": 27,
-        "getter": get_arkas_cover
-    }
+        "getter": get_arkas_cover,
+    },
 
+    # ========================================================
+    # ΝΕΕΣ ΚΑΤΗΓΟΡΙΕΣ
+    # ========================================================
+
+    # --------------------------------------------------------
+    # ZELDA
+    # --------------------------------------------------------
+
+    "zelda": {
+        "name": "Zelda",
+        "count": 4,
+        "getter": get_zelda_cover,
+    },
+
+    # --------------------------------------------------------
+    # DC COMICS
+    # --------------------------------------------------------
+
+    "dc-comics": {
+        "name": "DC Comics",
+        "count": 16,
+        "getter": get_dc_comics_cover,
+    },
+
+    # --------------------------------------------------------
+    # MARVEL
+    # --------------------------------------------------------
+
+    "marvel": {
+        "name": "Marvel",
+        "count": 14,
+        "getter": get_marvel_cover,
+    },
+
+    # --------------------------------------------------------
+    # MARVEL GRAPHIC NOVEL
+    # --------------------------------------------------------
+
+    "marvel-graphic-novel": {
+        "name": "Marvel Graphic Novel",
+        "count": 120,
+        "getter": get_marvel_graphic_novel_cover,
+    },
 }
 
 
@@ -159,22 +246,11 @@ SERIES = {
 # ============================================================
 
 CONTENT_TYPE_EXTENSIONS = {
-
-    "image/jpeg":
-        ".jpg",
-
-    "image/jpg":
-        ".jpg",
-
-    "image/png":
-        ".png",
-
-    "image/webp":
-        ".webp",
-
-    "image/gif":
-        ".gif"
-
+    "image/jpeg": ".jpg",
+    "image/jpg": ".jpg",
+    "image/png": ".png",
+    "image/webp": ".webp",
+    "image/gif": ".gif",
 }
 
 
@@ -182,17 +258,14 @@ CONTENT_TYPE_EXTENSIONS = {
 # HEADERS ΑΝΑ SOURCE
 # ============================================================
 
-def get_headers_for_url(
-    url
-):
+def get_headers_for_url(url):
 
-    headers = DEFAULT_HEADERS.copy()
-
+    headers = (
+        DEFAULT_HEADERS.copy()
+    )
 
     if not url:
-
         return headers
-
 
     if "comicstrip.gr" in url:
 
@@ -200,13 +273,11 @@ def get_headers_for_url(
             "https://comicstrip.gr/"
         )
 
-
     elif "comicon-shop.gr" in url:
 
         headers["Referer"] = (
             "https://comicon-shop.gr/"
         )
-
 
     elif "mamouthcomix" in url:
 
@@ -214,13 +285,11 @@ def get_headers_for_url(
             "https://mamouthcomix-eshop.gr/"
         )
 
-
     elif "efantasy.gr" in url:
 
         headers["Referer"] = (
             "https://www.efantasy.gr/"
         )
-
 
     elif "patakis.gr" in url:
 
@@ -228,13 +297,11 @@ def get_headers_for_url(
             "https://www.patakis.gr/"
         )
 
-
     elif "webstorage.gr" in url:
 
         headers["Referer"] = (
             "https://www.public.gr/"
         )
-
 
     elif "scdn.gr" in url:
 
@@ -242,13 +309,11 @@ def get_headers_for_url(
             "https://www.skroutz.gr/"
         )
 
-
     elif "ebayimg.com" in url:
 
         headers["Referer"] = (
             "https://www.ebay.com/"
         )
-
 
     elif "vendora.gr" in url:
 
@@ -256,17 +321,16 @@ def get_headers_for_url(
             "https://vendora.gr/"
         )
 
-
     return headers
 
 
 # ============================================================
-# ΔΙΑΓΡΑΦΗ ΠΑΛΙΩΝ FILES ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ISSUE
+# ΔΙΑΓΡΑΦΗ ΠΑΛΙΩΝ FILES
 # ============================================================
 
 def remove_old_issue_files(
     folder,
-    filename_base
+    filename_base,
 ):
 
     extensions = [
@@ -274,27 +338,22 @@ def remove_old_issue_files(
         ".jpeg",
         ".png",
         ".webp",
-        ".gif"
+        ".gif",
     ]
-
 
     for extension in extensions:
 
         old_file = (
             folder
-            /
-            f"{filename_base}{extension}"
+            / f"{filename_base}{extension}"
         )
-
 
         if old_file.exists():
 
             try:
-
                 old_file.unlink()
 
             except Exception:
-
                 pass
 
 
@@ -305,13 +364,15 @@ def remove_old_issue_files(
 def download_image(
     image_url,
     folder,
-    filename_base
+    filename_base,
 ):
 
     if not image_url:
 
-        return None, "Δεν βρέθηκε URL"
-
+        return (
+            None,
+            "Δεν βρέθηκε URL",
+        )
 
     try:
 
@@ -321,17 +382,15 @@ def download_image(
                 image_url
             ),
             timeout=25,
-            allow_redirects=True
+            allow_redirects=True,
         )
-
 
     except Exception as error:
 
         return (
             None,
-            f"Request error: {error}"
+            f"Request error: {error}",
         )
-
 
     if response.status_code != 200:
 
@@ -340,21 +399,19 @@ def download_image(
             (
                 "HTTP "
                 f"{response.status_code}"
-            )
+            ),
         )
-
 
     content_type = (
         response.headers
         .get(
             "Content-Type",
-            ""
+            "",
         )
         .split(";")[0]
         .strip()
         .lower()
     )
-
 
     extension = (
         CONTENT_TYPE_EXTENSIONS
@@ -363,20 +420,20 @@ def download_image(
         )
     )
 
-
     if not extension:
 
         return (
             None,
             (
-                "Δεν είναι υποστηριζόμενη εικόνα: "
+                "Δεν είναι "
+                "υποστηριζόμενη εικόνα: "
                 f"{content_type}"
-            )
+            ),
         )
 
-
-    # Πολύ μικρό αρχείο συνήθως
-    # σημαίνει placeholder/error.
+    # --------------------------------------------------------
+    # Αποφεύγουμε μικρά placeholders / error images
+    # --------------------------------------------------------
 
     if len(response.content) < 3000:
 
@@ -385,28 +442,23 @@ def download_image(
             (
                 "Πολύ μικρό αρχείο: "
                 f"{len(response.content)} bytes"
-            )
+            ),
         )
-
 
     folder.mkdir(
         parents=True,
-        exist_ok=True
+        exist_ok=True,
     )
-
 
     remove_old_issue_files(
         folder,
-        filename_base
+        filename_base,
     )
-
 
     destination = (
         folder
-        /
-        f"{filename_base}{extension}"
+        / f"{filename_base}{extension}"
     )
-
 
     try:
 
@@ -418,9 +470,8 @@ def download_image(
 
         return (
             None,
-            f"Save error: {error}"
+            f"Save error: {error}",
         )
-
 
     relative_path = (
         destination
@@ -430,10 +481,9 @@ def download_image(
         .as_posix()
     )
 
-
     return (
         "/" + relative_path,
-        None
+        None,
     )
 
 
@@ -444,7 +494,7 @@ def download_image(
 def download_series(
     slug,
     data,
-    manifest
+    manifest,
 ):
 
     name = data["name"]
@@ -453,53 +503,48 @@ def download_series(
 
     getter = data["getter"]
 
-
     folder = (
         COVERS_DIR
-        /
-        slug
+        / slug
     )
-
 
     folder.mkdir(
         parents=True,
-        exist_ok=True
+        exist_ok=True,
     )
-
 
     manifest["covers"][
         slug
     ] = {}
 
-
     manifest["missing"][
         slug
     ] = []
 
-
     print()
+
     print(
         "=" * 60
     )
+
     print(
         f"{name} - {count} covers"
     )
+
     print(
         "=" * 60
     )
 
-
     for number in range(
         1,
-        count + 1
+        count + 1,
     ):
 
         print(
             f"[{slug}] "
-            f"{number:02d}/{count:02d}",
-            end=" "
+            f"{number:03d}/{count:03d}",
+            end=" ",
         )
-
 
         # ----------------------------------------------------
         # ΒΡΙΣΚΟΥΜΕ URL
@@ -519,7 +564,6 @@ def download_series(
                 f"❌ getter error: {error}"
             )
 
-
         if not image_url:
 
             manifest["missing"][
@@ -530,7 +574,7 @@ def download_series(
                         number,
 
                     "reason":
-                        "Δεν βρέθηκε image URL"
+                        "Δεν βρέθηκε image URL",
                 }
             )
 
@@ -538,8 +582,12 @@ def download_series(
                 "❌ URL NOT FOUND"
             )
 
-            continue
+            # Μικρό delay κυρίως για Google Books
+            time.sleep(
+                0.20
+            )
 
+            continue
 
         # ----------------------------------------------------
         # DOWNLOAD
@@ -549,10 +597,9 @@ def download_series(
             download_image(
                 image_url,
                 folder,
-                f"{number:02d}"
+                f"{number:03d}",
             )
         )
-
 
         if error:
 
@@ -567,7 +614,7 @@ def download_series(
                         error,
 
                     "source":
-                        image_url
+                        image_url,
                 }
             )
 
@@ -575,34 +622,34 @@ def download_series(
                 f"❌ {error}"
             )
 
-            continue
+            time.sleep(
+                0.20
+            )
 
+            continue
 
         manifest["covers"][
             slug
         ][
             str(number)
         ] = {
-
             "path":
                 local_path,
 
             "source":
-                image_url
-
+                image_url,
         }
-
 
         print(
             f"✅ {local_path}"
         )
 
-
-        # Μικρό διάλειμμα για να
-        # μην χτυπάμε τα sites συνέχεια.
+        # ----------------------------------------------------
+        # Μικρό delay για να μην κάνουμε συνεχόμενα requests
+        # ----------------------------------------------------
 
         time.sleep(
-            0.15
+            0.20
         )
 
 
@@ -611,15 +658,15 @@ def download_series(
 # ============================================================
 
 def download_lucky_luke_special(
-    manifest
+    manifest,
 ):
 
     print()
+
     print(
         "[lucky-luke] SPECIAL",
-        end=" "
+        end=" ",
     )
-
 
     try:
 
@@ -635,7 +682,6 @@ def download_lucky_luke_special(
             f"❌ getter error: {error}"
         )
 
-
     if not image_url:
 
         manifest["missing"][
@@ -646,7 +692,7 @@ def download_lucky_luke_special(
                     "SPECIAL",
 
                 "reason":
-                    "Δεν βρέθηκε image URL"
+                    "Δεν βρέθηκε image URL",
             }
         )
 
@@ -656,22 +702,18 @@ def download_lucky_luke_special(
 
         return
 
-
     folder = (
         COVERS_DIR
-        /
-        "lucky-luke"
+        / "lucky-luke"
     )
-
 
     local_path, error = (
         download_image(
             image_url,
             folder,
-            "special"
+            "special",
         )
     )
-
 
     if error:
 
@@ -686,7 +728,7 @@ def download_lucky_luke_special(
                     error,
 
                 "source":
-                    image_url
+                    image_url,
             }
         )
 
@@ -696,21 +738,17 @@ def download_lucky_luke_special(
 
         return
 
-
     manifest["covers"][
         "lucky-luke"
     ][
         "SPECIAL"
     ] = {
-
         "path":
             local_path,
 
         "source":
-            image_url
-
+            image_url,
     }
-
 
     print(
         f"✅ {local_path}"
@@ -722,26 +760,27 @@ def download_lucky_luke_special(
 # ============================================================
 
 def print_summary(
-    manifest
+    manifest,
 ):
 
     print()
     print()
-    print(
-        "=" * 60
-    )
-    print(
-        "ΤΕΛΙΚΟ ΑΠΟΤΕΛΕΣΜΑ"
-    )
+
     print(
         "=" * 60
     )
 
+    print(
+        "ΤΕΛΙΚΟ ΑΠΟΤΕΛΕΣΜΑ"
+    )
+
+    print(
+        "=" * 60
+    )
 
     total_ok = 0
 
     total_missing = 0
-
 
     for slug, data in SERIES.items():
 
@@ -749,24 +788,21 @@ def print_summary(
             manifest["covers"]
             .get(
                 slug,
-                {}
+                {},
             )
         )
-
 
         missing = len(
             manifest["missing"]
             .get(
                 slug,
-                []
+                [],
             )
         )
-
 
         total_ok += ok
 
         total_missing += missing
-
 
         print(
             f"{data['name']}: "
@@ -774,11 +810,9 @@ def print_summary(
             f"❌ {missing}"
         )
 
-
     print(
         "-" * 60
     )
-
 
     print(
         f"ΣΥΝΟΛΟ: "
@@ -795,9 +829,8 @@ def main():
 
     COVERS_DIR.mkdir(
         parents=True,
-        exist_ok=True
+        exist_ok=True,
     )
-
 
     manifest = {
 
@@ -810,13 +843,11 @@ def main():
             {},
 
         "missing":
-            {}
-
+            {},
     }
 
-
     # --------------------------------------------------------
-    # DOWNLOAD ΟΛΩΝ
+    # DOWNLOAD ΟΛΩΝ ΤΩΝ SERIES
     # --------------------------------------------------------
 
     for slug, data in SERIES.items():
@@ -824,9 +855,8 @@ def main():
         download_series(
             slug,
             data,
-            manifest
+            manifest,
         )
-
 
     # --------------------------------------------------------
     # SPECIAL LUCKY LUKE
@@ -835,7 +865,6 @@ def main():
     download_lucky_luke_special(
         manifest
     )
-
 
     # --------------------------------------------------------
     # SAVE MANIFEST
@@ -846,28 +875,30 @@ def main():
         json.dumps(
             manifest,
             ensure_ascii=False,
-            indent=4
+            indent=4,
         ),
 
-        encoding="utf-8"
-
+        encoding="utf-8",
     )
-
 
     print_summary(
         manifest
     )
 
-
     print()
+
     print(
         "Manifest:"
     )
+
     print(
         MANIFEST_FILE
     )
 
 
-if __name__ == "__main__":
+# ============================================================
+# RUN
+# ============================================================
 
+if __name__ == "__main__":
     main()

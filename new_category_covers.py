@@ -1,213 +1,71 @@
-# ============================================================
-# COVER GETTERS ΓΙΑ ΤΙΣ ΝΕΕΣ ΚΑΤΗΓΟΡΙΕΣ
-#
-# Zelda
-# DC Comics
-# Marvel
-# Marvel Graphic Novel
-#
-# Αν υπάρχει image_url στο data αρχείο,
-# χρησιμοποιείται απευθείας.
-#
-# Διαφορετικά γίνεται fallback
-# στην αυτόματη αναζήτηση.
-# ============================================================
-
+cat > new_category_covers.py <<'PY'
 from functools import lru_cache
 
-from generic_book_covers import (
-    get_google_books_cover,
-)
+from generic_book_covers import get_google_books_cover
 
-from zelda_data import (
-    ZELDA_COMICS,
-)
-
-from dc_comics_data import (
-    DC_COMICS,
-)
-
-from marvel_data import (
-    MARVEL_COMICS,
-)
-
-from marvel_graphic_novel_data import (
-    MARVEL_GRAPHIC_NOVELS,
-)
+from zelda_data import ZELDA_COMICS
+from dc_comics_data import DC_COMICS
+from marvel_data import MARVEL_COMICS
+from marvel_graphic_novel_data import MARVEL_GRAPHIC_NOVELS
 
 
-# ============================================================
-# FIND ITEM BY NUMBER
-# ============================================================
-
-def _find_item(
-    items,
-    number,
-):
-
+def _find_item(items, number):
     try:
         number = int(number)
-
-    except (
-        TypeError,
-        ValueError,
-    ):
+    except (TypeError, ValueError):
         return None
 
     for item in items:
-
         try:
-
-            item_number = int(
-                item.get(
-                    "number",
-                    0,
-                )
-            )
-
-        except (
-            TypeError,
-            ValueError,
-        ):
+            item_number = int(item.get("number", 0))
+        except (TypeError, ValueError):
             continue
 
         if item_number == number:
-
             return item
 
     return None
 
 
-# ============================================================
-# GET COVER
-# ============================================================
-
-def _get_cover(
-    items,
-    number,
-):
-
-    item = (
-        _find_item(
-            items,
-            number,
-        )
-    )
+def _get_cover(items, number):
+    item = _find_item(items, number)
 
     if not item:
         return None
 
-    # --------------------------------------------------------
-    # 1. DIRECT IMAGE URL
-    # --------------------------------------------------------
-
-    direct_url = (
-        item.get(
-            "image_url"
-        )
-        or ""
-    ).strip()
+    direct_url = (item.get("image_url") or "").strip()
 
     if direct_url:
-
         return direct_url
 
-    # --------------------------------------------------------
-    # 2. FALLBACK SEARCH
-    # --------------------------------------------------------
-
     search_title = (
-        item.get(
-            "search_title"
-        )
-        or item.get(
-            "title"
-        )
+        item.get("search_title")
+        or item.get("title")
         or ""
     ).strip()
 
     if not search_title:
-
         return None
 
-    return (
-        get_google_books_cover(
-            search_title
-        )
-    )
+    return get_google_books_cover(search_title)
 
 
-# ============================================================
-# ZELDA
-# ============================================================
-
-@lru_cache(
-    maxsize=64
-)
-def get_zelda_cover(
-    number,
-):
-
-    return (
-        _get_cover(
-            ZELDA_COMICS,
-            number,
-        )
-    )
+@lru_cache(maxsize=64)
+def get_zelda_cover(number):
+    return _get_cover(ZELDA_COMICS, number)
 
 
-# ============================================================
-# DC COMICS
-# ============================================================
-
-@lru_cache(
-    maxsize=128
-)
-def get_dc_comics_cover(
-    number,
-):
-
-    return (
-        _get_cover(
-            DC_COMICS,
-            number,
-        )
-    )
+@lru_cache(maxsize=128)
+def get_dc_comics_cover(number):
+    return _get_cover(DC_COMICS, number)
 
 
-# ============================================================
-# MARVEL
-# ============================================================
-
-@lru_cache(
-    maxsize=128
-)
-def get_marvel_cover(
-    number,
-):
-
-    return (
-        _get_cover(
-            MARVEL_COMICS,
-            number,
-        )
-    )
+@lru_cache(maxsize=128)
+def get_marvel_cover(number):
+    return _get_cover(MARVEL_COMICS, number)
 
 
-# ============================================================
-# MARVEL GRAPHIC NOVEL
-# ============================================================
-
-@lru_cache(
-    maxsize=256
-)
-def get_marvel_graphic_novel_cover(
-    number,
-):
-
-    return (
-        _get_cover(
-            MARVEL_GRAPHIC_NOVELS,
-            number,
-        )
-    )
+@lru_cache(maxsize=256)
+def get_marvel_graphic_novel_cover(number):
+    return _get_cover(MARVEL_GRAPHIC_NOVELS, number)
+PY

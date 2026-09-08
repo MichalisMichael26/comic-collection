@@ -1,4 +1,3 @@
-cat > new_category_covers.py <<'PY'
 from functools import lru_cache
 
 from generic_book_covers import get_google_books_cover
@@ -33,12 +32,24 @@ def _get_cover(items, number):
     if not item:
         return None
 
-    direct_url = (item.get("image_url") or "").strip()
+    # Αν έχουμε έτοιμο direct URL, το χρησιμοποιούμε.
+    image_url = str(
+        item.get("image_url") or ""
+    ).strip()
 
-    if direct_url:
-        return direct_url
+    if image_url:
+        return image_url
 
-    search_title = (
+    # Αν το πεδίο image περιέχει URL, το χρησιμοποιούμε επίσης.
+    image = str(
+        item.get("image") or ""
+    ).strip()
+
+    if image.startswith("http://") or image.startswith("https://"):
+        return image
+
+    # Διαφορετικά ψάχνουμε από τον τίτλο.
+    search_title = str(
         item.get("search_title")
         or item.get("title")
         or ""
@@ -52,20 +63,31 @@ def _get_cover(items, number):
 
 @lru_cache(maxsize=64)
 def get_zelda_cover(number):
-    return _get_cover(ZELDA_COMICS, number)
+    return _get_cover(
+        ZELDA_COMICS,
+        number,
+    )
 
 
 @lru_cache(maxsize=128)
 def get_dc_comics_cover(number):
-    return _get_cover(DC_COMICS, number)
+    return _get_cover(
+        DC_COMICS,
+        number,
+    )
 
 
 @lru_cache(maxsize=128)
 def get_marvel_cover(number):
-    return _get_cover(MARVEL_COMICS, number)
+    return _get_cover(
+        MARVEL_COMICS,
+        number,
+    )
 
 
 @lru_cache(maxsize=256)
 def get_marvel_graphic_novel_cover(number):
-    return _get_cover(MARVEL_GRAPHIC_NOVELS, number)
-PY
+    return _get_cover(
+        MARVEL_GRAPHIC_NOVELS,
+        number,
+    )

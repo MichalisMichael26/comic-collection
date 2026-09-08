@@ -5,6 +5,12 @@
 # DC Comics
 # Marvel
 # Marvel Graphic Novel
+#
+# Αν υπάρχει image_url στο data αρχείο,
+# χρησιμοποιείται απευθείας.
+#
+# Διαφορετικά γίνεται fallback
+# στην αυτόματη αναζήτηση.
 # ============================================================
 
 from functools import lru_cache
@@ -31,13 +37,14 @@ from marvel_graphic_novel_data import (
 
 
 # ============================================================
-# ΒΡΙΣΚΕΙ ΤΟ SEARCH TITLE ΜΕ ΒΑΣΗ ΤΟ NUMBER
+# FIND ITEM BY NUMBER
 # ============================================================
 
-def _find_search_title(
+def _find_item(
     items,
     number,
 ):
+
     try:
         number = int(number)
 
@@ -50,6 +57,7 @@ def _find_search_title(
     for item in items:
 
         try:
+
             item_number = int(
                 item.get(
                     "number",
@@ -65,16 +73,68 @@ def _find_search_title(
 
         if item_number == number:
 
-            return (
-                item.get(
-                    "search_title"
-                )
-                or item.get(
-                    "title"
-                )
-            )
+            return item
 
     return None
+
+
+# ============================================================
+# GET COVER
+# ============================================================
+
+def _get_cover(
+    items,
+    number,
+):
+
+    item = (
+        _find_item(
+            items,
+            number,
+        )
+    )
+
+    if not item:
+        return None
+
+    # --------------------------------------------------------
+    # 1. DIRECT IMAGE URL
+    # --------------------------------------------------------
+
+    direct_url = (
+        item.get(
+            "image_url"
+        )
+        or ""
+    ).strip()
+
+    if direct_url:
+
+        return direct_url
+
+    # --------------------------------------------------------
+    # 2. FALLBACK SEARCH
+    # --------------------------------------------------------
+
+    search_title = (
+        item.get(
+            "search_title"
+        )
+        or item.get(
+            "title"
+        )
+        or ""
+    ).strip()
+
+    if not search_title:
+
+        return None
+
+    return (
+        get_google_books_cover(
+            search_title
+        )
+    )
 
 
 # ============================================================
@@ -87,16 +147,11 @@ def _find_search_title(
 def get_zelda_cover(
     number,
 ):
-    search_title = (
-        _find_search_title(
-            ZELDA_COMICS,
-            number,
-        )
-    )
 
     return (
-        get_google_books_cover(
-            search_title
+        _get_cover(
+            ZELDA_COMICS,
+            number,
         )
     )
 
@@ -111,16 +166,11 @@ def get_zelda_cover(
 def get_dc_comics_cover(
     number,
 ):
-    search_title = (
-        _find_search_title(
-            DC_COMICS,
-            number,
-        )
-    )
 
     return (
-        get_google_books_cover(
-            search_title
+        _get_cover(
+            DC_COMICS,
+            number,
         )
     )
 
@@ -135,16 +185,11 @@ def get_dc_comics_cover(
 def get_marvel_cover(
     number,
 ):
-    search_title = (
-        _find_search_title(
-            MARVEL_COMICS,
-            number,
-        )
-    )
 
     return (
-        get_google_books_cover(
-            search_title
+        _get_cover(
+            MARVEL_COMICS,
+            number,
         )
     )
 
@@ -159,15 +204,10 @@ def get_marvel_cover(
 def get_marvel_graphic_novel_cover(
     number,
 ):
-    search_title = (
-        _find_search_title(
-            MARVEL_GRAPHIC_NOVELS,
-            number,
-        )
-    )
 
     return (
-        get_google_books_cover(
-            search_title
+        _get_cover(
+            MARVEL_GRAPHIC_NOVELS,
+            number,
         )
     )

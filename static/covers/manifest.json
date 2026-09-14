@@ -1,365 +1,365 @@
 {
-    "generated_at": "2026-09-07T04:08:28.879951+00:00",
+    "generated_at": "2026-09-14T04:08:46.221156+00:00",
     "covers": {
         "lucky-luke": {
             "1": {
-                "path": "/static/covers/lucky-luke/01.png",
+                "path": "/static/covers/lucky-luke/001.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/%CE%BB%CE%BB-01.png"
             },
             "2": {
-                "path": "/static/covers/lucky-luke/02.jpg",
+                "path": "/static/covers/lucky-luke/002.jpg",
                 "source": "https://cdn.slidesharecdn.com/ss_thumbnails/02-230414110324-cc954bd8-thumbnail.jpg?fit=bounds&height=640&width=640"
             },
             "3": {
-                "path": "/static/covers/lucky-luke/03.jpg",
+                "path": "/static/covers/lucky-luke/003.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ντάλτον-Σίτυ.jpg"
             },
             "4": {
-                "path": "/static/covers/lucky-luke/04.jpg",
+                "path": "/static/covers/lucky-luke/004.jpg",
                 "source": "https://production-metabook-covers-7.ams3.digitaloceanspaces.com/files/b9/86/9dad759f-ba9c-4c9f-87bc-d5013c815d93.jpg"
             },
             "5": {
-                "path": "/static/covers/lucky-luke/05.jpg",
+                "path": "/static/covers/lucky-luke/005.jpg",
                 "source": "https://i.ebayimg.com/images/g/-qwAAOSwEeFVDLef/s-l1200.jpg"
             },
             "6": {
-                "path": "/static/covers/lucky-luke/06.webp",
+                "path": "/static/covers/lucky-luke/006.webp",
                 "source": "https://bcdn.vendora.gr/0/4b/92/4b924e5a4cfe0ba9c2a4182ca0e61e1eae7977d2.jpg?class=lsq"
             },
             "7": {
-                "path": "/static/covers/lucky-luke/07.jpg",
+                "path": "/static/covers/lucky-luke/007.jpg",
                 "source": "https://a.scdn.gr/images/sku_main_images/003871/3871251/xlarge_20210608170616_mama_ntalton.jpeg"
             },
             "8": {
-                "path": "/static/covers/lucky-luke/08.jpg",
+                "path": "/static/covers/lucky-luke/008.jpg",
                 "source": "https://mamouthcomix.gr/wp-content/uploads/2018/02/LL-08.jpg"
             },
             "9": {
-                "path": "/static/covers/lucky-luke/09.jpg",
+                "path": "/static/covers/lucky-luke/009.jpg",
                 "source": "https://mamouthcomix.gr/wp-content/uploads/2018/02/LL-09-298x300.jpg"
             },
             "10": {
-                "path": "/static/covers/lucky-luke/10.jpg",
+                "path": "/static/covers/lucky-luke/010.jpg",
                 "source": "https://www.e-shop.gr/images/BKS/BKS.0762069.jpg"
             },
             "11": {
-                "path": "/static/covers/lucky-luke/11.jpg",
+                "path": "/static/covers/lucky-luke/011.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Ντάλτον-Στα-Χιόνια.jpg"
             },
             "12": {
-                "path": "/static/covers/lucky-luke/12.jpg",
+                "path": "/static/covers/lucky-luke/012.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Δικαστής.jpg"
             },
             "13": {
-                "path": "/static/covers/lucky-luke/13.jpg",
+                "path": "/static/covers/lucky-luke/013.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Σάρα-Μπερνάρ.jpg"
             },
             "14": {
-                "path": "/static/covers/lucky-luke/14.jpg",
+                "path": "/static/covers/lucky-luke/014.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Μαύροι-Λόφοι.jpg"
             },
             "15": {
-                "path": "/static/covers/lucky-luke/15.png",
+                "path": "/static/covers/lucky-luke/015.png",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
             },
             "16": {
-                "path": "/static/covers/lucky-luke/16.jpg",
+                "path": "/static/covers/lucky-luke/016.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Τηγανίτες-Για-Τους-Ντάλτον-scaled.jpg"
             },
             "17": {
-                "path": "/static/covers/lucky-luke/17.jpg",
+                "path": "/static/covers/lucky-luke/017.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Nταίηλυ-Σταρ.jpg"
             },
             "18": {
-                "path": "/static/covers/lucky-luke/18.jpg",
+                "path": "/static/covers/lucky-luke/018.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Τρυφερό-Πόδι.jpg"
             },
             "19": {
-                "path": "/static/covers/lucky-luke/19.jpg",
+                "path": "/static/covers/lucky-luke/019.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Σύρματα-Στα-Λιβάδια.jpg"
             },
             "20": {
-                "path": "/static/covers/lucky-luke/20.jpg",
+                "path": "/static/covers/lucky-luke/020.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Τζέσσε-Τζαίημς.jpg"
             },
             "21": {
-                "path": "/static/covers/lucky-luke/21.jpg",
+                "path": "/static/covers/lucky-luke/021.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Μπίλυ-Ο-Τρομερός.jpg"
             },
             "22": {
-                "path": "/static/covers/lucky-luke/22.jpg",
+                "path": "/static/covers/lucky-luke/022.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Θησαυρός-Των-Ντάλτον.jpg"
             },
             "23": {
-                "path": "/static/covers/lucky-luke/23.jpg",
+                "path": "/static/covers/lucky-luke/023.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κάνυον-Απάτσι1.jpg"
             },
             "24": {
-                "path": "/static/covers/lucky-luke/24.jpg",
+                "path": "/static/covers/lucky-luke/024.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κάνυον-Απάτσι1.jpg"
             },
             "25": {
-                "path": "/static/covers/lucky-luke/25.jpg",
+                "path": "/static/covers/lucky-luke/025.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Απόδραση-Των-Ντάλτον.jpg"
             },
             "26": {
-                "path": "/static/covers/lucky-luke/26.jpg",
+                "path": "/static/covers/lucky-luke/026.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/H-Mνηστή-Του-Λούκυ-Λουκ.jpg"
             },
             "27": {
-                "path": "/static/covers/lucky-luke/27.jpg",
+                "path": "/static/covers/lucky-luke/027.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Λευκός-Ιππότης.jpg"
             },
             "28": {
-                "path": "/static/covers/lucky-luke/28.jpg",
+                "path": "/static/covers/lucky-luke/028.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Σύρμα-Που-Τραγουδάει.jpg"
             },
             "29": {
-                "path": "/static/covers/lucky-luke/29.jpg",
+                "path": "/static/covers/lucky-luke/029.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Μπαλάντα-Των-Ντάλτον.jpg"
             },
             "30": {
-                "path": "/static/covers/lucky-luke/30.jpg",
+                "path": "/static/covers/lucky-luke/030.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Κούρσα-Του-Μισισιπή.jpg"
             },
             "31": {
-                "path": "/static/covers/lucky-luke/31.jpg",
+                "path": "/static/covers/lucky-luke/031.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Ντάλτον-Στους-Ινδιάνους.jpg"
             },
             "32": {
-                "path": "/static/covers/lucky-luke/32.jpg",
+                "path": "/static/covers/lucky-luke/032.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Αντιμέτωπος-Με-Τον-Πατ-Πόκερ.jpg"
             },
             "33": {
-                "path": "/static/covers/lucky-luke/33.jpg",
+                "path": "/static/covers/lucky-luke/033.jpg",
                 "source": "https://comicstrip.gr/image/catalog/product/lucky-luke-33-h-e3agora-twn-ntalton.jpg"
             },
             "34": {
-                "path": "/static/covers/lucky-luke/34.jpg",
+                "path": "/static/covers/lucky-luke/034.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-20ο-Σύνταγμα-Ιππικού.jpg"
             },
             "35": {
-                "path": "/static/covers/lucky-luke/35.png",
+                "path": "/static/covers/lucky-luke/035.png",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
             },
             "36": {
-                "path": "/static/covers/lucky-luke/36.png",
+                "path": "/static/covers/lucky-luke/036.png",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
             },
             "37": {
-                "path": "/static/covers/lucky-luke/37.jpg",
+                "path": "/static/covers/lucky-luke/037.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Μεγάλος-Δούκας.jpg"
             },
             "38": {
-                "path": "/static/covers/lucky-luke/38.jpg",
+                "path": "/static/covers/lucky-luke/038.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/lucky-luke-38-nitroglykerinh-800x800-1.jpg"
             },
             "39": {
-                "path": "/static/covers/lucky-luke/39.jpg",
+                "path": "/static/covers/lucky-luke/039.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Κοράκι.jpg"
             },
             "40": {
-                "path": "/static/covers/lucky-luke/40.jpg",
+                "path": "/static/covers/lucky-luke/040.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Σιδερένιο-Άλογο.jpg"
             },
             "41": {
-                "path": "/static/covers/lucky-luke/41.png",
+                "path": "/static/covers/lucky-luke/041.png",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
             },
             "42": {
-                "path": "/static/covers/lucky-luke/42.jpg",
+                "path": "/static/covers/lucky-luke/042.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Προς-Την-Οκλαχόμα.jpg"
             },
             "43": {
-                "path": "/static/covers/lucky-luke/43.jpg",
+                "path": "/static/covers/lucky-luke/043.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Στα-Ίχνη-Των-Ντάλτον.jpg"
             },
             "44": {
-                "path": "/static/covers/lucky-luke/44.jpg",
+                "path": "/static/covers/lucky-luke/044.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Συναγερμός-Στους-Γαλαζοπόδαρους.jpg"
             },
             "45": {
-                "path": "/static/covers/lucky-luke/45.jpg",
+                "path": "/static/covers/lucky-luke/045.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Συναγερμός-Στους-Γαλαζοπόδαρους.jpg"
             },
             "46": {
-                "path": "/static/covers/lucky-luke/46.jpg",
+                "path": "/static/covers/lucky-luke/046.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Εναντίον-Τζος-Τζέημον.jpg"
             },
             "47": {
-                "path": "/static/covers/lucky-luke/47.jpg",
+                "path": "/static/covers/lucky-luke/047.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Πόλη-Φάντασμα.jpg"
             },
             "48": {
-                "path": "/static/covers/lucky-luke/48.jpg",
+                "path": "/static/covers/lucky-luke/048.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Αντίπαλοι.jpg"
             },
             "49": {
-                "path": "/static/covers/lucky-luke/49.jpg",
+                "path": "/static/covers/lucky-luke/049.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Άλλοθι.jpg"
             },
             "50": {
-                "path": "/static/covers/lucky-luke/50.jpg",
+                "path": "/static/covers/lucky-luke/050.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Παράνομοι.jpg"
             },
             "51": {
-                "path": "/static/covers/lucky-luke/51.jpg",
+                "path": "/static/covers/lucky-luke/051.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Τσίρκο.jpg"
             },
             "52": {
-                "path": "/static/covers/lucky-luke/52.jpg",
+                "path": "/static/covers/lucky-luke/052.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Πόνυ-Εξπρές.jpg"
             },
             "53": {
-                "path": "/static/covers/lucky-luke/53.jpg",
+                "path": "/static/covers/lucky-luke/053.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Ελιξήριο.jpg"
             },
             "54": {
-                "path": "/static/covers/lucky-luke/54.png",
+                "path": "/static/covers/lucky-luke/054.png",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
             },
             "55": {
-                "path": "/static/covers/lucky-luke/55.jpg",
+                "path": "/static/covers/lucky-luke/055.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Επικίνδυνο-Πέρασμα.jpg"
             },
             "56": {
-                "path": "/static/covers/lucky-luke/56.jpg",
+                "path": "/static/covers/lucky-luke/056.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κίτρινος-Πυρετός.jpg"
             },
             "57": {
-                "path": "/static/covers/lucky-luke/57.jpg",
+                "path": "/static/covers/lucky-luke/057.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Ροντέο.jpg"
             },
             "58": {
-                "path": "/static/covers/lucky-luke/58.jpg",
+                "path": "/static/covers/lucky-luke/058.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Αμνησία-Των-Ντάλτον.jpg"
             },
             "59": {
-                "path": "/static/covers/lucky-luke/59.jpg",
+                "path": "/static/covers/lucky-luke/059.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κυνήγι-Φαντασμάτων.jpg"
             },
             "60": {
-                "path": "/static/covers/lucky-luke/60.jpg",
+                "path": "/static/covers/lucky-luke/060.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Αριζόνα.jpg"
             },
             "61": {
-                "path": "/static/covers/lucky-luke/61.jpg",
+                "path": "/static/covers/lucky-luke/061.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Επιστροφή-Του-Τζόε-“Η-Σκανδάλη”.jpg"
             },
             "62": {
-                "path": "/static/covers/lucky-luke/62.jpg",
+                "path": "/static/covers/lucky-luke/062.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Ντάλτον-Σε-Γάμο.jpg"
             },
             "63": {
-                "path": "/static/covers/lucky-luke/63.jpg",
+                "path": "/static/covers/lucky-luke/063.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Γέφυρα-Του-Μισισιπή.jpg"
             },
             "64": {
-                "path": "/static/covers/lucky-luke/64.jpg",
+                "path": "/static/covers/lucky-luke/064.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Μπελ-Σταρ.jpg"
             },
             "65": {
-                "path": "/static/covers/lucky-luke/65.jpg",
+                "path": "/static/covers/lucky-luke/065.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Κλοντάικ.jpg"
             },
             "66": {
-                "path": "/static/covers/lucky-luke/66.jpg",
+                "path": "/static/covers/lucky-luke/066.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ένας-Σεΐχης-στο-Φαρ-Ουέστ.jpg"
             },
             "67": {
-                "path": "/static/covers/lucky-luke/67.jpg",
+                "path": "/static/covers/lucky-luke/067.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Παντρεύεται-Ο-Λούκυ.jpg"
             },
             "68": {
-                "path": "/static/covers/lucky-luke/68.jpg",
+                "path": "/static/covers/lucky-luke/068.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Παντρεύεται-Ο-Λούκυ.jpg"
             },
             "69": {
-                "path": "/static/covers/lucky-luke/69.jpg",
+                "path": "/static/covers/lucky-luke/069.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Μακ-Στους-Ινδιάνους.jpg"
             },
             "70": {
-                "path": "/static/covers/lucky-luke/70.jpg",
+                "path": "/static/covers/lucky-luke/070.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/18.jpg"
             },
             "71": {
-                "path": "/static/covers/lucky-luke/71.jpg",
+                "path": "/static/covers/lucky-luke/071.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Μπόμπιρας-Λούκυ.jpg"
             },
             "72": {
-                "path": "/static/covers/lucky-luke/72.jpg",
+                "path": "/static/covers/lucky-luke/072.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οκλαχόμα-Τζιμ.jpg"
             },
             "73": {
-                "path": "/static/covers/lucky-luke/73.jpg",
+                "path": "/static/covers/lucky-luke/073.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Προφήτης.jpg"
             },
             "74": {
-                "path": "/static/covers/lucky-luke/74.jpg",
+                "path": "/static/covers/lucky-luke/074.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Ζωγράφος.jpg"
             },
             "75": {
-                "path": "/static/covers/lucky-luke/75.jpg",
+                "path": "/static/covers/lucky-luke/075.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Θρύλος-Της-Δύσης.jpg"
             },
             "76": {
-                "path": "/static/covers/lucky-luke/76.jpg",
+                "path": "/static/covers/lucky-luke/076.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Η-Ωραία-Προβένς.jpg"
             },
             "77": {
-                "path": "/static/covers/lucky-luke/77.jpg",
+                "path": "/static/covers/lucky-luke/077.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Οι-Ντάλτον-Στην-Κρεμάλα-Λούκυ-Λουκ-77.jpg"
             },
             "78": {
-                "path": "/static/covers/lucky-luke/78.jpg",
+                "path": "/static/covers/lucky-luke/078.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Ο-Άνθρωπος-Από-Την-Ουάσινγκτον.jpg"
             },
             "79": {
-                "path": "/static/covers/lucky-luke/79.jpg",
+                "path": "/static/covers/lucky-luke/079.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Λούκυ-Λουκ-Εναντίον-Πίνκερτον.jpg"
             },
             "80": {
-                "path": "/static/covers/lucky-luke/80.jpg",
+                "path": "/static/covers/lucky-luke/080.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2015/03/Μοναχικός-Καβαλάρης.jpg"
             },
             "81": {
-                "path": "/static/covers/lucky-luke/81.jpg",
+                "path": "/static/covers/lucky-luke/081.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2024/02/Εκείνες-εμπρος.jpg"
             },
             "82": {
-                "path": "/static/covers/lucky-luke/82.jpg",
+                "path": "/static/covers/lucky-luke/082.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2017/04/Λούκυ-Λουκ-H-Γη-Της-Επαγγελίας-No82.jpg"
             },
             "83": {
-                "path": "/static/covers/lucky-luke/83.jpg",
+                "path": "/static/covers/lucky-luke/083.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2017/05/Ο-Αγνωστος-Του-Magnus-Τόμος-1.jpg"
             },
             "84": {
-                "path": "/static/covers/lucky-luke/84.jpg",
+                "path": "/static/covers/lucky-luke/084.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2024/10/Τα-Κοσμήματα-Της-Κασταφιόρε-ΤενΤεν-20.jpg"
             },
             "85": {
-                "path": "/static/covers/lucky-luke/85.jpg",
+                "path": "/static/covers/lucky-luke/085.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2019/12/Λούκυ-Λουκ-85.jpg"
             },
             "86": {
-                "path": "/static/covers/lucky-luke/86.jpg",
+                "path": "/static/covers/lucky-luke/086.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2020/07/Λούκυ-Κιντ-Αταξία-Και-Τιμωρία-Λούκυ-Λουκ-86.jpg"
             },
             "87": {
-                "path": "/static/covers/lucky-luke/87.png",
+                "path": "/static/covers/lucky-luke/087.png",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Τεντεν-7-Το-μυστικό-του-μονόκερου.png"
             },
             "88": {
-                "path": "/static/covers/lucky-luke/88.jpg",
+                "path": "/static/covers/lucky-luke/088.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2021/06/Μάθε-τέχνη-κι-άστηνε-001-rotated.jpg"
             },
             "89": {
-                "path": "/static/covers/lucky-luke/89.jpg",
+                "path": "/static/covers/lucky-luke/089.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2020/11/Λούκυ-Λουκ-87-Μπελάδες-στις-φυτείες.jpg"
             },
             "90": {
-                "path": "/static/covers/lucky-luke/90.jpg",
+                "path": "/static/covers/lucky-luke/090.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2025/10/1-2.jpg"
             },
             "SPECIAL": {
@@ -369,330 +369,881 @@
         },
         "asterix": {
             "1": {
-                "path": "/static/covers/asterix/01.png",
+                "path": "/static/covers/asterix/001.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-01:-o-agwnas-twn-arxhgwn-1-600x315.png"
             },
             "2": {
-                "path": "/static/covers/asterix/02.png",
+                "path": "/static/covers/asterix/002.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-02:-obelix-sia-600x315.png"
             },
             "3": {
-                "path": "/static/covers/asterix/03.png",
+                "path": "/static/covers/asterix/003.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-03:-o-asterix-sthn-ispania-600x315.png"
             },
             "4": {
-                "path": "/static/covers/asterix/04.png",
+                "path": "/static/covers/asterix/004.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-04:-o-asterix-kai-oi-got8oi-600x315.png"
             },
             "5": {
-                "path": "/static/covers/asterix/05.png",
+                "path": "/static/covers/asterix/005.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-05:-asterix-kai-kleopatra-1-600x315.png"
             },
             "6": {
-                "path": "/static/covers/asterix/06.png",
+                "path": "/static/covers/asterix/006.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-06:-h-dixonoia-1-600x315.png"
             },
             "7": {
-                "path": "/static/covers/asterix/07.png",
+                "path": "/static/covers/asterix/007.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-07:-h-katoikia-twn-8ewn-600x315.png"
             },
             "8": {
-                "path": "/static/covers/asterix/08.png",
+                "path": "/static/covers/asterix/008.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-08:-o-manths-600x315.png"
             },
             "9": {
-                "path": "/static/covers/asterix/09.png",
+                "path": "/static/covers/asterix/009.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-09:-o-gyros-ths-galatias-600x315.png"
             },
             "10": {
-                "path": "/static/covers/asterix/10.png",
+                "path": "/static/covers/asterix/010.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-10:-asterix-o-galaths-600x315.png"
             },
             "11": {
-                "path": "/static/covers/asterix/11.png",
+                "path": "/static/covers/asterix/011.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-11:-o-asterix-stoys-belgoys-2-600x315.png"
             },
             "12": {
-                "path": "/static/covers/asterix/12.png",
+                "path": "/static/covers/asterix/012.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-12:-o-asterix-sthn-korsikh-2-600x315.png"
             },
             "13": {
-                "path": "/static/covers/asterix/13.png",
+                "path": "/static/covers/asterix/013.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-13:-o-asterix-monomaxos-600x315.png"
             },
             "14": {
-                "path": "/static/covers/asterix/14.png",
+                "path": "/static/covers/asterix/014.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-14:-o-asterix-kai-oi-normandoi-1-600x315.png"
             },
             "15": {
-                "path": "/static/covers/asterix/15.png",
+                "path": "/static/covers/asterix/015.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-15:-oi-dafnes-toy-kaisara-600x315.png"
             },
             "16": {
-                "path": "/static/covers/asterix/16.png",
+                "path": "/static/covers/asterix/016.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-16:-to-xryso-drepani-600x315.png"
             },
             "17": {
-                "path": "/static/covers/asterix/17.png",
+                "path": "/static/covers/asterix/017.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-17:-o-asterix-stoys-bretanoys-600x315.png"
             },
             "18": {
-                "path": "/static/covers/asterix/18.png",
-                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-18:-o-asterix-kai-h-xytra-2-600x315.png"
+                "path": "/static/covers/asterix/018.png",
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-18:-o-asterix-kai-h-xytra-600x315.png"
             },
             "19": {
-                "path": "/static/covers/asterix/19.png",
+                "path": "/static/covers/asterix/019.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-19:-h-aspida-ths-arbernhs-600x315.png"
             },
             "20": {
-                "path": "/static/covers/asterix/20.png",
+                "path": "/static/covers/asterix/020.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-20:-o-asterix-stoys-elbetoys-2-600x315.png"
             },
             "21": {
-                "path": "/static/covers/asterix/21.png",
+                "path": "/static/covers/asterix/021.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-21:-to-dwro-toy-kaisara-600x315.png"
             },
             "22": {
-                "path": "/static/covers/asterix/22.png",
+                "path": "/static/covers/asterix/022.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-22:-rodo-kai-3ifos-600x315.png"
             },
             "23": {
-                "path": "/static/covers/asterix/23.png",
+                "path": "/static/covers/asterix/023.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-23:-to-megalo-ta3idi-600x315.png"
             },
             "24": {
-                "path": "/static/covers/asterix/24.png",
+                "path": "/static/covers/asterix/024.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-24:-o-asterix-legewnarios-600x315.png"
             },
             "25": {
-                "path": "/static/covers/asterix/25.png",
+                "path": "/static/covers/asterix/025.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-25:-o-asterix-stoys-olympiakoys-agwnes-1-600x315.png"
             },
             "26": {
-                "path": "/static/covers/asterix/26.png",
+                "path": "/static/covers/asterix/026.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-26:-h-megalh-tafros-2-600x315.png"
             },
             "27": {
-                "path": "/static/covers/asterix/27.png",
+                "path": "/static/covers/asterix/027.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-27:-h-odysseia-toy-asterix-600x315.png"
             },
             "28": {
-                "path": "/static/covers/asterix/28.png",
+                "path": "/static/covers/asterix/028.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-28:-o-gios-toy-asterix-600x315.png"
             },
             "29": {
-                "path": "/static/covers/asterix/29.png",
+                "path": "/static/covers/asterix/029.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-29-o-asterix-kai-h-xalalima-600x315.png"
             },
             "30": {
-                "path": "/static/covers/asterix/30.png",
+                "path": "/static/covers/asterix/030.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-30:-h-galera-toy-obelix-600x315.png"
             },
             "31": {
-                "path": "/static/covers/asterix/31.png",
+                "path": "/static/covers/asterix/031.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-31:-o-asterix-kai-h-latrabiata-600x315.png"
             },
             "32": {
-                "path": "/static/covers/asterix/32.png",
+                "path": "/static/covers/asterix/032.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-32:-o-asterix-kai-h-epistrofh-twn-galatwn-600x315.png"
             },
             "33": {
-                "path": "/static/covers/asterix/33.png",
+                "path": "/static/covers/asterix/033.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-33:-kai-o-oyranos-epese-sto-kefali-toys-600x315.png"
             },
             "34": {
-                "path": "/static/covers/asterix/34.png",
+                "path": "/static/covers/asterix/034.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-34:-ta-gene8lia-twn-asterix-kai-obelix-600x315.png"
             },
             "35": {
-                "path": "/static/covers/asterix/35.png",
+                "path": "/static/covers/asterix/035.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-35:-o-asterix-stoys-piktoys-600x315.png"
             },
             "36": {
-                "path": "/static/covers/asterix/36.png",
+                "path": "/static/covers/asterix/036.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-36:-o-papyros-toy-kaisara-600x315.png"
             },
             "37": {
-                "path": "/static/covers/asterix/37.png",
+                "path": "/static/covers/asterix/037.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-37:-o-asterix-kai-o-yperitalikos-600x315.png"
             },
             "38": {
-                "path": "/static/covers/asterix/38.png",
+                "path": "/static/covers/asterix/038.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-38:-h-korh-toy-bersinzetori3-600x315.png"
             },
             "39": {
-                "path": "/static/covers/asterix/39.png",
+                "path": "/static/covers/asterix/039.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-39:-o-asterix-kai-o-grypas-600x315.png"
             },
             "40": {
-                "path": "/static/covers/asterix/40.png",
+                "path": "/static/covers/asterix/040.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-40:-h-leykh-irida-600x315.png"
             },
             "41": {
-                "path": "/static/covers/asterix/41.png",
+                "path": "/static/covers/asterix/041.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-41:-o-asterix-sthn-loyzitania-600x315.png"
             }
         },
         "idefix": {
             "1": {
-                "path": "/static/covers/idefix/01.png",
+                "path": "/static/covers/idefix/001.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/o-intefi3-kai-oi-anypotaktoi-1:-kanenas-oiktos-gia-toys-latinoys-600x315.png"
             },
             "2": {
-                "path": "/static/covers/idefix/02.png",
+                "path": "/static/covers/idefix/002.png",
                 "source": "https://comicstrip.gr/image/cache/catalog/product/o-intefi3-kai-oi-anypotaktoi-2:-o-intefi3-kai-o-droyidhs-600x315.png"
             }
         },
         "iznogoud": {
             "1": {
-                "path": "/static/covers/iznogoud/01.png",
+                "path": "/static/covers/iznogoud/001.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/ιζν-01.png"
             },
             "3": {
-                "path": "/static/covers/iznogoud/03.png",
+                "path": "/static/covers/iznogoud/003.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-03.png"
             },
             "4": {
-                "path": "/static/covers/iznogoud/04.png",
+                "path": "/static/covers/iznogoud/004.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-04.png"
             },
             "5": {
-                "path": "/static/covers/iznogoud/05.png",
+                "path": "/static/covers/iznogoud/005.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-05.png"
             },
             "6": {
-                "path": "/static/covers/iznogoud/06.png",
+                "path": "/static/covers/iznogoud/006.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-06.png"
             },
             "7": {
-                "path": "/static/covers/iznogoud/07.png",
+                "path": "/static/covers/iznogoud/007.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-07.png"
             },
             "8": {
-                "path": "/static/covers/iznogoud/08.png",
+                "path": "/static/covers/iznogoud/008.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/05/ιζνογκούντ-08-η-μέρα-των-τρελών.png"
             },
             "9": {
-                "path": "/static/covers/iznogoud/09.png",
+                "path": "/static/covers/iznogoud/009.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-09.png"
             },
             "10": {
-                "path": "/static/covers/iznogoud/10.png",
+                "path": "/static/covers/iznogoud/010.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-10.png"
             },
             "11": {
-                "path": "/static/covers/iznogoud/11.png",
+                "path": "/static/covers/iznogoud/011.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-11.png"
             },
             "12": {
-                "path": "/static/covers/iznogoud/12.png",
+                "path": "/static/covers/iznogoud/012.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-12.png"
             },
             "13": {
-                "path": "/static/covers/iznogoud/13.png",
+                "path": "/static/covers/iznogoud/013.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-13.png"
             },
             "14": {
-                "path": "/static/covers/iznogoud/14.png",
+                "path": "/static/covers/iznogoud/014.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-14.png"
             },
             "22": {
-                "path": "/static/covers/iznogoud/22.png",
+                "path": "/static/covers/iznogoud/022.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-22.png"
             },
             "23": {
-                "path": "/static/covers/iznogoud/23.png",
+                "path": "/static/covers/iznogoud/023.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-23.png"
             },
             "24": {
-                "path": "/static/covers/iznogoud/24.png",
+                "path": "/static/covers/iznogoud/024.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-24.png"
             },
             "25": {
-                "path": "/static/covers/iznogoud/25.png",
+                "path": "/static/covers/iznogoud/025.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-25.png"
             },
             "26": {
-                "path": "/static/covers/iznogoud/26.png",
+                "path": "/static/covers/iznogoud/026.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-26.png"
             },
             "27": {
-                "path": "/static/covers/iznogoud/27.png",
+                "path": "/static/covers/iznogoud/027.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-27.png"
             },
             "28": {
-                "path": "/static/covers/iznogoud/28.png",
+                "path": "/static/covers/iznogoud/028.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/ιζν-28.png"
             },
             "29": {
-                "path": "/static/covers/iznogoud/29.png",
+                "path": "/static/covers/iznogoud/029.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/07/Ιζνογκούντ-29.png"
             },
             "30": {
-                "path": "/static/covers/iznogoud/30.png",
+                "path": "/static/covers/iznogoud/030.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2024/11/Ιζνογκούντ-30-από-πατέρα-σε-γιό.png"
             }
         },
         "rantanplan": {
             "17": {
-                "path": "/static/covers/rantanplan/17.png",
+                "path": "/static/covers/rantanplan/017.png",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2026/06/ραντανπλαν-17-Cover.png"
             }
         },
         "sherlock-holmes": {
             "1": {
-                "path": "/static/covers/sherlock-holmes/01.jpg",
+                "path": "/static/covers/sherlock-holmes/001.jpg",
                 "source": "https://static.efantasy.gr/products/367679/367679-0-0000-serlok-xolms-1-den-fobatai-tipota.jpg"
             },
             "2": {
-                "path": "/static/covers/sherlock-holmes/02.jpg",
+                "path": "/static/covers/sherlock-holmes/002.jpg",
                 "source": "https://static.efantasy.gr/products/367681/367681-0-0000-serlok-xolms-2-i-lesxi-ton-akraion-spor.jpg"
             },
             "3": {
-                "path": "/static/covers/sherlock-holmes/03.jpg",
+                "path": "/static/covers/sherlock-holmes/003.jpg",
                 "source": "https://static.efantasy.gr/products/367683/367683-0-0000-serlok-xolms-3-oi-anthropoi-tis-kamelias.jpg"
             },
             "4": {
-                "path": "/static/covers/sherlock-holmes/04.jpg",
+                "path": "/static/covers/sherlock-holmes/004.jpg",
                 "source": "https://static.efantasy.gr/products/367685/367685-0-0000-serlok-xolms-4-i-skia-tou-m.jpg"
             }
         },
         "arkas": {
             "1": {
-                "path": "/static/covers/arkas/01.webp",
+                "path": "/static/covers/arkas/001.webp",
                 "source": "https://external.webstorage.gr/mmimages/image/40/15/76/93/0087977-264x264-800x800.jpg"
             },
             "5": {
-                "path": "/static/covers/arkas/05.jpg",
+                "path": "/static/covers/arkas/005.jpg",
                 "source": "https://d.scdn.gr/images/sku_main_images/037384/37384239/20220808155715_i_zoi_meta_epitomo.jpeg"
             },
             "7": {
-                "path": "/static/covers/arkas/07.jpg",
+                "path": "/static/covers/arkas/007.jpg",
                 "source": "https://www.lifo.gr/sites/default/files/styles/max_1920x1920/public/articles/2021-01-21/show_businnes.jpg?itok=Rk5y6WFg"
             },
             "8": {
-                "path": "/static/covers/arkas/08.jpg",
+                "path": "/static/covers/arkas/008.jpg",
                 "source": "https://d.scdn.gr/images/sku_main_images/000119/119107/xlarge_20220824162857_xypnas_mesa_mou_to_zoo.jpeg"
             },
             "12": {
-                "path": "/static/covers/arkas/12.webp",
+                "path": "/static/covers/arkas/012.webp",
                 "source": "https://external.webstorage.gr/mmimages/image/70/37/29/60/0170119-264x264-800x800-96x96-560x560.jpg"
             },
             "14": {
-                "path": "/static/covers/arkas/14.webp",
+                "path": "/static/covers/arkas/014.webp",
                 "source": "https://bcdn.vendora.gr/0/07/93/07932f06833c818444188afee46ee013132cd314.jpg?class=lsq"
             },
             "15": {
-                "path": "/static/covers/arkas/15.webp",
+                "path": "/static/covers/arkas/015.webp",
                 "source": "https://bcdn.vendora.gr/0/27/90/279024bc1d332b2cd10d198dd8ea1cc082e39439.jpg?class=lsq"
             },
             "19": {
-                "path": "/static/covers/arkas/19.jpg",
+                "path": "/static/covers/arkas/019.jpg",
                 "source": "https://c.scdn.gr/images/sku_main_images/014522/14522477/20200219105454_i_apoikia.jpeg"
             },
             "21": {
-                "path": "/static/covers/arkas/21.webp",
+                "path": "/static/covers/arkas/021.webp",
                 "source": "https://external.webstorage.gr/mmimages/image/96/51/94/29/1104410-264x264-800x800.jpg"
+            }
+        },
+        "zelda": {},
+        "dc-comics": {
+            "1": {
+                "path": "/static/covers/dc-comics/001.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12926724-L.jpg"
+            },
+            "2": {
+                "path": "/static/covers/dc-comics/002.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12297940-L.jpg"
+            },
+            "3": {
+                "path": "/static/covers/dc-comics/003.jpg",
+                "source": "https://covers.openlibrary.org/b/id/798170-L.jpg"
+            },
+            "4": {
+                "path": "/static/covers/dc-comics/004.jpg",
+                "source": "https://covers.openlibrary.org/b/id/10407805-L.jpg"
+            },
+            "6": {
+                "path": "/static/covers/dc-comics/006.jpg",
+                "source": "https://covers.openlibrary.org/b/id/749017-L.jpg"
+            },
+            "7": {
+                "path": "/static/covers/dc-comics/007.jpg",
+                "source": "https://covers.openlibrary.org/b/id/13060481-L.jpg"
+            },
+            "8": {
+                "path": "/static/covers/dc-comics/008.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7436710-L.jpg"
+            },
+            "9": {
+                "path": "/static/covers/dc-comics/009.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8173706-L.jpg"
+            },
+            "10": {
+                "path": "/static/covers/dc-comics/010.jpg",
+                "source": "https://covers.openlibrary.org/b/id/11883858-L.jpg"
+            },
+            "13": {
+                "path": "/static/covers/dc-comics/013.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12003556-L.jpg"
+            },
+            "14": {
+                "path": "/static/covers/dc-comics/014.jpg",
+                "source": "https://covers.openlibrary.org/b/id/14571320-L.jpg"
+            },
+            "15": {
+                "path": "/static/covers/dc-comics/015.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12649857-L.jpg"
+            },
+            "16": {
+                "path": "/static/covers/dc-comics/016.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8820983-L.jpg"
+            }
+        },
+        "marvel": {
+            "1": {
+                "path": "/static/covers/marvel/001.jpg",
+                "source": "https://covers.openlibrary.org/b/id/13826815-L.jpg"
+            },
+            "2": {
+                "path": "/static/covers/marvel/002.jpg",
+                "source": "https://covers.openlibrary.org/b/id/11357440-L.jpg"
+            },
+            "4": {
+                "path": "/static/covers/marvel/004.jpg",
+                "source": "https://covers.openlibrary.org/b/id/509234-L.jpg"
+            },
+            "5": {
+                "path": "/static/covers/marvel/005.jpg",
+                "source": "https://covers.openlibrary.org/b/id/536363-L.jpg"
+            },
+            "6": {
+                "path": "/static/covers/marvel/006.jpg",
+                "source": "https://covers.openlibrary.org/b/id/536325-L.jpg"
+            },
+            "8": {
+                "path": "/static/covers/marvel/008.jpg",
+                "source": "https://covers.openlibrary.org/b/id/536403-L.jpg"
+            },
+            "9": {
+                "path": "/static/covers/marvel/009.jpg",
+                "source": "https://covers.openlibrary.org/b/id/2626130-L.jpg"
+            },
+            "10": {
+                "path": "/static/covers/marvel/010.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7683941-L.jpg"
+            },
+            "11": {
+                "path": "/static/covers/marvel/011.jpg",
+                "source": "https://covers.openlibrary.org/b/id/13714639-L.jpg"
+            },
+            "13": {
+                "path": "/static/covers/marvel/013.jpg",
+                "source": "https://covers.openlibrary.org/b/id/536175-L.jpg"
+            },
+            "14": {
+                "path": "/static/covers/marvel/014.jpg",
+                "source": "https://covers.openlibrary.org/b/id/10620718-L.jpg"
+            }
+        },
+        "marvel-graphic-novel": {
+            "1": {
+                "path": "/static/covers/marvel-graphic-novel/001.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "2": {
+                "path": "/static/covers/marvel-graphic-novel/002.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8459892-L.jpg"
+            },
+            "3": {
+                "path": "/static/covers/marvel-graphic-novel/003.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8669465-L.jpg"
+            },
+            "4": {
+                "path": "/static/covers/marvel-graphic-novel/004.jpg",
+                "source": "https://covers.openlibrary.org/b/id/1535297-L.jpg"
+            },
+            "6": {
+                "path": "/static/covers/marvel-graphic-novel/006.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12701222-L.jpg"
+            },
+            "7": {
+                "path": "/static/covers/marvel-graphic-novel/007.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7724418-L.jpg"
+            },
+            "8": {
+                "path": "/static/covers/marvel-graphic-novel/008.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8022702-L.jpg"
+            },
+            "9": {
+                "path": "/static/covers/marvel-graphic-novel/009.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8459915-L.jpg"
+            },
+            "10": {
+                "path": "/static/covers/marvel-graphic-novel/010.jpg",
+                "source": "https://covers.openlibrary.org/b/id/1464872-L.jpg"
+            },
+            "11": {
+                "path": "/static/covers/marvel-graphic-novel/011.jpg",
+                "source": "https://covers.openlibrary.org/b/id/536348-L.jpg"
+            },
+            "12": {
+                "path": "/static/covers/marvel-graphic-novel/012.jpg",
+                "source": "https://covers.openlibrary.org/b/id/4724932-L.jpg"
+            },
+            "13": {
+                "path": "/static/covers/marvel-graphic-novel/013.jpg",
+                "source": "https://covers.openlibrary.org/b/id/13093888-L.jpg"
+            },
+            "14": {
+                "path": "/static/covers/marvel-graphic-novel/014.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7591097-L.jpg"
+            },
+            "15": {
+                "path": "/static/covers/marvel-graphic-novel/015.jpg",
+                "source": "https://covers.openlibrary.org/b/id/535896-L.jpg"
+            },
+            "16": {
+                "path": "/static/covers/marvel-graphic-novel/016.jpg",
+                "source": "https://covers.openlibrary.org/b/id/9137150-L.jpg"
+            },
+            "17": {
+                "path": "/static/covers/marvel-graphic-novel/017.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12625924-L.jpg"
+            },
+            "18": {
+                "path": "/static/covers/marvel-graphic-novel/018.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+            },
+            "19": {
+                "path": "/static/covers/marvel-graphic-novel/019.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6289483-L.jpg"
+            },
+            "20": {
+                "path": "/static/covers/marvel-graphic-novel/020.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8812936-L.jpg"
+            },
+            "21": {
+                "path": "/static/covers/marvel-graphic-novel/021.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12625924-L.jpg"
+            },
+            "22": {
+                "path": "/static/covers/marvel-graphic-novel/022.jpg",
+                "source": "https://covers.openlibrary.org/b/id/535573-L.jpg"
+            },
+            "23": {
+                "path": "/static/covers/marvel-graphic-novel/023.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6597315-L.jpg"
+            },
+            "24": {
+                "path": "/static/covers/marvel-graphic-novel/024.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6289483-L.jpg"
+            },
+            "25": {
+                "path": "/static/covers/marvel-graphic-novel/025.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8813199-L.jpg"
+            },
+            "26": {
+                "path": "/static/covers/marvel-graphic-novel/026.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7501643-L.jpg"
+            },
+            "27": {
+                "path": "/static/covers/marvel-graphic-novel/027.jpg",
+                "source": "https://covers.openlibrary.org/b/id/535996-L.jpg"
+            },
+            "28": {
+                "path": "/static/covers/marvel-graphic-novel/028.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+            },
+            "29": {
+                "path": "/static/covers/marvel-graphic-novel/029.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "30": {
+                "path": "/static/covers/marvel-graphic-novel/030.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "31": {
+                "path": "/static/covers/marvel-graphic-novel/031.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+            },
+            "32": {
+                "path": "/static/covers/marvel-graphic-novel/032.jpg",
+                "source": "https://covers.openlibrary.org/b/id/535949-L.jpg"
+            },
+            "33": {
+                "path": "/static/covers/marvel-graphic-novel/033.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+            },
+            "34": {
+                "path": "/static/covers/marvel-graphic-novel/034.jpg",
+                "source": "https://covers.openlibrary.org/b/id/4724932-L.jpg"
+            },
+            "35": {
+                "path": "/static/covers/marvel-graphic-novel/035.jpg",
+                "source": "https://covers.openlibrary.org/b/id/9136524-L.jpg"
+            },
+            "36": {
+                "path": "/static/covers/marvel-graphic-novel/036.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "37": {
+                "path": "/static/covers/marvel-graphic-novel/037.jpg",
+                "source": "https://covers.openlibrary.org/b/id/536270-L.jpg"
+            },
+            "38": {
+                "path": "/static/covers/marvel-graphic-novel/038.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "39": {
+                "path": "/static/covers/marvel-graphic-novel/039.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "40": {
+                "path": "/static/covers/marvel-graphic-novel/040.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6597315-L.jpg"
+            },
+            "41": {
+                "path": "/static/covers/marvel-graphic-novel/041.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12648656-L.jpg"
+            },
+            "42": {
+                "path": "/static/covers/marvel-graphic-novel/042.jpg",
+                "source": "https://covers.openlibrary.org/b/id/535666-L.jpg"
+            },
+            "43": {
+                "path": "/static/covers/marvel-graphic-novel/043.jpg",
+                "source": "https://covers.openlibrary.org/b/id/950581-L.jpg"
+            },
+            "44": {
+                "path": "/static/covers/marvel-graphic-novel/044.jpg",
+                "source": "https://covers.openlibrary.org/b/id/500399-L.jpg"
+            },
+            "45": {
+                "path": "/static/covers/marvel-graphic-novel/045.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7632483-L.jpg"
+            },
+            "46": {
+                "path": "/static/covers/marvel-graphic-novel/046.jpg",
+                "source": "https://covers.openlibrary.org/b/id/9934860-L.jpg"
+            },
+            "47": {
+                "path": "/static/covers/marvel-graphic-novel/047.jpg",
+                "source": "https://covers.openlibrary.org/b/id/535513-L.jpg"
+            },
+            "48": {
+                "path": "/static/covers/marvel-graphic-novel/048.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "49": {
+                "path": "/static/covers/marvel-graphic-novel/049.jpg",
+                "source": "https://covers.openlibrary.org/b/id/9137150-L.jpg"
+            },
+            "50": {
+                "path": "/static/covers/marvel-graphic-novel/050.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6597315-L.jpg"
+            },
+            "51": {
+                "path": "/static/covers/marvel-graphic-novel/051.jpg",
+                "source": "https://covers.openlibrary.org/b/id/14484124-L.jpg"
+            },
+            "52": {
+                "path": "/static/covers/marvel-graphic-novel/052.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6997116-L.jpg"
+            },
+            "53": {
+                "path": "/static/covers/marvel-graphic-novel/053.jpg",
+                "source": "https://covers.openlibrary.org/b/id/535990-L.jpg"
+            },
+            "55": {
+                "path": "/static/covers/marvel-graphic-novel/055.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8460022-L.jpg"
+            },
+            "56": {
+                "path": "/static/covers/marvel-graphic-novel/056.jpg",
+                "source": "https://covers.openlibrary.org/b/id/535893-L.jpg"
+            },
+            "57": {
+                "path": "/static/covers/marvel-graphic-novel/057.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6666927-L.jpg"
+            },
+            "58": {
+                "path": "/static/covers/marvel-graphic-novel/058.jpg",
+                "source": "https://covers.openlibrary.org/b/id/13646261-L.jpg"
+            },
+            "59": {
+                "path": "/static/covers/marvel-graphic-novel/059.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "60": {
+                "path": "/static/covers/marvel-graphic-novel/060.jpg",
+                "source": "https://covers.openlibrary.org/b/id/536039-L.jpg"
+            },
+            "61": {
+                "path": "/static/covers/marvel-graphic-novel/061.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8897470-L.jpg"
+            },
+            "62": {
+                "path": "/static/covers/marvel-graphic-novel/062.jpg",
+                "source": "https://covers.openlibrary.org/b/id/9136579-L.jpg"
+            },
+            "63": {
+                "path": "/static/covers/marvel-graphic-novel/063.jpg",
+                "source": "https://covers.openlibrary.org/b/id/271478-L.jpg"
+            },
+            "64": {
+                "path": "/static/covers/marvel-graphic-novel/064.jpg",
+                "source": "https://covers.openlibrary.org/b/id/1464825-L.jpg"
+            },
+            "65": {
+                "path": "/static/covers/marvel-graphic-novel/065.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7688270-L.jpg"
+            },
+            "66": {
+                "path": "/static/covers/marvel-graphic-novel/066.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8459580-L.jpg"
+            },
+            "67": {
+                "path": "/static/covers/marvel-graphic-novel/067.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7483310-L.jpg"
+            },
+            "68": {
+                "path": "/static/covers/marvel-graphic-novel/068.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+            },
+            "69": {
+                "path": "/static/covers/marvel-graphic-novel/069.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8459439-L.jpg"
+            },
+            "70": {
+                "path": "/static/covers/marvel-graphic-novel/070.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "71": {
+                "path": "/static/covers/marvel-graphic-novel/071.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8460015-L.jpg"
+            },
+            "72": {
+                "path": "/static/covers/marvel-graphic-novel/072.jpg",
+                "source": "https://covers.openlibrary.org/b/id/2626121-L.jpg"
+            },
+            "73": {
+                "path": "/static/covers/marvel-graphic-novel/073.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8967966-L.jpg"
+            },
+            "74": {
+                "path": "/static/covers/marvel-graphic-novel/074.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12648656-L.jpg"
+            },
+            "75": {
+                "path": "/static/covers/marvel-graphic-novel/075.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8796904-L.jpg"
+            },
+            "76": {
+                "path": "/static/covers/marvel-graphic-novel/076.jpg",
+                "source": "https://covers.openlibrary.org/b/id/9136440-L.jpg"
+            },
+            "77": {
+                "path": "/static/covers/marvel-graphic-novel/077.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "78": {
+                "path": "/static/covers/marvel-graphic-novel/078.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7014709-L.jpg"
+            },
+            "79": {
+                "path": "/static/covers/marvel-graphic-novel/079.jpg",
+                "source": "https://covers.openlibrary.org/b/id/535736-L.jpg"
+            },
+            "80": {
+                "path": "/static/covers/marvel-graphic-novel/080.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6573517-L.jpg"
+            },
+            "81": {
+                "path": "/static/covers/marvel-graphic-novel/081.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6573517-L.jpg"
+            },
+            "82": {
+                "path": "/static/covers/marvel-graphic-novel/082.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "83": {
+                "path": "/static/covers/marvel-graphic-novel/083.jpg",
+                "source": "https://covers.openlibrary.org/b/id/5620863-L.jpg"
+            },
+            "84": {
+                "path": "/static/covers/marvel-graphic-novel/084.jpg",
+                "source": "https://covers.openlibrary.org/b/id/10297781-L.jpg"
+            },
+            "85": {
+                "path": "/static/covers/marvel-graphic-novel/085.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6666927-L.jpg"
+            },
+            "88": {
+                "path": "/static/covers/marvel-graphic-novel/088.jpg",
+                "source": "https://covers.openlibrary.org/b/id/14379216-L.jpg"
+            },
+            "89": {
+                "path": "/static/covers/marvel-graphic-novel/089.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "90": {
+                "path": "/static/covers/marvel-graphic-novel/090.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "91": {
+                "path": "/static/covers/marvel-graphic-novel/091.jpg",
+                "source": "https://covers.openlibrary.org/b/id/10566696-L.jpg"
+            },
+            "94": {
+                "path": "/static/covers/marvel-graphic-novel/094.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8022702-L.jpg"
+            },
+            "95": {
+                "path": "/static/covers/marvel-graphic-novel/095.jpg",
+                "source": "https://covers.openlibrary.org/b/id/9137150-L.jpg"
+            },
+            "96": {
+                "path": "/static/covers/marvel-graphic-novel/096.jpg",
+                "source": "https://covers.openlibrary.org/b/id/6003100-L.jpg"
+            },
+            "97": {
+                "path": "/static/covers/marvel-graphic-novel/097.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "98": {
+                "path": "/static/covers/marvel-graphic-novel/098.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "99": {
+                "path": "/static/covers/marvel-graphic-novel/099.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8897470-L.jpg"
+            },
+            "100": {
+                "path": "/static/covers/marvel-graphic-novel/100.jpg",
+                "source": "https://covers.openlibrary.org/b/id/13192071-L.jpg"
+            },
+            "101": {
+                "path": "/static/covers/marvel-graphic-novel/101.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12823909-L.jpg"
+            },
+            "102": {
+                "path": "/static/covers/marvel-graphic-novel/102.jpg",
+                "source": "https://covers.openlibrary.org/b/id/11354623-L.jpg"
+            },
+            "104": {
+                "path": "/static/covers/marvel-graphic-novel/104.jpg",
+                "source": "https://covers.openlibrary.org/b/id/13229807-L.jpg"
+            },
+            "105": {
+                "path": "/static/covers/marvel-graphic-novel/105.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "106": {
+                "path": "/static/covers/marvel-graphic-novel/106.jpg",
+                "source": "https://covers.openlibrary.org/b/id/11704538-L.jpg"
+            },
+            "107": {
+                "path": "/static/covers/marvel-graphic-novel/107.jpg",
+                "source": "https://covers.openlibrary.org/b/id/7855585-L.jpg"
+            },
+            "108": {
+                "path": "/static/covers/marvel-graphic-novel/108.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8459732-L.jpg"
+            },
+            "109": {
+                "path": "/static/covers/marvel-graphic-novel/109.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8459958-L.jpg"
+            },
+            "110": {
+                "path": "/static/covers/marvel-graphic-novel/110.jpg",
+                "source": "https://covers.openlibrary.org/b/id/11933227-L.jpg"
+            },
+            "111": {
+                "path": "/static/covers/marvel-graphic-novel/111.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8459928-L.jpg"
+            },
+            "112": {
+                "path": "/static/covers/marvel-graphic-novel/112.jpg",
+                "source": "https://covers.openlibrary.org/b/id/13793126-L.jpg"
+            },
+            "113": {
+                "path": "/static/covers/marvel-graphic-novel/113.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8459964-L.jpg"
+            },
+            "114": {
+                "path": "/static/covers/marvel-graphic-novel/114.jpg",
+                "source": "https://covers.openlibrary.org/b/id/552443-L.jpg"
+            },
+            "115": {
+                "path": "/static/covers/marvel-graphic-novel/115.jpg",
+                "source": "https://covers.openlibrary.org/b/id/552443-L.jpg"
+            },
+            "116": {
+                "path": "/static/covers/marvel-graphic-novel/116.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8750492-L.jpg"
+            },
+            "117": {
+                "path": "/static/covers/marvel-graphic-novel/117.jpg",
+                "source": "https://covers.openlibrary.org/b/id/8810692-L.jpg"
+            },
+            "119": {
+                "path": "/static/covers/marvel-graphic-novel/119.jpg",
+                "source": "https://covers.openlibrary.org/b/id/12465296-L.jpg"
+            },
+            "120": {
+                "path": "/static/covers/marvel-graphic-novel/120.jpg",
+                "source": "https://covers.openlibrary.org/b/id/36314-L.jpg"
             }
         }
     },
@@ -876,6 +1427,90 @@
             },
             {
                 "number": 27,
+                "reason": "Δεν βρέθηκε image URL"
+            }
+        ],
+        "zelda": [
+            {
+                "number": 1,
+                "reason": "HTTP 403",
+                "source": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421589596/the-legend-of-zelda-ocarina-of-time-legendary-edition-9781421589596_hr.jpg"
+            },
+            {
+                "number": 2,
+                "reason": "HTTP 403",
+                "source": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421589602/the-legend-of-zelda-oracle-of-seasons-oracle-of-ages-legendary-edition-9781421589602_hr.jpg"
+            },
+            {
+                "number": 3,
+                "reason": "HTTP 403",
+                "source": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421589619/the-legend-of-zelda-majora-s-mask-a-link-to-the-past-legendary-edition-9781421589619_hr.jpg"
+            },
+            {
+                "number": 4,
+                "reason": "Δεν είναι υποστηριζόμενη εικόνα: ",
+                "source": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781421589626/the-legend-of-zelda-the-minish-cap-phantom-hourglass-legendary-edition-9781421589626_hr.jpg"
+            }
+        ],
+        "dc-comics": [
+            {
+                "number": 5,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 11,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 12,
+                "reason": "Δεν βρέθηκε image URL"
+            }
+        ],
+        "marvel": [
+            {
+                "number": 3,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 7,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 12,
+                "reason": "Δεν βρέθηκε image URL"
+            }
+        ],
+        "marvel-graphic-novel": [
+            {
+                "number": 5,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 54,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 86,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 87,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 92,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 93,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 103,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 118,
                 "reason": "Δεν βρέθηκε image URL"
             }
         ]

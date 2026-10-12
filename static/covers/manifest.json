@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-10-05T11:08:46.312856+00:00",
+    "generated_at": "2026-10-12T11:37:29.054397+00:00",
     "covers": {
         "lucky-luke": {
             "1": {
@@ -161,10 +161,6 @@
             "40": {
                 "path": "/static/covers/lucky-luke/040.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Σιδερένιο-Άλογο.jpg"
-            },
-            "41": {
-                "path": "/static/covers/lucky-luke/041.png",
-                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
             },
             "42": {
                 "path": "/static/covers/lucky-luke/042.jpg",
@@ -474,7 +470,7 @@
             },
             "27": {
                 "path": "/static/covers/asterix/027.png",
-                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-27:-h-odysseia-toy-asterix-2-600x315.png"
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-27:-h-odysseia-toy-asterix-600x315.png"
             },
             "28": {
                 "path": "/static/covers/asterix/028.png",
@@ -633,12 +629,7 @@
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2024/11/Ιζνογκούντ-30-από-πατέρα-σε-γιό.png"
             }
         },
-        "rantanplan": {
-            "17": {
-                "path": "/static/covers/rantanplan/017.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2026/06/ραντανπλαν-17-Cover.png"
-            }
-        },
+        "rantanplan": {},
         "sherlock-holmes": {
             "1": {
                 "path": "/static/covers/sherlock-holmes/001.jpg",
@@ -823,7 +814,7 @@
             },
             "8": {
                 "path": "/static/covers/marvel-graphic-novel/008.jpg",
-                "source": "https://covers.openlibrary.org/b/id/8022702-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/7386004-L.jpg"
             },
             "9": {
                 "path": "/static/covers/marvel-graphic-novel/009.jpg",
@@ -1147,7 +1138,7 @@
             },
             "94": {
                 "path": "/static/covers/marvel-graphic-novel/094.jpg",
-                "source": "https://covers.openlibrary.org/b/id/8022702-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/7386004-L.jpg"
             },
             "95": {
                 "path": "/static/covers/marvel-graphic-novel/095.jpg",
@@ -1248,7 +1239,12 @@
         }
     },
     "missing": {
-        "lucky-luke": [],
+        "lucky-luke": [
+            {
+                "number": 41,
+                "reason": "Δεν βρέθηκε image URL"
+            }
+        ],
         "asterix": [],
         "idefix": [],
         "iznogoud": [
@@ -1348,6 +1344,10 @@
             },
             {
                 "number": 16,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 17,
                 "reason": "Δεν βρέθηκε image URL"
             }
         ],

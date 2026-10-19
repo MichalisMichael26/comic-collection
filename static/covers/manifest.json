@@ -1,11 +1,7 @@
 {
-    "generated_at": "2026-10-12T11:37:29.054397+00:00",
+    "generated_at": "2026-10-19T09:33:14.753143+00:00",
     "covers": {
         "lucky-luke": {
-            "1": {
-                "path": "/static/covers/lucky-luke/001.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/%CE%BB%CE%BB-01.png"
-            },
             "2": {
                 "path": "/static/covers/lucky-luke/002.jpg",
                 "source": "https://cdn.slidesharecdn.com/ss_thumbnails/02-230414110324-cc954bd8-thumbnail.jpg?fit=bounds&height=640&width=640"
@@ -161,6 +157,10 @@
             "40": {
                 "path": "/static/covers/lucky-luke/040.jpg",
                 "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/Το-Σιδερένιο-Άλογο.jpg"
+            },
+            "41": {
+                "path": "/static/covers/lucky-luke/041.png",
+                "source": "https://comicon-shop.gr/wp-content/uploads/2014/09/logo.png"
             },
             "42": {
                 "path": "/static/covers/lucky-luke/042.jpg",
@@ -470,7 +470,7 @@
             },
             "27": {
                 "path": "/static/covers/asterix/027.png",
-                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-27:-h-odysseia-toy-asterix-600x315.png"
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-27:-h-odysseia-toy-asterix-2-600x315.png"
             },
             "28": {
                 "path": "/static/covers/asterix/028.png",
@@ -539,96 +539,7 @@
                 "source": "https://comicstrip.gr/image/cache/catalog/product/o-intefi3-kai-oi-anypotaktoi-2:-o-intefi3-kai-o-droyidhs-600x315.png"
             }
         },
-        "iznogoud": {
-            "1": {
-                "path": "/static/covers/iznogoud/001.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/ιζν-01.png"
-            },
-            "3": {
-                "path": "/static/covers/iznogoud/003.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-03.png"
-            },
-            "4": {
-                "path": "/static/covers/iznogoud/004.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-04.png"
-            },
-            "5": {
-                "path": "/static/covers/iznogoud/005.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-05.png"
-            },
-            "6": {
-                "path": "/static/covers/iznogoud/006.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-06.png"
-            },
-            "7": {
-                "path": "/static/covers/iznogoud/007.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-07.png"
-            },
-            "8": {
-                "path": "/static/covers/iznogoud/008.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/05/ιζνογκούντ-08-η-μέρα-των-τρελών.png"
-            },
-            "9": {
-                "path": "/static/covers/iznogoud/009.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-09.png"
-            },
-            "10": {
-                "path": "/static/covers/iznogoud/010.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-10.png"
-            },
-            "11": {
-                "path": "/static/covers/iznogoud/011.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-11.png"
-            },
-            "12": {
-                "path": "/static/covers/iznogoud/012.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-12.png"
-            },
-            "13": {
-                "path": "/static/covers/iznogoud/013.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-13.png"
-            },
-            "14": {
-                "path": "/static/covers/iznogoud/014.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-14.png"
-            },
-            "22": {
-                "path": "/static/covers/iznogoud/022.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-22.png"
-            },
-            "23": {
-                "path": "/static/covers/iznogoud/023.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-23.png"
-            },
-            "24": {
-                "path": "/static/covers/iznogoud/024.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-24.png"
-            },
-            "25": {
-                "path": "/static/covers/iznogoud/025.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-25.png"
-            },
-            "26": {
-                "path": "/static/covers/iznogoud/026.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-26.png"
-            },
-            "27": {
-                "path": "/static/covers/iznogoud/027.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/01/Ιζνογκούντ-27.png"
-            },
-            "28": {
-                "path": "/static/covers/iznogoud/028.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/ιζν-28.png"
-            },
-            "29": {
-                "path": "/static/covers/iznogoud/029.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2023/07/Ιζνογκούντ-29.png"
-            },
-            "30": {
-                "path": "/static/covers/iznogoud/030.png",
-                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2024/11/Ιζνογκούντ-30-από-πατέρα-σε-γιό.png"
-            }
-        },
+        "iznogoud": {},
         "rantanplan": {},
         "sherlock-holmes": {
             "1": {
@@ -1241,15 +1152,68 @@
     "missing": {
         "lucky-luke": [
             {
-                "number": 41,
-                "reason": "Δεν βρέθηκε image URL"
+                "number": 1,
+                "reason": "Δεν είναι υποστηριζόμενη εικόνα: text/html",
+                "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/%CE%BB%CE%BB-01.png"
             }
         ],
         "asterix": [],
         "idefix": [],
         "iznogoud": [
             {
+                "number": 1,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
                 "number": 2,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 3,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 4,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 5,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 6,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 7,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 8,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 9,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 10,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 11,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 12,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 13,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 14,
                 "reason": "Δεν βρέθηκε image URL"
             },
             {
@@ -1278,6 +1242,42 @@
             },
             {
                 "number": 21,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 22,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 23,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 24,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 25,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 26,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 27,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 28,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 29,
+                "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 30,
                 "reason": "Δεν βρέθηκε image URL"
             }
         ],

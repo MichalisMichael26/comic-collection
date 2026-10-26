@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-10-19T09:33:14.753143+00:00",
+    "generated_at": "2026-10-26T09:38:25.117175+00:00",
     "covers": {
         "lucky-luke": {
             "2": {
@@ -25,14 +25,6 @@
             "7": {
                 "path": "/static/covers/lucky-luke/007.jpg",
                 "source": "https://a.scdn.gr/images/sku_main_images/003871/3871251/xlarge_20210608170616_mama_ntalton.jpeg"
-            },
-            "8": {
-                "path": "/static/covers/lucky-luke/008.jpg",
-                "source": "https://mamouthcomix.gr/wp-content/uploads/2018/02/LL-08.jpg"
-            },
-            "9": {
-                "path": "/static/covers/lucky-luke/009.jpg",
-                "source": "https://mamouthcomix.gr/wp-content/uploads/2018/02/LL-09-298x300.jpg"
             },
             "10": {
                 "path": "/static/covers/lucky-luke/010.jpg",
@@ -470,7 +462,7 @@
             },
             "27": {
                 "path": "/static/covers/asterix/027.png",
-                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-27:-h-odysseia-toy-asterix-2-600x315.png"
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-27:-h-odysseia-toy-asterix-600x315.png"
             },
             "28": {
                 "path": "/static/covers/asterix/028.png",
@@ -765,7 +757,7 @@
             },
             "18": {
                 "path": "/static/covers/marvel-graphic-novel/018.jpg",
-                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/726896-L.jpg"
             },
             "19": {
                 "path": "/static/covers/marvel-graphic-novel/019.jpg",
@@ -805,19 +797,15 @@
             },
             "28": {
                 "path": "/static/covers/marvel-graphic-novel/028.jpg",
-                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/726896-L.jpg"
             },
             "29": {
                 "path": "/static/covers/marvel-graphic-novel/029.jpg",
                 "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
             },
-            "30": {
-                "path": "/static/covers/marvel-graphic-novel/030.jpg",
-                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
-            },
             "31": {
                 "path": "/static/covers/marvel-graphic-novel/031.jpg",
-                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/726896-L.jpg"
             },
             "32": {
                 "path": "/static/covers/marvel-graphic-novel/032.jpg",
@@ -825,7 +813,7 @@
             },
             "33": {
                 "path": "/static/covers/marvel-graphic-novel/033.jpg",
-                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/726896-L.jpg"
             },
             "34": {
                 "path": "/static/covers/marvel-graphic-novel/034.jpg",
@@ -961,7 +949,7 @@
             },
             "68": {
                 "path": "/static/covers/marvel-graphic-novel/068.jpg",
-                "source": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/726896-L.jpg"
             },
             "69": {
                 "path": "/static/covers/marvel-graphic-novel/069.jpg",
@@ -1153,8 +1141,18 @@
         "lucky-luke": [
             {
                 "number": 1,
-                "reason": "Δεν είναι υποστηριζόμενη εικόνα: text/html",
+                "reason": "HTTP 415",
                 "source": "https://mamouthcomix-eshop.gr/wp-content/uploads/2022/07/%CE%BB%CE%BB-01.png"
+            },
+            {
+                "number": 8,
+                "reason": "HTTP 415",
+                "source": "https://mamouthcomix.gr/wp-content/uploads/2018/02/LL-08.jpg"
+            },
+            {
+                "number": 9,
+                "reason": "HTTP 415",
+                "source": "https://mamouthcomix.gr/wp-content/uploads/2018/02/LL-09-298x300.jpg"
             }
         ],
         "asterix": [],
@@ -1484,6 +1482,11 @@
             {
                 "number": 5,
                 "reason": "Δεν βρέθηκε image URL"
+            },
+            {
+                "number": 30,
+                "reason": "HTTP 502",
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
             },
             {
                 "number": 54,

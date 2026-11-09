@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-11-02T11:58:27.668814+00:00",
+    "generated_at": "2026-11-09T12:29:15.253421+00:00",
     "covers": {
         "lucky-luke": {
             "2": {
@@ -434,7 +434,7 @@
             },
             "18": {
                 "path": "/static/covers/asterix/018.png",
-                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-18:-o-asterix-kai-h-xytra-2-600x315.png"
+                "source": "https://comicstrip.gr/image/cache/catalog/product/asterix-18:-o-asterix-kai-h-xytra-600x315.png"
             },
             "19": {
                 "path": "/static/covers/asterix/019.png",
@@ -569,7 +569,7 @@
                 "source": "https://d.scdn.gr/images/sku_main_images/037384/37384239/20220808155715_i_zoi_meta_epitomo.jpeg"
             },
             "7": {
-                "path": "/static/covers/arkas/007.webp",
+                "path": "/static/covers/arkas/007.jpg",
                 "source": "https://www.lifo.gr/sites/default/files/styles/max_1920x1920/public/articles/2021-01-21/show_businnes.jpg?itok=Rk5y6WFg"
             },
             "8": {
@@ -605,7 +605,7 @@
             },
             "2": {
                 "path": "/static/covers/dc-comics/002.jpg",
-                "source": "https://covers.openlibrary.org/b/id/12297940-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/15272201-L.jpg"
             },
             "3": {
                 "path": "/static/covers/dc-comics/003.jpg",
@@ -613,7 +613,7 @@
             },
             "4": {
                 "path": "/static/covers/dc-comics/004.jpg",
-                "source": "https://covers.openlibrary.org/b/id/10407805-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/15270947-L.jpg"
             },
             "6": {
                 "path": "/static/covers/dc-comics/006.jpg",
@@ -629,7 +629,7 @@
             },
             "9": {
                 "path": "/static/covers/dc-comics/009.jpg",
-                "source": "https://covers.openlibrary.org/b/id/8173706-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/15270932-L.jpg"
             },
             "10": {
                 "path": "/static/covers/dc-comics/010.jpg",
@@ -663,7 +663,11 @@
             },
             "4": {
                 "path": "/static/covers/marvel/004.jpg",
-                "source": "https://covers.openlibrary.org/b/id/8459462-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/509234-L.jpg"
+            },
+            "5": {
+                "path": "/static/covers/marvel/005.jpg",
+                "source": "https://covers.openlibrary.org/b/id/536363-L.jpg"
             },
             "6": {
                 "path": "/static/covers/marvel/006.jpg",
@@ -810,6 +814,10 @@
             "30": {
                 "path": "/static/covers/marvel-graphic-novel/030.jpg",
                 "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
+            },
+            "31": {
+                "path": "/static/covers/marvel-graphic-novel/031.jpg",
+                "source": "https://covers.openlibrary.org/b/id/726896-L.jpg"
             },
             "32": {
                 "path": "/static/covers/marvel-graphic-novel/032.jpg",
@@ -989,7 +997,7 @@
             },
             "77": {
                 "path": "/static/covers/marvel-graphic-novel/077.jpg",
-                "source": "https://covers.openlibrary.org/b/id/6310333-L.jpg"
+                "source": "https://covers.openlibrary.org/b/id/7884139-L.jpg"
             },
             "78": {
                 "path": "/static/covers/marvel-graphic-novel/078.jpg",
@@ -1464,10 +1472,6 @@
                 "reason": "Δεν βρέθηκε image URL"
             },
             {
-                "number": 5,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
                 "number": 7,
                 "reason": "Δεν βρέθηκε image URL"
             },
@@ -1479,10 +1483,6 @@
         "marvel-graphic-novel": [
             {
                 "number": 5,
-                "reason": "Δεν βρέθηκε image URL"
-            },
-            {
-                "number": 31,
                 "reason": "Δεν βρέθηκε image URL"
             },
             {
